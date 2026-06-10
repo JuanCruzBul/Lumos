@@ -379,71 +379,82 @@ export function SistemasSection() {
 
   return (
     <>
-      <section id="productos" className="py-24 px-8 bg-[#fdf8f4]">
-        <div className="max-w-6xl mx-auto">
+      <section id="productos" className="relative py-24 px-8 bg-[#fefefe] overflow-hidden">
+        {/* Decorative blobs */}
+        <div className="pointer-events-none absolute -top-24 -left-16 w-96 h-96 rounded-full bg-[#c5704b]/5 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-[#fab257]/5 blur-3xl" />
+
+        <div className="relative max-w-6xl mx-auto">
 
           {/* Header */}
-          <div className="text-center mb-16">
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#c5704b]/80">
               Servicios
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
-              Todo lo que tu hogar necesita
+            <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight">
+              Todo lo que tu hogar{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={{ backgroundImage: "linear-gradient(135deg, #c5704b 0%, #fab257 100%)" }}
+              >
+                necesita.
+              </span>
             </h2>
-            <p className="text-black/40 text-sm max-w-md mx-auto leading-relaxed">
+            <p className="text-black/55 text-base max-w-xl mx-auto leading-relaxed font-medium">
               Soluciones simples, instaladas por nosotros. Solo tenés que disfrutar de tu hogar inteligente.
             </p>
           </div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {SERVICES.map((service) => {
-              const { Icon, title, cardDesc, tag, accent } = service;
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {SERVICES.map((service, i) => {
+              const { Icon, title, cardDesc } = service;
               return (
-                <button
+                <motion.button
                   key={service.id}
                   onClick={() => setActive(service)}
-                  className="group glass-panel rounded-2xl p-7 hover:glow-active transition-all duration-500 cursor-pointer flex flex-col gap-5 text-left w-full"
+                  className="group glass-panel rounded-xl p-8 hover:glow-active hover:-translate-y-2 transition-all duration-[400ms] cursor-pointer flex flex-col items-start gap-6 text-left w-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="flex items-start justify-between">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors duration-300"
-                      style={{ background: `${accent}18` }}
-                    >
-                      <Icon size={22} style={{ color: accent }} />
-                    </div>
-                    <span
-                      className="text-[10px] uppercase tracking-widest font-semibold px-2.5 py-1 rounded-full"
-                      style={{ color: accent, background: `${accent}18` }}
-                    >
-                      {tag}
-                    </span>
+                  <div className="w-12 h-12 rounded-lg bg-[#c5704b]/10 flex items-center justify-center transition-colors duration-300 group-hover:bg-[#c5704b]/20">
+                    <Icon size={22} className="text-[#c5704b]" />
                   </div>
 
-                  <div className="flex-1">
-                    <h3 className="text-black font-bold text-base mb-2">{title}</h3>
-                    <p className="text-black/45 text-sm leading-relaxed">{cardDesc}</p>
+                  <div className="flex-1 space-y-3">
+                    <h3 className="text-black font-semibold text-xl">{title}</h3>
+                    <p className="text-black/55 text-sm leading-relaxed">{cardDesc}</p>
                   </div>
 
-                  <div className="pt-3 border-t border-black/[0.07] flex items-center justify-between">
-                    <span
-                      className="text-xs font-semibold uppercase tracking-wider"
-                      style={{ color: accent }}
-                    >
+                  <div className="mt-auto pt-4 flex items-center gap-1">
+                    <span className="text-xs font-bold text-[#c5704b] group-hover:underline">
                       Conocer más
                     </span>
-                    <motion.span
-                      className="text-xs font-bold"
-                      style={{ color: accent }}
-                      animate={{ x: [0, 3, 0] }}
-                      transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-                    >
+                    <span className="text-xs font-bold text-[#c5704b] transition-transform duration-200 group-hover:translate-x-0.5">
                       →
-                    </motion.span>
+                    </span>
                   </div>
-                </button>
+                </motion.button>
               );
             })}
+          </div>
+
+          {/* Bottom social proof */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#c5704b]/20 bg-[#fdf8f4]">
+              <div className="flex -space-x-2">
+                {["JC","MR","AG","LP"].map((initials) => (
+                  <div key={initials} className="w-6 h-6 rounded-full border-2 border-white bg-[#c5704b]/20 flex items-center justify-center">
+                    <span className="text-[7px] font-bold text-[#c5704b]">{initials}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs font-semibold text-black/50 uppercase tracking-widest">
+                Más de 30 hogares ya automatizados
+              </p>
+            </div>
           </div>
         </div>
       </section>
