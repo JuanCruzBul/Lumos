@@ -38,8 +38,9 @@ function StepItem({
   index: number;
   scrollYProgress: MotionValue<number>;
 }) {
-  const start = 0.12 + (index / 4) * 0.6;
-  const end = start + 0.14;
+  // Steps appear first (staggered), before the line draws
+  const start = 0.08 + index * 0.09;
+  const end = start + 0.12;
   const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
   const y = useTransform(scrollYProgress, [start, end], [32, 0]);
 
@@ -70,8 +71,8 @@ export function ComoFuncionaSection() {
     offset: ["start start", "end end"],
   });
 
-  // Line draws left to right as steps appear
-  const lineScaleX = useTransform(scrollYProgress, [0.12, 0.75], [0, 1]);
+  // Line draws only after all steps are settled (~0.50 onward)
+  const lineScaleX = useTransform(scrollYProgress, [0.52, 0.82], [0, 1]);
 
   // Header fades in at the very beginning
   const headerOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
