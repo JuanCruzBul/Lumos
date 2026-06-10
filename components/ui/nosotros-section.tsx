@@ -8,8 +8,7 @@ import { motion } from "framer-motion";
 const JUAN_IMG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC7nFYGs_Vp2TNitq772JOI-I9adZBE-L2mTHq1yDvay5OPxZQVipx2V-BRo2D5DoSU7-JGjiFB3RLf2zyWeJmbVZli6erPsauOwvm8pGxDPVUBX4H3ZKISc_UUzeJaxIVpJjMSYwpg_430LDrB8Nq1cGYX1N_uPY2SW4mooy5SglDEPxmU0uuE_FXmByZ_Zjvq_IyJw6r6DasY_uFnyqwuJW2yxo2XKPm-yfSjGeKaPHFkrkbEYnihwqJaLPwMibaZOciyKFc5XjNSsg";
 
-const JESUS_IMG =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCS7a5n9xPx-tD9lcJayJF9jAgb0E5TNPy5Yz96ZtA7hequkVdh86DWYkn-Lx97wVMCzryzr0bvd2nhStdZEWfWhc0USyB7tgnCq4jvTOT--ygru0cqKw1umalZyP-lpfcj3cTgwp-lbvV4wgg7oe-FJ87niJqGk3ybEVveuoHxE0X0EHEuLtB7JyTXsEgOyAFS71wBaleYLoegz4SbNW5lUSp5Uy7H2gYpld5mT6xLWtp75NAmyPEhzesNoyJwts5RmYTqRpwmrxc";
+const JESUS_IMG = "/images/jesus-manuel-martinez.webp";
 
 export function NosotrosSection() {
   const bg1Ref = useRef<HTMLDivElement>(null);
