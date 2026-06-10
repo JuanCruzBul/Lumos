@@ -106,32 +106,6 @@ export function HeroSection() {
             Ver Demo
           </button>
         </div>
-
-        {/* Stats row */}
-        <div className="flex flex-wrap justify-center gap-10 fade-in-up" style={{ animationDelay: "1.8s" }}>
-          {[
-            { value: "12K+", label: "Hogares" },
-            { value: "98%", label: "Satisfacción" },
-            { value: "24/7", label: "Soporte" },
-          ].map(({ value, label }, i) => (
-            <div key={label} className="flex flex-col items-center gap-0.5">
-              {i > 0 && (
-                <div className="hidden sm:block absolute -left-5 top-1/2 -translate-y-1/2 w-px h-6 bg-black/10" />
-              )}
-              <span className="text-2xl font-bold text-black">{value}</span>
-              <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(0,0,0,0.38)" }}>{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 fade-in-up z-10"
-        style={{ animationDelay: "2.1s" }}
-      >
-        <span className="text-xs tracking-widest uppercase" style={{ color: "rgba(0,0,0,0.3)" }}>Scroll</span>
-        <div className="w-px h-8" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.25), transparent)" }} />
       </div>
     </section>
   );
