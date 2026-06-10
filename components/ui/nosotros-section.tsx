@@ -30,7 +30,8 @@ export function NosotrosSection() {
   return (
     <section
       id="nosotros"
-      className="relative flex flex-col items-center py-20 px-6 lg:px-24 bg-background overflow-hidden"
+      className="relative flex flex-col items-center py-20 px-6 lg:px-24 overflow-hidden"
+      style={{ background: "#fff8f6" }}
     >
       {/* Background glows */}
       <div
@@ -49,12 +50,12 @@ export function NosotrosSection() {
         <span className="text-xs font-semibold text-[#c5704b] bg-[#ffdbcd]/30 px-4 py-1.5 rounded-full mb-6 inline-block uppercase tracking-widest">
           El Equipo
         </span>
-        <h2 className="text-4xl md:text-5xl lg:text-[60px] font-semibold text-black leading-tight mb-6 mt-4">
+        <h2 className="text-4xl md:text-5xl lg:text-[60px] font-semibold text-[#221a17] leading-tight mb-6 mt-4">
           Mentes creativas{" "}
           <br />
           <span className="text-[#c5704b] font-bold">impulsando Lumos.</span>
         </h2>
-        <p className="text-base text-black/60 max-w-2xl leading-relaxed">
+        <p className="text-base text-[#54433c] max-w-2xl leading-relaxed">
           Creemos en la simplicidad sofisticada y en el poder de la luz para
           transformar experiencias digitales. Unimos visión estratégica y
           ejecución impecable.
@@ -84,20 +85,20 @@ export function NosotrosSection() {
               />
             </div>
             <div className="flex flex-col text-center lg:text-left self-center">
-              <h3 className="text-xl font-semibold text-black mb-1">Juan Cruz Bulatovich</h3>
+              <h3 className="text-xl font-semibold text-[#221a17] mb-1">Juan Cruz Bulatovich</h3>
               <span className="text-sm font-semibold text-[#c5704b] mb-4 tracking-wide uppercase">
                 Director Creativo &amp; Cofundador
               </span>
-              <p className="text-sm text-black/60 mb-6 leading-relaxed">
+              <p className="text-sm text-[#54433c] mb-6 leading-relaxed">
                 Estratega visual con pasión por el diseño centrado en el ser
                 humano. Juan lidera la visión estética de Lumos, asegurando que
                 cada píxel transmita calidez y claridad.
               </p>
               <div className="flex justify-center lg:justify-start gap-4">
-                <a href="#" className="text-black/40 hover:text-[#c5704b] transition-colors">
+                <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
                   <Globe2 size={20} />
                 </a>
-                <a href="#" className="text-black/40 hover:text-[#c5704b] transition-colors">
+                <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
                   <Share2 size={20} />
                 </a>
               </div>
@@ -125,20 +126,20 @@ export function NosotrosSection() {
               />
             </div>
             <div className="flex flex-col text-center lg:text-right self-center">
-              <h3 className="text-xl font-semibold text-black mb-1">Jesús Manuel Martínez</h3>
+              <h3 className="text-xl font-semibold text-[#221a17] mb-1">Jesús Manuel Martínez</h3>
               <span className="text-sm font-semibold text-[#c5704b] mb-4 tracking-wide uppercase">
                 CTO &amp; Estrategia Digital
               </span>
-              <p className="text-sm text-black/60 mb-6 leading-relaxed">
+              <p className="text-sm text-[#54433c] mb-6 leading-relaxed">
                 Arquitecto de soluciones innovadoras. Jesús combina la precisión
                 técnica con una visión de futuro para construir productos
                 digitales que no solo funcionan, sino que inspiran.
               </p>
               <div className="flex justify-center lg:justify-end gap-4">
-                <a href="#" className="text-black/40 hover:text-[#c5704b] transition-colors">
+                <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
                   <Mail size={20} />
                 </a>
-                <a href="#" className="text-black/40 hover:text-[#c5704b] transition-colors">
+                <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
                   <Link2 size={20} />
                 </a>
               </div>
@@ -147,8 +148,8 @@ export function NosotrosSection() {
         </motion.div>
 
         {/* Decorative background text */}
-        <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-5 select-none">
-          <span className="text-[180px] font-bold text-[#c5704b] whitespace-nowrap leading-none">
+        <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.04] select-none">
+          <span className="text-[180px] font-bold text-[#221a17] whitespace-nowrap leading-none">
             NOSOTROS
           </span>
         </div>
@@ -156,7 +157,7 @@ export function NosotrosSection() {
 
       {/* Quote */}
       <div className="w-full max-w-xl mt-48 lg:mt-[500px] text-center">
-        <p className="text-sm text-black/40 mb-8 italic">
+        <p className="text-sm text-[#87736b] mb-8 italic">
           &ldquo;La luz no solo nos permite ver, nos permite entender el camino.&rdquo;
         </p>
         <div
