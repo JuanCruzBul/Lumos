@@ -5,8 +5,7 @@ import { useEffect, useRef } from "react";
 import { Globe2, Share2, Mail, Link2 } from "lucide-react";
 import { motion } from "framer-motion";
 
-const JUAN_IMG =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuC7nFYGs_Vp2TNitq772JOI-I9adZBE-L2mTHq1yDvay5OPxZQVipx2V-BRo2D5DoSU7-JGjiFB3RLf2zyWeJmbVZli6erPsauOwvm8pGxDPVUBX4H3ZKISc_UUzeJaxIVpJjMSYwpg_430LDrB8Nq1cGYX1N_uPY2SW4mooy5SglDEPxmU0uuE_FXmByZ_Zjvq_IyJw6r6DasY_uFnyqwuJW2yxo2XKPm-yfSjGeKaPHFkrkbEYnihwqJaLPwMibaZOciyKFc5XjNSsg";
+const JUAN_IMG = "/images/juan-cruz-bulatovich.webp";
 
 const JESUS_IMG = "/images/jesus-manuel-martinez.webp";
 
