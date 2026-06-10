@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  h1, .title {
+    @apply font-quicksand font-bold;
+  }
+  h2, h3, h4, h5, h6, .subtitle {
+    @apply font-quicksand font-semibold;
+  }
+  p, li, span, .body-text {
+    @apply font-quicksand font-normal;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background: rgba(26, 26, 32, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .glow-active {
+    box-shadow: 0 0 24px rgba(197, 112, 75, 0.25);
+    border-color: rgba(197, 112, 75, 0.45) !important;
+  }
+}
+
+/* SVG path draw animation */
+.path-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 3s ease-in-out forwards;
+}
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
+}
+.stagger-1 { animation-delay: 0.2s; }
+.stagger-2 { animation-delay: 0.6s; }
+.stagger-3 { animation-delay: 1.0s; }
+.stagger-4 { animation-delay: 1.4s; }
+.stagger-5 { animation-delay: 1.8s; }
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out 2.5s forwards;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Lumos dark palette — cool charcoal */
+    --background: 245 8% 7%;          /* #111117 */
+    --foreground: 220 15% 91%;        /* #e4e6ed */
+    --card: 245 7% 11%;               /* #1a1a20 */
+    --card-foreground: 220 15% 91%;
+    --popover: 245 7% 11%;
+    --popover-foreground: 220 15% 91%;
+    --primary: 18 51% 53%;            /* #c5704b */
+    --primary-foreground: 15 100% 17%;
+    --secondary: 38 100% 68%;         /* #ffb95a */
+    --secondary-foreground: 30 100% 14%;
+    --muted: 245 6% 15%;              /* #222229 */
+    --muted-foreground: 220 12% 70%;
+    --accent: 245 6% 15%;
+    --accent-foreground: 220 15% 91%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 245 6% 20%;             /* #303039 */
+    --input: 245 6% 20%;
+    --ring: 18 51% 53%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -1,0 +1,35 @@
+"use client";
+import React from "react";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import Image from "next/image";
+
+export function HeroScrollDemo() {
+  return (
+    <div className="flex flex-col overflow-hidden">
+      <ContainerScroll
+        titleComponent={
+          <>
+            <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
+              La Experiencia Lumos
+            </p>
+            <h2 className="text-4xl font-bold text-on-surface dark:text-on-surface">
+              Tu hogar, <br />
+              <span className="text-4xl md:text-[5rem] font-bold mt-1 leading-none text-primary">
+                reinventado.
+              </span>
+            </h2>
+          </>
+        }
+      >
+        <Image
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=75"
+          alt="Lumos smart home interface"
+          height={720}
+          width={1400}
+          className="mx-auto rounded-2xl object-cover h-full object-center"
+          draggable={false}
+        />
+      </ContainerScroll>
+    </div>
+  );
+}
