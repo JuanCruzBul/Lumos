@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  h1, .title {
+    @apply font-quicksand font-bold;
+  }
+  h2, h3, h4, h5, h6, .subtitle {
+    @apply font-quicksand font-semibold;
+  }
+  p, li, span, .body-text {
+    @apply font-quicksand font-normal;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(197, 112, 75, 0.14);
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.05);
+  }
+  .glow-active {
+    box-shadow: 0 8px 40px rgba(197, 112, 75, 0.18);
+    border-color: rgba(197, 112, 75, 0.40) !important;
+  }
+}
+
+/* SVG path draw animation */
+.path-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 3s ease-in-out forwards;
+}
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
+}
+.stagger-1 { animation-delay: 0.2s; }
+.stagger-2 { animation-delay: 0.6s; }
+.stagger-3 { animation-delay: 1.0s; }
+.stagger-4 { animation-delay: 1.4s; }
+.stagger-5 { animation-delay: 1.8s; }
+
+@keyframes floating {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+.floating {
+  animation: floating 6s ease-in-out infinite;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out 2.5s forwards;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  :root {
+    /* Lumos light palette — warm ivory & terra cotta */
+    --background: 40 33% 99%;           /* #fefefe */
+    --foreground: 0 0% 0%;              /* #000000 */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 18 51% 53%;              /* #c5704b */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 94% 65%;            /* #fab257 */
+    --secondary-foreground: 0 0% 0%;
+    --muted: 28 30% 96%;                /* warm off-white */
+    --muted-foreground: 0 0% 40%;
+    --accent: 28 30% 96%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 18 25% 88%;               /* warm light border */
+    --input: 18 25% 88%;
+    --ring: 18 51% 53%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
