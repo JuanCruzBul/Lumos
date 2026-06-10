@@ -2,7 +2,7 @@
 
 export function ContactSection() {
   return (
-    <section id="contacto" className="relative overflow-hidden bg-[#fdf8f4] py-20 lg:py-28 px-8">
+    <section id="contacto" className="relative overflow-hidden bg-[#fdf8f4] min-h-screen flex flex-col justify-center py-20 lg:py-28 px-8">
 
       {/* Subtle warm glow */}
       <div

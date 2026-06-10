@@ -379,7 +379,7 @@ export function SistemasSection() {
 
   return (
     <>
-      <section id="productos" className="relative py-24 px-8 bg-[#fefefe] overflow-hidden">
+      <section id="productos" className="relative min-h-screen flex flex-col justify-center py-24 px-8 bg-[#fefefe] overflow-hidden">
         {/* Decorative blobs */}
         <div className="pointer-events-none absolute -top-24 -left-16 w-96 h-96 rounded-full bg-[#c5704b]/5 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-[#fab257]/5 blur-3xl" />
