@@ -29,7 +29,7 @@ const testimonios = [
 
 export function TestimoniosSection() {
   return (
-    <section id="clientes" className="py-24 px-8 bg-[#fefefe]">
+    <section id="clientes" className="min-h-screen flex flex-col justify-center py-24 px-8 bg-[#fefefe]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Testimonios</span>

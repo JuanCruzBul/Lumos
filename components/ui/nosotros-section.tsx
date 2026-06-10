@@ -29,7 +29,7 @@ export function NosotrosSection() {
   return (
     <section
       id="nosotros"
-      className="relative flex flex-col items-center py-20 px-6 lg:px-24 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center py-20 px-6 lg:px-24 overflow-hidden"
       style={{ background: "#fff8f6" }}
     >
       {/* Background glows */}

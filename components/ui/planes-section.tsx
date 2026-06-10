@@ -50,7 +50,7 @@ const planes = [
 
 export function PlanesSection() {
   return (
-    <section id="planes" className="py-24 px-8 bg-[#fdf8f4]">
+    <section id="planes" className="min-h-screen flex flex-col justify-center py-24 px-8 bg-[#fdf8f4]">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Planes</span>

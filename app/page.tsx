@@ -21,7 +21,7 @@ export default function Home() {
       <TestimoniosSection />
       <NosotrosSection />
       <ContactSection />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }
