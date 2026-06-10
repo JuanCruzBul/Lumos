@@ -48,26 +48,46 @@ function StepItem({
   index: number;
   scrollYProgress: MotionValue<number>;
 }) {
-  const { start, end } = STEP_TIMINGS[index];
-  const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
-  const y = useTransform(scrollYProgress, [start, end], [28, 0]);
+  const { start } = STEP_TIMINGS[index];
+
+  // 1. Circle
+  const circleOpacity = useTransform(scrollYProgress, [start, start + 0.05], [0, 1]);
+  const circleY = useTransform(scrollYProgress, [start, start + 0.05], [20, 0]);
+
+  // 2. Title — starts after circle settles
+  const titleOpacity = useTransform(scrollYProgress, [start + 0.05, start + 0.09], [0, 1]);
+  const titleY = useTransform(scrollYProgress, [start + 0.05, start + 0.09], [12, 0]);
+
+  // 3. Description — starts after title settles
+  const descOpacity = useTransform(scrollYProgress, [start + 0.09, start + 0.13], [0, 1]);
+  const descY = useTransform(scrollYProgress, [start + 0.09, start + 0.13], [10, 0]);
 
   return (
-    <motion.div
-      style={{ opacity, y }}
-      className="flex flex-col items-center text-center px-6 mb-12 md:mb-0"
-    >
-      <div className="relative mb-8 z-10">
+    <div className="flex flex-col items-center text-center px-6 mb-12 md:mb-0">
+      <motion.div
+        style={{ opacity: circleOpacity, y: circleY }}
+        className="relative mb-8 z-10"
+      >
         <div
           className="w-16 h-16 rounded-full flex items-center justify-center bg-[#fefefe]"
           style={{ border: "1.5px solid rgba(197,112,75,0.45)" }}
         >
           <span className="text-[#c5704b] text-lg font-bold">{num}</span>
         </div>
-      </div>
-      <h3 className="text-black font-bold text-base mb-2">{title}</h3>
-      <p className="text-black/40 text-sm leading-relaxed max-w-[150px] mx-auto">{desc}</p>
-    </motion.div>
+      </motion.div>
+      <motion.h3
+        style={{ opacity: titleOpacity, y: titleY }}
+        className="text-black font-bold text-base mb-2"
+      >
+        {title}
+      </motion.h3>
+      <motion.p
+        style={{ opacity: descOpacity, y: descY }}
+        className="text-black/40 text-sm leading-relaxed max-w-[150px] mx-auto"
+      >
+        {desc}
+      </motion.p>
+    </div>
   );
 }
 
