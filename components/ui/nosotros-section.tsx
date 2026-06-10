@@ -46,13 +46,12 @@ export function NosotrosSection() {
       />
 
       {/* Header */}
-      <div className="w-full max-w-4xl mb-24 text-center lg:text-left">
+      <div className="w-full max-w-6xl mb-20">
         <span className="text-xs font-semibold text-[#c5704b] bg-[#ffdbcd]/30 px-4 py-1.5 rounded-full mb-6 inline-block uppercase tracking-widest">
           El Equipo
         </span>
-        <h2 className="text-4xl md:text-5xl lg:text-[60px] font-semibold text-[#221a17] leading-tight mb-6 mt-4">
-          Mentes creativas{" "}
-          <br />
+        <h2 className="text-4xl md:text-5xl lg:text-[60px] font-semibold text-[#221a17] leading-tight mb-5 mt-4">
+          Mentes creativas <br />
           <span className="text-[#c5704b] font-bold">impulsando Lumos.</span>
         </h2>
         <p className="text-base text-[#54433c] max-w-2xl leading-relaxed">
@@ -62,101 +61,109 @@ export function NosotrosSection() {
         </p>
       </div>
 
-      {/* Asymmetric layout */}
-      <div className="relative w-full max-w-6xl flex flex-col lg:block space-y-24 lg:space-y-0">
+      {/* Cards grid — stack on mobile, asymmetric on desktop */}
+      <div className="relative w-full max-w-6xl">
 
-        {/* Juan Cruz Bulatovich */}
-        <motion.div
-          initial={{ opacity: 0, y: 48 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative lg:absolute lg:top-0 lg:left-0 w-full lg:w-[45%] group z-10"
-        >
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
-            <div className="relative flex-shrink-0">
-              <div className="absolute -inset-4 bg-[#ffdbcd]/20 rounded-[2rem] rotate-6 group-hover:rotate-3 transition-transform duration-500" />
-              <Image
-                src={JUAN_IMG}
-                alt="Juan Cruz Bulatovich"
-                width={256}
-                height={320}
-                className="relative w-64 h-80 object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 shadow-xl border-4 border-white"
-              />
-            </div>
-            <div className="flex flex-col text-center lg:text-left self-center">
-              <h3 className="text-xl font-semibold text-[#221a17] mb-1">Juan Cruz Bulatovich</h3>
-              <span className="text-sm font-semibold text-[#c5704b] mb-4 tracking-wide uppercase">
-                Director Creativo &amp; Cofundador
-              </span>
-              <p className="text-sm text-[#54433c] mb-6 leading-relaxed">
-                Estratega visual con pasión por el diseño centrado en el ser
-                humano. Juan lidera la visión estética de Lumos, asegurando que
-                cada píxel transmita calidez y claridad.
-              </p>
-              <div className="flex justify-center lg:justify-start gap-4">
-                <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
-                  <Globe2 size={20} />
-                </a>
-                <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
-                  <Share2 size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Jesús Manuel Martínez */}
-        <motion.div
-          initial={{ opacity: 0, y: 48 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          className="relative lg:absolute lg:top-48 lg:right-0 w-full lg:w-[48%] group"
-        >
-          <div className="flex flex-col lg:flex-row-reverse items-center lg:items-start gap-8 lg:gap-12">
-            <div className="relative flex-shrink-0 floating">
-              <div className="absolute -inset-4 bg-[#ffddb9]/20 rounded-[3rem] -rotate-3 group-hover:rotate-0 transition-transform duration-500" />
-              <Image
-                src={JESUS_IMG}
-                alt="Jesús Manuel Martínez"
-                width={288}
-                height={288}
-                className="relative w-72 h-72 object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl border-4 border-white"
-              />
-            </div>
-            <div className="flex flex-col text-center lg:text-right self-center">
-              <h3 className="text-xl font-semibold text-[#221a17] mb-1">Jesús Manuel Martínez</h3>
-              <span className="text-sm font-semibold text-[#c5704b] mb-4 tracking-wide uppercase">
-                CTO &amp; Estrategia Digital
-              </span>
-              <p className="text-sm text-[#54433c] mb-6 leading-relaxed">
-                Arquitecto de soluciones innovadoras. Jesús combina la precisión
-                técnica con una visión de futuro para construir productos
-                digitales que no solo funcionan, sino que inspiran.
-              </p>
-              <div className="flex justify-center lg:justify-end gap-4">
-                <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
-                  <Mail size={20} />
-                </a>
-                <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
-                  <Link2 size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Decorative background text */}
-        <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.04] select-none">
-          <span className="text-[180px] font-bold text-[#221a17] whitespace-nowrap leading-none">
+        {/* Watermark */}
+        <div className="hidden lg:block absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+          <span
+            className="text-[180px] font-bold whitespace-nowrap leading-none"
+            style={{ color: "rgba(34,26,23,0.04)" }}
+          >
             NOSOTROS
           </span>
+        </div>
+
+        {/* Two-column grid with offset for Jesús */}
+        <div className="flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-2">
+
+          {/* Juan Cruz — top left */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="group z-10 lg:pr-12"
+          >
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+              <div className="relative flex-shrink-0">
+                <div className="absolute -inset-4 bg-[#ffdbcd]/20 rounded-[2rem] rotate-6 group-hover:rotate-3 transition-transform duration-500" />
+                <Image
+                  src={JUAN_IMG}
+                  alt="Juan Cruz Bulatovich"
+                  width={220}
+                  height={275}
+                  className="relative w-[220px] h-[275px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 shadow-xl border-4 border-white"
+                />
+              </div>
+              <div className="flex flex-col text-center sm:text-left self-center">
+                <h3 className="text-xl font-semibold text-[#221a17] mb-1">Juan Cruz Bulatovich</h3>
+                <span className="text-xs font-semibold text-[#c5704b] mb-4 tracking-widest uppercase">
+                  Fundador
+                </span>
+                <p className="text-sm text-[#54433c] mb-6 leading-relaxed max-w-xs">
+                  Estratega visual con pasión por el diseño centrado en el ser
+                  humano. Juan lidera la visión estética de Lumos, asegurando
+                  que cada píxel transmita calidez y claridad.
+                </p>
+                <div className="flex justify-center sm:justify-start gap-4">
+                  <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
+                    <Globe2 size={18} />
+                  </a>
+                  <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
+                    <Share2 size={18} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Jesús Manuel — offset down on desktop */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.9, ease: "easeOut", delay: 0.18 }}
+            className="group z-10 lg:pt-28 lg:pl-8"
+          >
+            <div className="flex flex-col sm:flex-row-reverse items-center sm:items-start gap-8">
+              <div className="relative flex-shrink-0">
+                <div className="absolute -inset-4 bg-[#ffddb9]/20 rounded-[3rem] -rotate-3 group-hover:rotate-0 transition-transform duration-500" />
+                <Image
+                  src={JESUS_IMG}
+                  alt="Jesús Manuel Martínez"
+                  width={256}
+                  height={256}
+                  className="relative w-64 h-64 object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl border-4 border-white"
+                />
+              </div>
+              <div className="flex flex-col text-center sm:text-right self-center">
+                <h3 className="text-xl font-semibold text-[#221a17] mb-1">Jesús Manuel Martínez</h3>
+                <span className="text-xs font-semibold text-[#c5704b] mb-4 tracking-widest uppercase">
+                  Cofundador
+                </span>
+                <p className="text-sm text-[#54433c] mb-6 leading-relaxed max-w-xs">
+                  Arquitecto de soluciones innovadoras. Jesús combina la
+                  precisión técnica con una visión de futuro para construir
+                  productos digitales que no solo funcionan, sino que inspiran.
+                </p>
+                <div className="flex justify-center sm:justify-end gap-4">
+                  <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
+                    <Mail size={18} />
+                  </a>
+                  <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
+                    <Link2 size={18} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
 
       {/* Quote */}
-      <div className="w-full max-w-xl mt-48 lg:mt-[500px] text-center">
+      <div className="w-full max-w-xl mt-20 lg:mt-28 text-center">
         <p className="text-sm text-[#87736b] mb-8 italic">
           &ldquo;La luz no solo nos permite ver, nos permite entender el camino.&rdquo;
         </p>
