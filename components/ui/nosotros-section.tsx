@@ -82,7 +82,7 @@ export function NosotrosSection() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
+            transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1] }}
             className="group z-10 lg:pr-12"
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
@@ -123,7 +123,7 @@ export function NosotrosSection() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.9, ease: "easeOut", delay: 0.18 }}
+            transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
             className="group z-10 lg:pt-28 lg:pl-8"
           >
             <div className="flex flex-col sm:flex-row-reverse items-center sm:items-start gap-8">

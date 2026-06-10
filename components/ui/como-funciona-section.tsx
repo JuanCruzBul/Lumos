@@ -140,6 +140,7 @@ export function ComoFuncionaSection() {
               className="h-full w-full origin-left"
               style={{
                 scaleX: lineScaleX,
+                willChange: "transform",
                 background: "linear-gradient(to right, #c5704b, #fab257)",
               }}
             />

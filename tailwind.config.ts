@@ -70,6 +70,9 @@ const config: Config = {
       fontFamily: {
         quicksand: ["var(--font-quicksand)", "sans-serif"],
       },
+      animation: {
+        "spin-slow": "spin 8s linear infinite",
+      },
     },
   },
   plugins: [],

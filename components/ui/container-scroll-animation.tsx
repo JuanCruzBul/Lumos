@@ -88,6 +88,7 @@ export const Card = ({
       style={{
         rotateX: rotate,
         scale,
+        willChange: "transform",
         boxShadow:
           "0 0 #0000001a, 0 9px 20px #00000018, 0 37px 37px #00000012, 0 84px 50px #0000000a, 0 149px 60px #00000005, 0 233px 65px #00000002",
       }}
