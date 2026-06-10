@@ -22,7 +22,7 @@ export function HeroScrollDemo() {
         }
       >
         <Image
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=75"
+          src="/smart-home-dashboard.png"
           alt="Lumos smart home interface"
           height={720}
           width={1400}
