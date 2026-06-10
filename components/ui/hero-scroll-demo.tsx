@@ -21,16 +21,14 @@ export function HeroScrollDemo() {
           </>
         }
       >
-        <div className="relative w-full h-full flex items-center justify-center p-3">
-          <div className="relative w-full h-full rounded-2xl overflow-hidden">
-            <Image
-              src="/smart-home-dashboard.png"
-              alt="Lumos smart home interface"
-              fill
-              className="object-contain object-center"
-              draggable={false}
-            />
-          </div>
+        <div className="relative w-full h-full">
+          <Image
+            src="/smart-home-dashboard.png"
+            alt="Lumos smart home interface"
+            fill
+            className="object-cover object-top"
+            draggable={false}
+          />
         </div>
       </ContainerScroll>
     </div>
