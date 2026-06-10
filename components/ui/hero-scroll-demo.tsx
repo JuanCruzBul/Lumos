@@ -5,16 +5,16 @@ import Image from "next/image";
 
 export function HeroScrollDemo() {
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="flex flex-col overflow-hidden bg-[#fefefe]">
       <ContainerScroll
         titleComponent={
           <>
-            <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-4">
+            <p className="text-sm font-semibold text-[#c5704b] uppercase tracking-widest mb-4">
               La Experiencia Lumos
             </p>
-            <h2 className="text-4xl font-bold text-on-surface dark:text-on-surface">
+            <h2 className="text-4xl font-bold text-black">
               Tu hogar, <br />
-              <span className="text-4xl md:text-[5rem] font-bold mt-1 leading-none text-primary">
+              <span className="text-4xl md:text-[5rem] font-bold mt-1 leading-none text-[#c5704b]">
                 reinventado.
               </span>
             </h2>

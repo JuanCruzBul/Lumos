@@ -49,14 +49,14 @@ const planes = [
 
 export function PlanesSection() {
   return (
-    <section id="planes" className="py-24 px-8 bg-[#111117]">
+    <section id="planes" className="py-24 px-8 bg-[#fdf8f4]">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-widest font-semibold text-[#fab359]">Planes</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-4">
+          <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Planes</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
             Elegí tu nivel Lumos
           </h2>
-          <p className="text-white/45 text-sm max-w-sm mx-auto">
+          <p className="text-black/45 text-sm max-w-sm mx-auto">
             Sin permanencia. Sin letra chica. Solo tu hogar inteligente.
           </p>
         </div>
@@ -66,11 +66,11 @@ export function PlanesSection() {
             <div
               key={name}
               className={`rounded-2xl p-8 flex flex-col gap-6 relative ${
-                highlight ? "bg-white" : "glass-panel"
+                highlight ? "bg-[#000000]" : "glass-panel"
               }`}
               style={
                 highlight
-                  ? { boxShadow: "0 32px 64px rgba(0,0,0,0.5)" }
+                  ? { boxShadow: "0 32px 64px rgba(0,0,0,0.22)" }
                   : undefined
               }
             >
@@ -83,7 +83,7 @@ export function PlanesSection() {
               <div>
                 <span
                   className={`text-xs uppercase tracking-widest font-semibold ${
-                    highlight ? "text-[#c5704b]" : "text-[#fab359]"
+                    highlight ? "text-[#fab257]" : "text-[#c5704b]"
                   }`}
                 >
                   {name}
@@ -91,32 +91,32 @@ export function PlanesSection() {
                 <div className="flex items-end gap-1 mt-2 mb-1">
                   {price ? (
                     <>
-                      <span className={`text-4xl font-bold ${highlight ? "text-[#151311]" : "text-white"}`}>
+                      <span className={`text-4xl font-bold ${highlight ? "text-white" : "text-black"}`}>
                         ${price}
                       </span>
-                      <span className={`text-sm mb-1.5 ${highlight ? "text-[#151311]/40" : "text-white/35"}`}>
+                      <span className={`text-sm mb-1.5 ${highlight ? "text-white/40" : "text-black/35"}`}>
                         /mes
                       </span>
                     </>
                   ) : (
-                    <span className={`text-3xl font-bold ${highlight ? "text-[#151311]" : "text-white"}`}>
+                    <span className={`text-3xl font-bold ${highlight ? "text-white" : "text-black"}`}>
                       A medida
                     </span>
                   )}
                 </div>
-                <p className={`text-sm ${highlight ? "text-[#151311]/50" : "text-white/40"}`}>{desc}</p>
+                <p className={`text-sm ${highlight ? "text-white/45" : "text-black/45"}`}>{desc}</p>
               </div>
 
-              <div className={`h-px ${highlight ? "bg-[#111117]/10" : "bg-white/[0.07]"}`} />
+              <div className={`h-px ${highlight ? "bg-white/10" : "bg-black/[0.08]"}`} />
 
               <ul className="space-y-3 flex-1">
                 {features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
                     <Check
                       size={14}
-                      className={`mt-0.5 flex-shrink-0 ${highlight ? "text-[#c5704b]" : "text-[#fab359]"}`}
+                      className={`mt-0.5 flex-shrink-0 ${highlight ? "text-[#fab257]" : "text-[#c5704b]"}`}
                     />
-                    <span className={`text-sm ${highlight ? "text-[#151311]/65" : "text-white/55"}`}>{f}</span>
+                    <span className={`text-sm ${highlight ? "text-white/60" : "text-black/55"}`}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -125,9 +125,9 @@ export function PlanesSection() {
                 className={`w-full py-3.5 rounded-lg font-bold text-xs uppercase tracking-widest transition-all duration-200 active:scale-[0.99] ${
                   highlight
                     ? "bg-[#c5704b] text-white hover:bg-[#b5613c]"
-                    : "text-white hover:bg-white/10"
+                    : "text-black hover:bg-black/[0.06]"
                 }`}
-                style={!highlight ? { border: "1px solid rgba(255,255,255,0.2)" } : undefined}
+                style={!highlight ? { border: "1.5px solid rgba(0,0,0,0.18)" } : undefined}
               >
                 {cta}
               </button>

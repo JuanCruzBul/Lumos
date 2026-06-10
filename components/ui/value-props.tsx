@@ -23,7 +23,7 @@ const features = [
 
 export function ValueProps() {
   return (
-    <section className="py-20 relative z-10">
+    <section className="py-20 relative z-10 bg-[#fefefe]">
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map(({ icon: Icon, title, description }) => (
@@ -31,13 +31,13 @@ export function ValueProps() {
               key={title}
               className="glass-panel p-12 rounded-xl hover:glow-active transition-all duration-500 group"
             >
-              <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-6 group-hover:bg-[#c5704b]/20 transition-colors">
-                <Icon size={28} className="text-primary" />
+              <div className="w-12 h-12 rounded-full bg-[#c5704b]/10 flex items-center justify-center mb-6 group-hover:bg-[#c5704b]/20 transition-colors">
+                <Icon size={28} className="text-[#c5704b]" />
               </div>
-              <h3 className="text-xl font-semibold text-on-surface mb-3">
+              <h3 className="text-xl font-semibold text-black mb-3">
                 {title}
               </h3>
-              <p className="text-base font-normal text-on-surface-variant leading-relaxed">
+              <p className="text-base font-normal text-black/55 leading-relaxed">
                 {description}
               </p>
             </div>

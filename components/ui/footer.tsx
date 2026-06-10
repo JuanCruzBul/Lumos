@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks: Record<string, string[]> = {
   Sistemas: ["Iluminación", "Clima", "Seguridad", "Hub Central"],
@@ -8,12 +9,15 @@ const footerLinks: Record<string, string[]> = {
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#08080c]" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+    <footer className="w-full bg-[#000000]" style={{ borderTop: "1px solid rgba(197,112,75,0.15)" }}>
       <div className="max-w-6xl mx-auto px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <span className="text-2xl font-bold text-[#c5704b]">Lumos</span>
+            <div className="flex items-center gap-2">
+              <Image src="/logo.svg" alt="Lumos" width={44} height={44} className="flex-shrink-0" />
+              <span className="text-2xl font-bold text-[#fab257]">Lumos</span>
+            </div>
             <p className="text-white/30 text-xs leading-relaxed mt-3 max-w-[180px]">
               Domótica inteligente para hogares que respiran con vos.
             </p>
@@ -34,7 +38,7 @@ export function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([section, links]) => (
             <div key={section}>
-              <h4 className="text-white text-[10px] font-bold uppercase tracking-widest mb-5">
+              <h4 className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-5">
                 {section}
               </h4>
               <ul className="space-y-3">

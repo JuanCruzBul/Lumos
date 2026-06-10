@@ -29,14 +29,14 @@ const items = [
 
 export function SistemasSection() {
   return (
-    <section id="productos" className="py-24 px-8 bg-[#111117]">
+    <section id="productos" className="py-24 px-8 bg-[#fdf8f4]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-widest font-semibold text-[#fab359]">Sistemas</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-4">
+          <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Sistemas</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
             Todo lo que tu hogar necesita
           </h2>
-          <p className="text-white/45 text-sm max-w-md mx-auto leading-relaxed">
+          <p className="text-black/40 text-sm max-w-md mx-auto leading-relaxed">
             Cada sistema diseñado para trabajar en armonía. Solo o integrado, Lumos se adapta a vos.
           </p>
         </div>
@@ -48,21 +48,21 @@ export function SistemasSection() {
               className="group glass-panel rounded-2xl p-7 hover:glow-active transition-all duration-500 cursor-pointer flex flex-col gap-5"
             >
               <div className="flex items-start justify-between">
-                <div className="w-12 h-12 rounded-xl bg-[#c5704b]/15 flex items-center justify-center group-hover:bg-[#c5704b]/25 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-[#c5704b]/10 flex items-center justify-center group-hover:bg-[#c5704b]/20 transition-colors">
                   <Icon size={22} className="text-[#c5704b]" />
                 </div>
-                <span className="text-[10px] uppercase tracking-widest text-[#fab359]/80 font-semibold bg-[#fab359]/10 px-2.5 py-1 rounded-full">
+                <span className="text-[10px] uppercase tracking-widest text-[#c5704b] font-semibold bg-[#c5704b]/10 px-2.5 py-1 rounded-full">
                   {tag}
                 </span>
               </div>
 
               <div className="flex-1">
-                <h3 className="text-white font-bold text-base mb-2">{title}</h3>
-                <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
+                <h3 className="text-black font-bold text-base mb-2">{title}</h3>
+                <p className="text-black/45 text-sm leading-relaxed">{desc}</p>
               </div>
 
-              <div className="pt-3 border-t border-white/[0.06]">
-                <span className="text-[#c5704b] text-xs font-semibold uppercase tracking-wider group-hover:text-[#fab359] transition-colors">
+              <div className="pt-3 border-t border-black/[0.07]">
+                <span className="text-[#c5704b] text-xs font-semibold uppercase tracking-wider group-hover:text-[#fab257] transition-colors">
                   Conocer más →
                 </span>
               </div>
