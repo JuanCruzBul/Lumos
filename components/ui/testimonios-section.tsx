@@ -3,26 +3,26 @@ import { Star } from "lucide-react";
 const testimonios = [
   {
     name: "Mariana R.",
-    role: "Arquitecta · CABA",
+    role: "Propietaria · Villa Carlos Paz",
     initial: "M",
     quote:
-      "Lumos transformó cómo vivo mi departamento. La iluminación adaptativa es increíble, el ambiente cambia solo sin que tenga que pensar en ello.",
+      "Lumos transformó por completo cómo vivo mi casa. Las luces se adaptan solas a cada momento del día y puedo controlar todo desde el celular. Increíble.",
     stars: 5,
   },
   {
     name: "Pablo F.",
-    role: "Emprendedor · Palermo",
+    role: "Emprendedor · Nueva Córdoba",
     initial: "P",
     quote:
-      "Instalación rápida, sin ninguna obra. En menos de 24 horas tenía todo funcionando. El soporte es excelente y muy cercano.",
+      "La instalación fue rápida y sin obras. En menos de un día tenía todo funcionando. El equipo estuvo presente en cada paso y el soporte es excelente.",
     stars: 5,
   },
   {
     name: "Sofía M.",
-    role: "Diseñadora · Vicente López",
+    role: "Arquitecta · Córdoba Capital",
     initial: "S",
     quote:
-      "Lo que más me sorprende es cómo aprende mis rutinas. Ya no tengo que decirle nada al sistema, simplemente sucede.",
+      "Lo que más me sorprende es la simplicidad. Mis clientes preguntan cómo funciona y la respuesta es siempre la misma: simplemente funciona.",
     stars: 5,
   },
 ];
@@ -41,14 +41,12 @@ export function TestimoniosSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonios.map(({ name, role, initial, quote, stars }) => (
             <div key={name} className="glass-panel rounded-2xl p-8 flex flex-col gap-5">
-              {/* Stars */}
               <div className="flex gap-1">
                 {Array.from({ length: stars }).map((_, i) => (
                   <Star key={i} size={13} className="text-[#fab257] fill-[#fab257]" />
                 ))}
               </div>
 
-              {/* Large quote mark */}
               <div
                 className="text-6xl font-bold leading-none select-none"
                 style={{ color: "rgba(197,112,75,0.18)", fontFamily: "Georgia, serif" }}

@@ -6,22 +6,22 @@ const pasos = [
   {
     num: "01",
     title: "Consultá",
-    desc: "Analizamos tu espacio y necesidades en una visita sin cargo.",
+    desc: "Nos contás qué querés mejorar. La visita es sin cargo y sin compromiso.",
   },
   {
     num: "02",
     title: "Diseñamos",
-    desc: "Creamos tu sistema a medida, pensado para tu estilo de vida.",
+    desc: "Armamos tu solución a medida: qué dispositivos, dónde y cómo van a funcionar.",
   },
   {
     num: "03",
     title: "Instalamos",
-    desc: "Instalación profesional en 1 día. Sin obras, sin complicaciones.",
+    desc: "Nuestro equipo instala y configura todo en un solo día. Sin obras ni remodelaciones.",
   },
   {
     num: "04",
-    title: "Controlá",
-    desc: "App, voz o automático. Tu hogar responde como vos querés.",
+    title: "Disfrutá",
+    desc: "Controlás todo desde el celular, la voz o de forma automática. Tu hogar trabaja por vos.",
   },
 ];
 
@@ -124,7 +124,7 @@ export function ComoFuncionaSection() {
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-black mt-3">Así de simple</h2>
           <p className="text-black/38 text-sm mt-4">
-            De la consulta a tu hogar inteligente, en cuatro pasos.
+            De la primera consulta a tu hogar funcionando, en cuatro pasos.
           </p>
         </motion.div>
 

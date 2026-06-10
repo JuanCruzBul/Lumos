@@ -1,29 +1,29 @@
-import { Lightbulb, Wind, Shield, Cpu } from "lucide-react";
+import { Lightbulb, Shield, Cpu, Zap } from "lucide-react";
 
 const items = [
   {
     Icon: Lightbulb,
-    title: "Iluminación Adaptativa",
-    desc: "Escenas de luz que evolucionan con tu rutina. Del amanecer productivo a la noche relajante, sin intervención.",
-    tag: "Ambiente",
-  },
-  {
-    Icon: Wind,
-    title: "Clima Inteligente",
-    desc: "Tu espacio a la temperatura perfecta, siempre. Integración total con AC, calefacción y ventilación.",
-    tag: "Confort",
-  },
-  {
-    Icon: Shield,
-    title: "Seguridad 360°",
-    desc: "Cámaras y sensores que aprenden lo que es normal en tu hogar. Alertas inteligentes, sin falsas alarmas.",
-    tag: "Protección",
+    title: "Iluminación Inteligente",
+    desc: "Instalamos switches y luces inteligentes en cualquier punto de tu hogar. Controlás desde el celular, con la voz o de forma automática por horario.",
+    tag: "Iluminación",
   },
   {
     Icon: Cpu,
-    title: "Hub Central",
-    desc: "Un cerebro que unifica todos tus dispositivos. Control por voz, app móvil o completamente automático.",
+    title: "Ecosistemas Conectados",
+    desc: "Integramos Alexa, Google Home y Home Assistant para que todos tus dispositivos trabajen juntos desde un solo lugar, sin importar la marca.",
     tag: "Ecosistema",
+  },
+  {
+    Icon: Shield,
+    title: "Seguridad Inteligente",
+    desc: "Instalamos cerraduras inteligentes y cámaras Wi-Fi con acceso remoto. Sabés quién entra a tu casa y recibís alertas cuando importa.",
+    tag: "Seguridad",
+  },
+  {
+    Icon: Zap,
+    title: "Automatizaciones a Medida",
+    desc: "Creamos rutinas personalizadas: que las luces se apaguen solas, las cortinas se abran al amanecer o el clima se active al llegar a casa.",
+    tag: "Automatización",
   },
 ];
 
@@ -32,12 +32,12 @@ export function SistemasSection() {
     <section id="productos" className="py-24 px-8 bg-[#fdf8f4]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Sistemas</span>
+          <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Servicios</span>
           <h2 className="text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
             Todo lo que tu hogar necesita
           </h2>
           <p className="text-black/40 text-sm max-w-md mx-auto leading-relaxed">
-            Cada sistema diseñado para trabajar en armonía. Solo o integrado, Lumos se adapta a vos.
+            Soluciones simples, instaladas por nosotros. Solo tenés que disfrutar de tu hogar inteligente.
           </p>
         </div>
 

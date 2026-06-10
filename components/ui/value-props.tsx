@@ -1,23 +1,23 @@
-import { Sun, ShieldCheck, Leaf } from "lucide-react";
+import { Smartphone, ShieldCheck, Wrench } from "lucide-react";
 
 const features = [
   {
-    icon: Sun,
-    title: "Control Atmosférico",
+    icon: Smartphone,
+    title: "Control Total desde el Celular",
     description:
-      "Iluminación dinámica que transita sin esfuerzo desde la claridad del día hasta la calidez de la noche.",
+      "Manejá las luces, el clima y la seguridad de tu hogar desde cualquier lugar del mundo. Si tenés señal, tenés control.",
   },
   {
     icon: ShieldCheck,
-    title: "Seguridad Avanzada",
+    title: "Más Seguridad, Menos Preocupaciones",
     description:
-      "Protección invisible. Sensores con contexto que distinguen entre lo habitual y lo anómalo.",
+      "Cerraduras y cámaras que te avisan cuando importa. Salís tranquilo sabiendo que tu hogar está protegido.",
   },
   {
-    icon: Leaf,
-    title: "Eficiencia Ecológica",
+    icon: Wrench,
+    title: "Nosotros Instalamos Todo",
     description:
-      "Gestión climática inteligente que optimiza el consumo energético sin sacrificar el confort.",
+      "No necesitás saber de tecnología. Nuestro equipo instala, configura y te enseña a usar tu hogar inteligente en un solo día.",
   },
 ];
 

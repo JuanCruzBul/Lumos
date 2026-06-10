@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 const footerLinks: Record<string, string[]> = {
-  Sistemas: ["Iluminación", "Clima", "Seguridad", "Hub Central"],
-  Empresa: ["Nosotros", "Blog", "Empleos", "Prensa"],
+  Servicios: ["Iluminación Inteligente", "Cerraduras y Cámaras", "Automatizaciones", "Home Assistant"],
+  Empresa: ["Nosotros", "Planes", "Proceso", "Contacto"],
   Legal: ["Privacidad", "Términos", "Cookies"],
 };
 
@@ -19,7 +19,7 @@ export function Footer() {
               <span className="text-2xl font-bold text-[#fab257]">Lumos</span>
             </div>
             <p className="text-white/30 text-xs leading-relaxed mt-3 max-w-[180px]">
-              Domótica inteligente para hogares que respiran con vos.
+              Automatización residencial simple, confiable y accesible para cualquier hogar.
             </p>
             <div className="flex gap-4 mt-6">
               {["IG", "LI", "WA"].map((s) => (
@@ -64,7 +64,7 @@ export function Footer() {
           <p className="text-white/20 text-xs">
             © 2025 Lumos Home Automation. Todos los derechos reservados.
           </p>
-          <p className="text-white/15 text-xs">Buenos Aires, Argentina</p>
+          <p className="text-white/15 text-xs">Villa Carlos Paz, Córdoba · Argentina</p>
         </div>
       </div>
     </footer>

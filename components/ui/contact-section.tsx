@@ -42,8 +42,8 @@ export function ContactSection() {
           <div className="space-y-4">
             {[
               { label: "Email", value: "hola@lumos.ar" },
-              { label: "Teléfono", value: "+54 11 4000-0000" },
-              { label: "Ciudad", value: "Buenos Aires, Argentina" },
+              { label: "Teléfono", value: "+54 351 400-0000" },
+              { label: "Ciudad", value: "Villa Carlos Paz, Córdoba" },
             ].map(({ label, value }) => (
               <div key={label} className="flex items-baseline gap-4">
                 <span className="text-[10px] uppercase tracking-widest text-[#c5704b]/70 w-16 shrink-0">

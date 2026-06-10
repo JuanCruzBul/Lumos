@@ -2,47 +2,48 @@ import { Check } from "lucide-react";
 
 const planes = [
   {
-    name: "Esencial",
+    name: "Kit Inicial",
     price: "199",
-    desc: "Para empezar tu hogar inteligente.",
+    desc: "Para empezar a disfrutar tu hogar inteligente.",
     features: [
-      "Iluminación inteligente (10 luces)",
+      "Hasta 8 switches o luces inteligentes",
       "Control por app móvil",
-      "3 escenas programables",
-      "Soporte por email",
+      "Integración con Alexa o Google Home",
+      "2 automatizaciones básicas",
+      "Soporte por WhatsApp",
     ],
     highlight: false,
     cta: "Empezar",
     badge: null,
   },
   {
-    name: "Integral",
+    name: "Kit Completo",
     price: "399",
-    desc: "La experiencia Lumos completa.",
+    desc: "La experiencia Lumos completa en tu hogar.",
     features: [
-      "Iluminación + Clima + Seguridad",
-      "Control por voz (Alexa / Google)",
-      "Automatizaciones ilimitadas",
+      "Iluminación + Seguridad + Automatización",
+      "Home Assistant configurado",
+      "Cerraduras y cámaras Wi-Fi incluidas",
+      "Automatizaciones ilimitadas a medida",
       "Soporte 24/7 prioritario",
-      "Dashboard premium",
     ],
     highlight: true,
-    cta: "Elegir Integral",
+    cta: "Elegir Kit Completo",
     badge: "Más popular",
   },
   {
-    name: "Elite",
+    name: "A Medida",
     price: null,
-    desc: "Solución premium a medida.",
+    desc: "Proyecto personalizado para tu hogar.",
     features: [
-      "Todo lo del plan Integral",
-      "Diseño arquitectónico personalizado",
-      "Audio ambiente multiroom",
-      "Integración con alarma existente",
-      "Técnico dedicado",
+      "Todo lo del Kit Completo",
+      "Cortinas y persianas motorizadas",
+      "Integración de dispositivos existentes",
+      "Diseño de sistema personalizado",
+      "Técnico dedicado asignado",
     ],
     highlight: false,
-    cta: "Hablar con un experto",
+    cta: "Hablar con el equipo",
     badge: null,
   },
 ];
@@ -54,7 +55,7 @@ export function PlanesSection() {
         <div className="text-center mb-16">
           <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Planes</span>
           <h2 className="text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
-            Elegí tu nivel Lumos
+            Elegí tu kit Lumos
           </h2>
           <p className="text-black/45 text-sm max-w-sm mx-auto">
             Sin permanencia. Sin letra chica. Solo tu hogar inteligente.

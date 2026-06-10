@@ -430,12 +430,12 @@ export function HeroScrollDemo() {
         titleComponent={
           <>
             <p className="text-sm font-semibold text-[#c5704b] uppercase tracking-widest mb-4">
-              La Experiencia Lumos
+              Mirá cómo funciona
             </p>
             <h2 className="text-4xl font-bold text-black">
               Tu hogar, <br />
               <span className="text-4xl md:text-[5rem] font-bold mt-1 leading-none text-[#c5704b]">
-                reinventado.
+                inteligente.
               </span>
             </h2>
           </>
