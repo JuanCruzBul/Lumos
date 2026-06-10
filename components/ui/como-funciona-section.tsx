@@ -100,7 +100,7 @@ export function ComoFuncionaSection() {
   });
 
   // Line draws after step 01 settles, reaching each circle in sync
-  const lineScaleX = useTransform(scrollYProgress, [0.15, 0.80], [0, 1]);
+  const lineWidth = useTransform(scrollYProgress, [0.15, 0.80], ["0%", "100%"]);
 
   const headerOpacity = useTransform(scrollYProgress, [0, 0.06], [0, 1]);
   const headerY = useTransform(scrollYProgress, [0, 0.06], [20, 0]);
@@ -135,12 +135,11 @@ export function ComoFuncionaSection() {
           <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-black/8" />
 
           {/* Animated fill line */}
-          <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px overflow-hidden">
+          <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px">
             <motion.div
-              className="h-full w-full origin-left"
+              className="h-full"
               style={{
-                scaleX: lineScaleX,
-                willChange: "transform",
+                width: lineWidth,
                 background: "linear-gradient(to right, #c5704b, #fab257)",
               }}
             />
