@@ -2,7 +2,7 @@
 
 export function ContactSection() {
   return (
-    <section id="contacto" className="relative overflow-hidden bg-[#fdf8f4] py-28 px-8">
+    <section id="contacto" className="relative overflow-hidden bg-[#fdf8f4] py-20 lg:py-28 px-8">
 
       {/* Subtle warm glow */}
       <div
@@ -10,7 +10,7 @@ export function ContactSection() {
         style={{ background: "radial-gradient(circle, rgba(250,178,87,0.13) 0%, transparent 70%)" }}
       />
 
-      <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-start">
+      <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-20 items-start">
 
         {/* Left: copy */}
         <div className="pt-4">
@@ -22,7 +22,7 @@ export function ContactSection() {
             Contacto
           </span>
 
-          <h2 className="text-5xl md:text-6xl font-bold text-black leading-[1.08] mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.08] mb-6 tracking-tight">
             Transformá tu<br />
             hogar con{" "}
             <span

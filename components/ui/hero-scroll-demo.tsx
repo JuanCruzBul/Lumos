@@ -125,8 +125,8 @@ export function SmartHomeDashboard({
     ? 'bg-slate-950 text-slate-100 dark-theme' 
     : 'bg-[#f6f8fa] text-slate-800 light-theme';
 
-  const containerClasses = embeddedMode 
-    ? `w-full transition-colors duration-300 ${darkMode ? 'text-slate-100 bg-slate-950' : 'text-slate-800 bg-[#f6f8fa]'} ${className}`
+  const containerClasses = embeddedMode
+    ? `w-full h-full flex flex-col transition-colors duration-300 ${darkMode ? 'text-slate-100 bg-slate-950' : 'text-slate-800 bg-[#f6f8fa]'} ${className}`
     : `min-h-screen transition-colors duration-300 font-sans ${themeClasses} ${className}`;
 
   return (
@@ -156,7 +156,7 @@ export function SmartHomeDashboard({
       </header>
 
       {/* CONTENIDO INTERNO DE LA TABLET */}
-      <div className="p-4 md:p-6 space-y-6 max-h-[75vh] overflow-y-auto custom-scrollbar">
+      <div className="p-4 md:p-6 space-y-6 flex-1 overflow-y-auto custom-scrollbar">
         
         {/* FILA SUPERIOR */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
