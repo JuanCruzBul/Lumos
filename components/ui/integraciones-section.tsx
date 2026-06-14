@@ -1,0 +1,254 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+
+const AlexaIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 3.6c4.641 0 8.4 3.759 8.4 8.4 0 4.327-3.255 7.899-7.457 8.365v-2.01c2.94-.448 5.199-2.998 5.199-6.075 0-3.397-2.745-6.15-6.142-6.15-3.397 0-6.15 2.753-6.15 6.15 0 3.077 2.259 5.627 5.198 6.075v2.01C7.055 19.9 3.6 16.327 3.6 12c0-4.641 3.759-8.4 8.4-8.4zm.3 4.35v5.85l3.9 2.25-.675 1.162-4.575-2.662V7.95H12.3z" />
+  </svg>
+);
+
+const GoogleHomeIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+  </svg>
+);
+
+function useInView(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect(); } },
+      { threshold }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, inView };
+}
+
+const points = [
+  {
+    num: "01",
+    title: "Control total por voz y celular",
+    body: "Encendé luces, regulá la temperatura o cerrá puertas con un comando de voz o desde la app — desde cualquier lugar del mundo.",
+  },
+  {
+    num: "02",
+    title: "Automatizaciones que trabajan por vos",
+    body: "Escenas que se activan solas: llegás a casa y ya está todo listo. La luz, el clima, la música — sin tocar nada.",
+  },
+  {
+    num: "03",
+    title: "Integración con Alexa y Google Home",
+    body: "Conectamos tu hogar con los asistentes de IA más potentes del mercado, para que la inteligencia del sistema esté siempre a tu disposición.",
+  },
+];
+
+export function IntegracionesSection() {
+  const { ref: sectionRef, inView } = useInView(0.1);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="sistema"
+      className="relative overflow-hidden bg-[#fdf8f4] py-24 lg:py-32"
+    >
+      {/* Ambient background glow */}
+      <div
+        className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at top right, rgba(250,178,87,0.10) 0%, transparent 65%)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at bottom left, rgba(197,112,75,0.07) 0%, transparent 65%)",
+        }}
+      />
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-center">
+
+          {/* LEFT — text */}
+          <div>
+            {/* Label */}
+            <p
+              className="text-xs font-bold tracking-[0.25em] uppercase mb-8 transition-all duration-700"
+              style={{
+                color: "#c5704b",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(16px)",
+                transitionDelay: "0ms",
+              }}
+            >
+              Nuestro sistema
+            </p>
+
+            <h2
+              className="text-4xl md:text-5xl font-bold text-black leading-[1.1] mb-6 transition-all duration-700"
+              style={{
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(24px)",
+                transitionDelay: "80ms",
+              }}
+            >
+              Tu hogar, convertido en{" "}
+              <span className="italic font-normal" style={{ color: "#c5704b" }}>
+                un sistema que te entiende.
+              </span>
+            </h2>
+
+            <p
+              className="text-[15px] leading-relaxed mb-10 max-w-md transition-all duration-700"
+              style={{
+                color: "rgba(0,0,0,0.55)",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(20px)",
+                transitionDelay: "160ms",
+              }}
+            >
+              Lumos integra los asistentes de IA más avanzados con automatizaciones
+              diseñadas para tu rutina. El resultado es un hogar que anticipa,
+              responde y aprende — instalado por nuestro equipo en un solo día.
+            </p>
+
+            {/* Integration badges */}
+            <div
+              className="flex items-center gap-5 mb-12 transition-all duration-700"
+              style={{
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(18px)",
+                transitionDelay: "240ms",
+              }}
+            >
+              {[
+                { icon: <AlexaIcon />, label: "Amazon Alexa" },
+                { icon: <GoogleHomeIcon />, label: "Google Home" },
+              ].map(({ icon, label }, i) => (
+                <div key={label}>
+                  <div
+                    className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors duration-200 cursor-default"
+                    style={{
+                      background: "rgba(197,112,75,0.07)",
+                      border: "1px solid rgba(197,112,75,0.18)",
+                      color: "rgba(0,0,0,0.5)",
+                    }}
+                  >
+                    <span style={{ color: "#c5704b" }}>{icon}</span>
+                    <span className="text-[11px] font-semibold tracking-wider uppercase">{label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Numbered points */}
+            <div className="space-y-9">
+              {points.map((item, i) => (
+                <div
+                  key={item.num}
+                  className="flex gap-6 transition-all duration-700"
+                  style={{
+                    opacity: inView ? 1 : 0,
+                    transform: inView ? "translateX(0)" : "translateX(-20px)",
+                    transitionDelay: `${320 + i * 100}ms`,
+                  }}
+                >
+                  <span
+                    className="text-[11px] font-bold tabular-nums pt-0.5 shrink-0 leading-none"
+                    style={{ color: "rgba(197,112,75,0.35)", letterSpacing: "0.05em" }}
+                  >
+                    {item.num}
+                  </span>
+                  <div>
+                    <p className="text-sm font-bold text-black mb-1.5">{item.title}</p>
+                    <p className="text-[13px] leading-relaxed" style={{ color: "rgba(0,0,0,0.48)" }}>
+                      {item.body}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — image */}
+          <div
+            className="relative transition-all duration-1000"
+            style={{
+              opacity: inView ? 1 : 0,
+              transform: inView ? "translateX(0) scale(1)" : "translateX(32px) scale(0.97)",
+              transitionDelay: "200ms",
+            }}
+          >
+            {/* Glow behind image */}
+            <div
+              className="absolute -inset-8 rounded-3xl pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(250,178,87,0.15) 0%, transparent 68%)",
+              }}
+            />
+
+            {/* Image frame */}
+            <div
+              className="relative rounded-3xl overflow-hidden"
+              style={{
+                boxShadow:
+                  "0 40px 100px rgba(0,0,0,0.10), 0 0 0 1px rgba(197,112,75,0.08)",
+              }}
+            >
+              <Image
+                src="/smart-home-dashboard.png"
+                alt="Dashboard de control del hogar inteligente Lumos"
+                width={720}
+                height={520}
+                className="w-full h-auto object-cover"
+              />
+              {/* Subtle warm overlay */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(197,112,75,0.04) 0%, transparent 50%)",
+                }}
+              />
+            </div>
+
+            {/* Floating pill — voice */}
+            <div
+              className="absolute -top-4 -right-4 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl transition-all duration-700"
+              style={{
+                background: "rgba(255,255,255,0.94)",
+                backdropFilter: "blur(14px)",
+                border: "1px solid rgba(197,112,75,0.16)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(-12px)",
+                transitionDelay: "800ms",
+              }}
+            >
+              {/* Mic icon */}
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c5704b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 shrink-0">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <line x1="12" y1="19" x2="12" y2="23" />
+                <line x1="8" y1="23" x2="16" y2="23" />
+              </svg>
+              <p className="text-[11px] font-semibold text-black">Control por voz activo</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
