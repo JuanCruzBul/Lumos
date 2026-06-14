@@ -42,7 +42,7 @@ export function SmartHomeDashboard({
   className = ""
 }) {
   const [darkMode, setDarkMode] = useState(defaultDarkMode);
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date | null>(null);
   const [lights, setLights] = useState(initialLights);
   const [selectedDayIdx, setSelectedDayIdx] = useState(0);
   const [activeModal, setActiveModal] = useState(null);
@@ -66,16 +66,19 @@ export function SmartHomeDashboard({
   ]);
 
   useEffect(() => {
+    setTime(new Date());
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
   const getFormattedTime = () => {
+    if (!time) return '--:--';
     return time.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false });
   };
 
   const getFormattedDate = () => {
-    const options = { weekday: 'long', day: 'numeric', month: 'long' };
+    if (!time) return '';
+    const options = { weekday: 'long', day: 'numeric', month: 'long' } as const;
     const dateStr = time.toLocaleDateString('es-ES', options);
     return dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
   };
