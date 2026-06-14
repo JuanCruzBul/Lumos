@@ -61,6 +61,30 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Hero buttons entrance */
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 2.8s forwards;
+}
+.hero-btn-primary {
+  box-shadow: 0 4px 24px rgba(197, 112, 75, 0.25);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.hero-btn-primary:hover {
+  box-shadow: 0 6px 32px rgba(250, 178, 87, 0.45);
+  transform: translateY(-2px);
+}
+.hero-btn-primary:active { transform: scale(0.97); }
+.hero-btn-outline {
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.hero-btn-outline:hover {
+  box-shadow: 0 4px 20px rgba(197, 112, 75, 0.15);
+  transform: translateY(-2px);
+}
+.hero-btn-outline:active { transform: scale(0.97); }
+
 @layer base {
   :root {
     /* Lumos light palette — warm ivory & terra cotta */

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-32 overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -21,7 +21,8 @@ export function HeroSection() {
         style={{ background: "radial-gradient(ellipse at top, rgba(250,178,87,0.13) 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-8 flex flex-col items-center text-center">
+      {/* Above-the-fold: logo + LUMOS centered in full viewport */}
+      <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center px-8">
         {/* Logo mark */}
         <div className="mb-3 fade-in-up" style={{ animationDelay: "0.1s" }}>
           <Image
@@ -35,7 +36,7 @@ export function HeroSection() {
         </div>
 
         {/* Animated LUMOS text */}
-        <div className="w-full max-w-sm mb-2">
+        <div className="w-full max-w-sm mb-10">
           <svg
             className="w-full h-auto drop-shadow-[0_0_20px_rgba(197,112,75,0.4)]"
             viewBox="20 10 340 80"
@@ -50,6 +51,19 @@ export function HeroSection() {
           </svg>
         </div>
 
+        {/* CTA Buttons */}
+        <div className="hero-buttons flex flex-wrap justify-center gap-4">
+          <button className="hero-btn-primary bg-[#c5704b] text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-wider">
+            Conocer Sistemas
+          </button>
+          <button className="hero-btn-outline text-[#c5704b] px-10 py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#c5704b]/40 hover:border-[#c5704b]/70 transition-colors duration-300">
+            Ver Demo
+          </button>
+        </div>
+      </div>
+
+      {/* Below-the-fold: rest of the hero content */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-8 flex flex-col items-center text-center pb-20">
         {/* Decorative line */}
         <div className="flex items-center gap-3 mb-7 w-56 fade-in-up" style={{ animationDelay: "0.4s" }}>
           <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(0,0,0,0.15), rgba(197,112,75,0.45))" }} />
