@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${quicksand.variable} font-quicksand font-normal antialiased overflow-x-hidden`}>
+      <body suppressHydrationWarning className={`${quicksand.variable} font-quicksand font-normal antialiased overflow-x-hidden`}>
         <Navbar />
         {children}
       </body>
