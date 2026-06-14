@@ -62,65 +62,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Below-the-fold: rest of the hero content */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-8 flex flex-col items-center text-center pb-20">
-        {/* Decorative line */}
-        <div className="flex items-center gap-3 mb-7 w-56 fade-in-up" style={{ animationDelay: "0.4s" }}>
-          <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(0,0,0,0.15), rgba(197,112,75,0.45))" }} />
-          <div className="w-1.5 h-1.5 rounded-full bg-black/25" />
-          <div className="flex-1 h-px" style={{ background: "linear-gradient(to left, transparent, rgba(0,0,0,0.15), rgba(197,112,75,0.45))" }} />
-        </div>
-
-        {/* Badge */}
-        <div
-          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 fade-in-up"
-          style={{
-            animationDelay: "0.6s",
-            background: "rgba(197,112,75,0.08)",
-            border: "1px solid rgba(197,112,75,0.2)",
-          }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#fab257] animate-pulse" />
-          <span className="text-black/65 text-xs font-medium tracking-widest uppercase">Automatización residencial · Villa Carlos Paz</span>
-        </div>
-
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black mb-5 fade-in-up leading-tight" style={{ animationDelay: "0.8s" }}>
-          Inteligencia{" "}
-          <span className="text-[#c5704b] drop-shadow-[0_0_24px_rgba(197,112,75,0.3)]">
-            Atmosférica
-          </span>
-        </h1>
-
-        {/* Thin accent underline */}
-        <div
-          className="w-24 h-0.5 mb-7 fade-in-up rounded-full"
-          style={{
-            animationDelay: "1.0s",
-            background: "linear-gradient(to right, #c5704b, #fab257, #c5704b)",
-          }}
-        />
-
-        <p
-          className="text-base font-normal max-w-xl mb-10 fade-in-up leading-relaxed"
-          style={{ animationDelay: "1.2s", color: "rgba(0,0,0,0.58)" }}
-        >
-          Lumos convierte tu hogar en un espacio inteligente. Control total
-          desde el celular o con la voz, instalado por nosotros en un solo día.
-          Sin complicaciones.
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-14 fade-in-up" style={{ animationDelay: "1.5s" }}>
-          <button className="bg-[#c5704b] text-white px-10 py-3 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#b5613c] active:scale-95 transition-all duration-200">
-            Ver Servicios
-          </button>
-          <button
-            className="text-black px-10 py-3 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-black/[0.06] active:scale-95 transition-all duration-200"
-            style={{ border: "1.5px solid rgba(0,0,0,0.18)" }}
-          >
-            Ver Demo
-          </button>
-        </div>
-      </div>
     </section>
   );
 }

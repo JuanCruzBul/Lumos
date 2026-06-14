@@ -431,17 +431,34 @@ export function HeroScrollDemo() {
     <div className="flex flex-col overflow-hidden bg-[#fefefe]">
       <ContainerScroll
         titleComponent={
-          <>
-            <p className="text-sm font-semibold text-[#c5704b] uppercase tracking-widest mb-4">
-              Mirá cómo funciona
+          <div className="flex flex-col items-center">
+            <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#c5704b] mb-5">
+              Probá la experiencia
             </p>
-            <h2 className="text-4xl font-bold text-black">
-              Tu hogar, <br />
-              <span className="text-4xl md:text-[5rem] font-bold mt-1 leading-none text-[#c5704b]">
-                inteligente.
-              </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight mb-5">
+              Tu panel de control,{" "}
+              <span className="italic font-normal text-[#c5704b]">en tu hogar.</span>
             </h2>
-          </>
+            <p className="text-[15px] text-black/55 leading-relaxed max-w-xl mb-6">
+              Usamos <strong className="text-black font-semibold">Home Assistant</strong> — la plataforma de automatización del hogar más potente del mundo,
+              alojada en un <strong className="text-black font-semibold">servidor privado dentro de tu casa</strong>.
+              Tus datos nunca salen de tu red. Sin suscripciones a terceros. Sin dependencia de la nube.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-[12px] text-black/45 font-medium mb-2">
+              <span className="flex items-center gap-2">
+                <svg viewBox="0 0 16 16" fill="#c5704b" className="w-3.5 h-3.5 shrink-0"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a.75.75 0 0 0-.75.75v3.5c0 .28.154.538.4.673l2.5 1.5a.75.75 0 1 0 .75-1.3L8.75 8.2V5.25A.75.75 0 0 0 8 4.5z"/></svg>
+                Servidor privado local
+              </span>
+              <span className="flex items-center gap-2">
+                <svg viewBox="0 0 16 16" fill="#c5704b" className="w-3.5 h-3.5 shrink-0"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm3.25 3.97a.75.75 0 0 1 0 1.06L7.06 10.72a.75.75 0 0 1-1.06 0L4.25 8.97a.75.75 0 0 1 1.06-1.06l1.22 1.22 3.66-3.66a.75.75 0 0 1 1.06 0z"/></svg>
+                Totalmente personalizable
+              </span>
+              <span className="flex items-center gap-2">
+                <svg viewBox="0 0 16 16" fill="#c5704b" className="w-3.5 h-3.5 shrink-0"><path d="M8 0C5.24 0 3 2.24 3 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5zm0 7.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+                Sin dependencia de la nube
+              </span>
+            </div>
+          </div>
         }
       >
         <div className="relative w-full h-full select-none">
