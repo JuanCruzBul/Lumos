@@ -17,9 +17,16 @@ export function Navbar() {
   const [active, setActive] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [pill, setPill] = useState({ left: 0, width: 0, visible: false });
+  const [isDragging, setIsDragging] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const pillVisibleRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragPillStartLeftRef = useRef(0);
+  const dragPillStartWidthRef = useRef(0);
+  const didDragRef = useRef(false);
+  const suppressScrollRef = useRef(false);
 
   // Disable browser scroll restoration so reload always starts at top
   useEffect(() => {
@@ -32,7 +39,7 @@ export function Navbar() {
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      // Guard: at the very top, nothing is active
+      if (isDraggingRef.current || suppressScrollRef.current) return;
       if (window.scrollY < 10) {
         setActive("");
         return;
@@ -53,34 +60,148 @@ export function Navbar() {
 
   // Slide indicator to active link
   useEffect(() => {
+    if (isDraggingRef.current) return;
     if (!active) {
       pillVisibleRef.current = false;
       setPill((p) => ({ ...p, visible: false }));
       return;
     }
-    const link = linkRefs.current[active];
-    const list = listRef.current;
-    if (!link || !list) return;
-    const lr = link.getBoundingClientRect();
-    const nr = list.getBoundingClientRect();
-    const newLeft = lr.left - nr.left;
-    const newWidth = lr.width;
 
-    if (!pillVisibleRef.current) {
-      // Teleport to correct position while still invisible, then fade in.
-      // This prevents the pill from "flying" from 0,0 on first appearance.
-      setPill({ left: newLeft, width: newWidth, visible: false });
-      requestAnimationFrame(() => {
+    const update = () => {
+      // Re-check: if drag started again while we were waiting, bail out
+      if (isDraggingRef.current) return;
+      const link = linkRefs.current[active];
+      const list = listRef.current;
+      if (!link || !list) return;
+      const lr = link.getBoundingClientRect();
+      const nr = list.getBoundingClientRect();
+      const newLeft = lr.left - nr.left;
+      const newWidth = lr.width;
+
+      if (!pillVisibleRef.current) {
+        setPill({ left: newLeft, width: newWidth, visible: false });
         requestAnimationFrame(() => {
-          setPill({ left: newLeft, width: newWidth, visible: true });
-          pillVisibleRef.current = true;
+          requestAnimationFrame(() => {
+            setPill({ left: newLeft, width: newWidth, visible: true });
+            pillVisibleRef.current = true;
+          });
         });
-      });
-    } else {
-      // Already visible: slide smoothly to new position
-      setPill({ left: newLeft, width: newWidth, visible: true });
-    }
+      } else {
+        setPill({ left: newLeft, width: newWidth, visible: true });
+      }
+    };
+
+    // Small delay after drag-release so the pill is already at the target
+    // position before we re-apply the transition — prevents visual jump.
+    const tid = setTimeout(update, 20);
+    return () => clearTimeout(tid);
   }, [active]);
+
+  // Global mouse move / up for drag
+  useEffect(() => {
+    const getClosestLink = (mouseX: number, nr: DOMRect) => {
+      let closestId = "";
+      let closestDist = Infinity;
+      for (const { href } of navLinks) {
+        const id = href.replace("#", "");
+        const link = linkRefs.current[id];
+        if (!link) continue;
+        const lr = link.getBoundingClientRect();
+        const center = lr.left - nr.left + lr.width / 2;
+        const dist = Math.abs(mouseX - center);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestId = id;
+        }
+      }
+      return closestId;
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDraggingRef.current) return;
+      const dx = e.clientX - dragStartXRef.current;
+      if (Math.abs(dx) > 3) didDragRef.current = true;
+
+      const list = listRef.current;
+      if (!list) return;
+      const nr = list.getBoundingClientRect();
+      const mouseX = e.clientX - nr.left;
+
+      // Clamp pill center within container
+      const clampedX = Math.max(0, Math.min(mouseX, nr.width));
+      const rawLeft = dragPillStartLeftRef.current + dx;
+
+      // Preview: morph width toward nearest link
+      const nearestId = getClosestLink(clampedX, nr);
+      const nearestLink = nearestId ? linkRefs.current[nearestId] : null;
+      const nearestLr = nearestLink?.getBoundingClientRect();
+      const previewWidth = nearestLr ? nearestLr.width : dragPillStartWidthRef.current;
+      const previewLeft = nearestLr ? nearestLr.left - nr.left : rawLeft;
+
+      // Interpolate left between raw drag position and snapped position
+      // based on how close we are to the nearest link center
+      const nearestCenter = nearestLr
+        ? nearestLr.left - nr.left + nearestLr.width / 2
+        : clampedX;
+      const distToNearest = Math.abs(clampedX - nearestCenter);
+      const snapRadius = 30; // px — starts pulling toward link within this range
+      const t = Math.max(0, 1 - distToNearest / snapRadius);
+      const interpolatedLeft = rawLeft + (previewLeft - rawLeft) * t * 0.5;
+      const clampedLeft = Math.max(0, Math.min(interpolatedLeft, nr.width - previewWidth));
+
+      setPill((p) => ({ ...p, left: clampedLeft, width: previewWidth }));
+    };
+
+    const handleMouseUp = (e: MouseEvent) => {
+      if (!isDraggingRef.current) return;
+      isDraggingRef.current = false;
+      setIsDragging(false);
+
+      const list = listRef.current;
+      if (!list) return;
+      const nr = list.getBoundingClientRect();
+      const mouseX = e.clientX - nr.left;
+
+      const closestId = getClosestLink(mouseX, nr);
+
+      if (closestId) {
+        setActive(closestId);
+        const el = document.getElementById(closestId);
+        if (el) {
+          suppressScrollRef.current = true;
+          el.scrollIntoView({ behavior: "smooth" });
+          // Release suppression after scroll animation completes (~800ms)
+          setTimeout(() => { suppressScrollRef.current = false; }, 800);
+        }
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+
+  const handleLinkMouseDown = (e: React.MouseEvent, id: string) => {
+    // Only start drag if the pill is already visible (a section is active)
+    if (!pillVisibleRef.current) return;
+    e.preventDefault();
+    isDraggingRef.current = true;
+    didDragRef.current = false;
+    dragStartXRef.current = e.clientX;
+    dragPillStartLeftRef.current = pill.left;
+    dragPillStartWidthRef.current = pill.width;
+    setIsDragging(true);
+  };
+
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    // Suppress navigation if this was a drag, not a click
+    if (didDragRef.current) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <>
@@ -111,10 +232,12 @@ export function Navbar() {
           </Link>
 
           {/* Nav links + sliding pill — desktop */}
-          {/* overflow:hidden forces Safari to establish a proper containing block for the absolute pill */}
-          <div ref={listRef} className="hidden md:flex items-center relative overflow-hidden rounded-full">
+          <div
+            ref={listRef}
+            className="hidden md:flex items-center relative overflow-hidden rounded-full"
+            style={{ userSelect: "none" }}
+          >
             {/* Animated pill indicator */}
-            {/* Avoid inset-y-0 — it misreads height on Safari flex containers */}
             <span
               aria-hidden
               className="absolute rounded-full pointer-events-none"
@@ -127,8 +250,9 @@ export function Navbar() {
                 background: "#c5704b",
                 opacity: pill.visible ? 1 : 0,
                 willChange: "left, width, opacity",
-                transition:
-                  "left 300ms cubic-bezier(0.4,0,0.2,1), width 300ms cubic-bezier(0.4,0,0.2,1), opacity 200ms ease",
+                transition: isDragging
+                  ? "opacity 200ms ease"
+                  : "left 300ms cubic-bezier(0.4,0,0.2,1), width 300ms cubic-bezier(0.4,0,0.2,1), opacity 200ms ease",
               }}
             />
 
@@ -142,9 +266,12 @@ export function Navbar() {
                   ref={(el) => {
                     linkRefs.current[id] = el;
                   }}
+                  onMouseDown={(e) => handleLinkMouseDown(e, id)}
+                  onClick={(e) => handleLinkClick(e, href)}
+                  draggable={false}
                   className={`relative z-10 text-sm font-semibold px-5 py-2.5 rounded-full whitespace-nowrap select-none transition-colors duration-200 ${
-                    isActive ? "text-white" : "text-black hover:text-black/60"
-                  }`}
+                    isDragging ? "cursor-grabbing" : "cursor-pointer"
+                  } ${isActive ? "text-white" : "text-black hover:text-black/60"}`}
                 >
                   {label}
                 </Link>
