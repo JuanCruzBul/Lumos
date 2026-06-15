@@ -18,6 +18,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [pill, setPill] = useState({ left: 0, width: 0, visible: false });
   const [isDragging, setIsDragging] = useState(false);
+  const [dragHoverId, setDragHoverId] = useState("");
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const pillVisibleRef = useRef(false);
@@ -119,6 +120,7 @@ export function Navbar() {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!isDraggingRef.current) return;
+      e.preventDefault();
       const dx = e.clientX - dragStartXRef.current;
       if (Math.abs(dx) > 3) didDragRef.current = true;
 
@@ -150,12 +152,14 @@ export function Navbar() {
       const clampedLeft = Math.max(0, Math.min(interpolatedLeft, nr.width - previewWidth));
 
       setPill((p) => ({ ...p, left: clampedLeft, width: previewWidth }));
+      setDragHoverId(nearestId);
     };
 
     const handleMouseUp = (e: MouseEvent) => {
       if (!isDraggingRef.current) return;
       isDraggingRef.current = false;
       setIsDragging(false);
+      setDragHoverId("");
 
       const list = listRef.current;
       if (!list) return;
@@ -176,7 +180,7 @@ export function Navbar() {
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: false });
     window.addEventListener("mouseup", handleMouseUp);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -258,7 +262,7 @@ export function Navbar() {
 
             {navLinks.map(({ label, href }) => {
               const id = href.replace("#", "");
-              const isActive = active === id;
+              const isHighlighted = isDragging ? dragHoverId === id : active === id;
               return (
                 <Link
                   key={label}
@@ -271,7 +275,7 @@ export function Navbar() {
                   draggable={false}
                   className={`relative z-10 text-sm font-semibold px-5 py-2.5 rounded-full whitespace-nowrap select-none transition-colors duration-200 ${
                     isDragging ? "cursor-grabbing" : "cursor-pointer"
-                  } ${isActive ? "text-white" : "text-black hover:text-black/60"}`}
+                  } ${isHighlighted ? "text-white" : "text-black hover:text-black/60"}`}
                 >
                   {label}
                 </Link>
