@@ -57,7 +57,7 @@ export function PlanesSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
             Elegí tu kit Lumos
           </h2>
-          <p className="text-black/45 text-sm max-w-sm mx-auto">
+          <p className="text-black/65 text-[15px] max-w-sm mx-auto">
             Sin permanencia. Sin letra chica. Solo tu hogar inteligente.
           </p>
         </div>
@@ -95,7 +95,7 @@ export function PlanesSection() {
                       <span className={`text-4xl font-bold ${highlight ? "text-white" : "text-black"}`}>
                         ${price}
                       </span>
-                      <span className={`text-sm mb-1.5 ${highlight ? "text-white/40" : "text-black/35"}`}>
+                      <span className={`text-sm mb-1.5 ${highlight ? "text-white/65" : "text-black/55"}`}>
                         /mes
                       </span>
                     </>
@@ -105,7 +105,7 @@ export function PlanesSection() {
                     </span>
                   )}
                 </div>
-                <p className={`text-sm ${highlight ? "text-white/45" : "text-black/45"}`}>{desc}</p>
+                <p className={`text-sm ${highlight ? "text-white/70" : "text-black/65"}`}>{desc}</p>
               </div>
 
               <div className={`h-px ${highlight ? "bg-white/10" : "bg-black/[0.08]"}`} />
@@ -117,7 +117,7 @@ export function PlanesSection() {
                       size={14}
                       className={`mt-0.5 flex-shrink-0 ${highlight ? "text-[#fab257]" : "text-[#c5704b]"}`}
                     />
-                    <span className={`text-sm ${highlight ? "text-white/60" : "text-black/55"}`}>{f}</span>
+                    <span className={`text-sm ${highlight ? "text-white/85" : "text-black/75"}`}>{f}</span>
                   </li>
                 ))}
               </ul>

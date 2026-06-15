@@ -4,14 +4,17 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const AlexaIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 3.6c4.641 0 8.4 3.759 8.4 8.4 0 4.327-3.255 7.899-7.457 8.365v-2.01c2.94-.448 5.199-2.998 5.199-6.075 0-3.397-2.745-6.15-6.142-6.15-3.397 0-6.15 2.753-6.15 6.15 0 3.077 2.259 5.627 5.198 6.075v2.01C7.055 19.9 3.6 16.327 3.6 12c0-4.641 3.759-8.4 8.4-8.4zm.3 4.35v5.85l3.9 2.25-.675 1.162-4.575-2.662V7.95H12.3z" />
+  <svg viewBox="0 0 24 24" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#00CAFF" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c1.787 0 3.458-.392 4.966-1.088a.96.96 0 0 0-.832-1.735A9.994 9.994 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10a9.98 9.98 0 0 1-1.885 5.853.96.96 0 1 0 1.565 1.116A11.977 11.977 0 0 0 24 12C24 5.373 18.627 0 12 0zm-.15 3.833c-3 0-5.417 2.417-5.417 5.417s2.417 5.417 5.417 5.417c1.014 0 1.96-.28 2.75-.762v.845a.417.417 0 0 0 .833 0V9.183c-.155-2.863-2.5-5.35-3.583-5.35z"/>
   </svg>
 );
 
 const GoogleHomeIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+  <svg viewBox="0 0 24 24" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.8 12.204c0-.698-.063-1.37-.18-2.018H12v3.815h5.506a4.706 4.706 0 0 1-2.04 3.086v2.566h3.305C20.703 17.873 21.8 15.249 21.8 12.204z" fill="#4285F4"/>
+    <path d="M12 22c2.766 0 5.087-.917 6.772-2.48l-3.305-2.566c-.916.614-2.087.975-3.467.975-2.666 0-4.924-1.8-5.731-4.22H2.877v2.644A10 10 0 0 0 12 22z" fill="#34A853"/>
+    <path d="M6.269 13.709A6.02 6.02 0 0 1 5.952 12c0-.596.102-1.175.317-1.709V7.647H2.877A10 10 0 0 0 2 12c0 1.614.387 3.14 1.067 4.5l3.202-2.791z" fill="#FBBC05"/>
+    <path d="M12 5.581c1.505 0 2.855.518 3.917 1.533l2.939-2.938A9.94 9.94 0 0 0 12 2 10 10 0 0 0 2.877 7.647l3.392 2.644C7.076 7.873 9.334 5.581 12 5.581z" fill="#EA4335"/>
   </svg>
 );
 
@@ -111,7 +114,7 @@ export function IntegracionesSection() {
             <p
               className="text-[15px] leading-relaxed mb-10 max-w-md transition-all duration-700"
               style={{
-                color: "rgba(0,0,0,0.55)",
+                color: "rgba(0,0,0,0.70)",
                 opacity: inView ? 1 : 0,
                 transform: inView ? "translateY(0)" : "translateY(20px)",
                 transitionDelay: "160ms",
@@ -145,7 +148,7 @@ export function IntegracionesSection() {
                     }}
                   >
                     <span style={{ color: "#c5704b" }}>{icon}</span>
-                    <span className="text-[11px] font-semibold tracking-wider uppercase">{label}</span>
+                    <span className="text-xs font-semibold tracking-wider uppercase">{label}</span>
                   </div>
                 </div>
               ))}
@@ -164,14 +167,14 @@ export function IntegracionesSection() {
                   }}
                 >
                   <span
-                    className="text-[11px] font-bold tabular-nums pt-0.5 shrink-0 leading-none"
-                    style={{ color: "rgba(197,112,75,0.35)", letterSpacing: "0.05em" }}
+                    className="text-xs font-bold tabular-nums pt-0.5 shrink-0 leading-none"
+                    style={{ color: "rgba(197,112,75,0.80)", letterSpacing: "0.05em" }}
                   >
                     {item.num}
                   </span>
                   <div>
-                    <p className="text-sm font-bold text-black mb-1.5">{item.title}</p>
-                    <p className="text-[13px] leading-relaxed" style={{ color: "rgba(0,0,0,0.48)" }}>
+                    <p className="text-[15px] font-bold text-black mb-1.5">{item.title}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "rgba(0,0,0,0.65)" }}>
                       {item.body}
                     </p>
                   </div>
@@ -243,7 +246,7 @@ export function IntegracionesSection() {
                 <line x1="12" y1="19" x2="12" y2="23" />
                 <line x1="8" y1="23" x2="16" y2="23" />
               </svg>
-              <p className="text-[11px] font-semibold text-black">Control por voz activo</p>
+              <p className="text-xs font-semibold text-black">Control por voz activo</p>
             </div>
           </div>
 

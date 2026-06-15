@@ -54,7 +54,7 @@ export function TestimoniosSection() {
                 "
               </div>
 
-              <blockquote className="text-black/60 text-sm leading-relaxed flex-1 -mt-4">
+              <blockquote className="text-black/75 text-[15px] leading-relaxed flex-1 -mt-4">
                 {quote}
               </blockquote>
 
@@ -67,7 +67,7 @@ export function TestimoniosSection() {
                 </div>
                 <div>
                   <p className="text-black text-sm font-semibold leading-tight">{name}</p>
-                  <p className="text-black/35 text-xs mt-0.5">{role}</p>
+                  <p className="text-black/58 text-xs mt-0.5">{role}</p>
                 </div>
               </div>
             </div>

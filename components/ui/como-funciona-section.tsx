@@ -83,7 +83,7 @@ function StepItem({
       </motion.h3>
       <motion.p
         style={{ opacity: descOpacity, y: descY }}
-        className="text-black/40 text-sm leading-relaxed max-w-[150px] mx-auto"
+        className="text-black/65 text-sm leading-relaxed max-w-[160px] mx-auto"
       >
         {desc}
       </motion.p>
@@ -123,7 +123,7 @@ export function ComoFuncionaSection() {
             Proceso
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-black mt-3">Así de simple</h2>
-          <p className="text-black/38 text-sm mt-4">
+          <p className="text-black/60 text-[15px] mt-4">
             De la primera consulta a tu hogar funcionando, en cuatro pasos.
           </p>
         </motion.div>

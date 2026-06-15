@@ -110,22 +110,22 @@ export function ValueProps() {
               </div>
 
               {/* Tagline */}
-              <p className="text-[10px] font-bold tracking-widest uppercase text-[#c5704b]/70 mb-2">
+              <p className="text-[11px] font-bold tracking-widest uppercase text-[#c5704b] mb-2">
                 {tagline}
               </p>
 
               {/* Title */}
-              <h3 className="text-base font-bold text-black mb-3 leading-snug">
+              <h3 className="text-[17px] font-bold text-black mb-3 leading-snug">
                 {title}
               </h3>
 
               {/* Description */}
-              <p className="text-[13px] text-black/55 leading-relaxed mb-4">
+              <p className="text-sm text-black/70 leading-relaxed mb-4">
                 {description}
               </p>
 
               {/* Detail line */}
-              <p className="text-[11px] text-black/35 font-medium border-t border-black/[0.06] pt-3">
+              <p className="text-xs text-black/55 font-medium border-t border-black/[0.06] pt-3">
                 {detail}
               </p>
             </div>
