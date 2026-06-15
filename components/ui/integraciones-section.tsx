@@ -3,20 +3,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const AlexaIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#00CAFF" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c1.787 0 3.458-.392 4.966-1.088a.96.96 0 0 0-.832-1.735A9.994 9.994 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10a9.98 9.98 0 0 1-1.885 5.853.96.96 0 1 0 1.565 1.116A11.977 11.977 0 0 0 24 12C24 5.373 18.627 0 12 0zm-.15 3.833c-3 0-5.417 2.417-5.417 5.417s2.417 5.417 5.417 5.417c1.014 0 1.96-.28 2.75-.762v.845a.417.417 0 0 0 .833 0V9.183c-.155-2.863-2.5-5.35-3.583-5.35z"/>
-  </svg>
-);
-
-const GoogleHomeIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.8 12.204c0-.698-.063-1.37-.18-2.018H12v3.815h5.506a4.706 4.706 0 0 1-2.04 3.086v2.566h3.305C20.703 17.873 21.8 15.249 21.8 12.204z" fill="#4285F4"/>
-    <path d="M12 22c2.766 0 5.087-.917 6.772-2.48l-3.305-2.566c-.916.614-2.087.975-3.467.975-2.666 0-4.924-1.8-5.731-4.22H2.877v2.644A10 10 0 0 0 12 22z" fill="#34A853"/>
-    <path d="M6.269 13.709A6.02 6.02 0 0 1 5.952 12c0-.596.102-1.175.317-1.709V7.647H2.877A10 10 0 0 0 2 12c0 1.614.387 3.14 1.067 4.5l3.202-2.791z" fill="#FBBC05"/>
-    <path d="M12 5.581c1.505 0 2.855.518 3.917 1.533l2.939-2.938A9.94 9.94 0 0 0 12 2 10 10 0 0 0 2.877 7.647l3.392 2.644C7.076 7.873 9.334 5.581 12 5.581z" fill="#EA4335"/>
-  </svg>
-);
 
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -135,9 +121,10 @@ export function IntegracionesSection() {
               }}
             >
               {[
-                { icon: <AlexaIcon />, label: "Amazon Alexa" },
-                { icon: <GoogleHomeIcon />, label: "Google Home" },
-              ].map(({ icon, label }, i) => (
+                { src: "/icon-alexa.svg", label: "Amazon Alexa" },
+                { src: "/icon-google-home.svg", label: "Google Home" },
+                { src: "/icon-home-assistant.svg", label: "Home Assistant" },
+              ].map(({ src, label }) => (
                 <div key={label}>
                   <div
                     className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors duration-200 cursor-default"
@@ -147,7 +134,7 @@ export function IntegracionesSection() {
                       color: "rgba(0,0,0,0.5)",
                     }}
                   >
-                    <span style={{ color: "#c5704b" }}>{icon}</span>
+                    <Image src={src} alt={label} width={16} height={16} className="w-4 h-4 object-contain" />
                     <span className="text-xs font-semibold tracking-wider uppercase">{label}</span>
                   </div>
                 </div>
