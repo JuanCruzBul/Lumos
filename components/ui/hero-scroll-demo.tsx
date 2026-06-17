@@ -1,25 +1,20 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { 
-  Sun, 
-  Clock, 
-  Home as HomeIcon, 
-  Lightbulb, 
-  Cloud, 
-  Shield, 
-  Zap, 
-  Menu, 
-  MoreVertical, 
-  Lock, 
-  Unlock, 
-  Activity, 
-  X, 
-  Moon, 
-  Plus, 
-  Trash2, 
-  Droplets, 
-  Wind 
+import React, { useState, useEffect } from "react";
+import {
+  Sun,
+  Clock,
+  Home as HomeIcon,
+  Lightbulb,
+  Cloud,
+  Shield,
+  Zap,
+  Menu,
+  MoreVertical,
+  X,
+  Moon,
+  Plus,
+  Trash2,
 } from "lucide-react";
 import { ContainerScroll } from "./container-scroll-animation";
 
@@ -45,7 +40,7 @@ export function SmartHomeDashboard({
   const [time, setTime] = useState<Date | null>(null);
   const [lights, setLights] = useState(initialLights);
   const [selectedDayIdx, setSelectedDayIdx] = useState(0);
-  const [activeModal, setActiveModal] = useState(null);
+  const [activeModal, setActiveModal] = useState<string | null>(null);
   const [newLightName, setNewLightName] = useState('');
   const [security, setSecurity] = useState({ doorLocked: true, motionDetected: false });
 

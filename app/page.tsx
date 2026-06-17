@@ -8,7 +8,6 @@ import { PlanesSection } from "@/components/ui/planes-section";
 import { TestimoniosSection } from "@/components/ui/testimonios-section";
 import { NosotrosSection } from "@/components/ui/nosotros-section";
 import { ContactSection } from "@/components/ui/contact-section";
-import { Footer } from "@/components/ui/footer";
 
 export default function Home() {
   return (

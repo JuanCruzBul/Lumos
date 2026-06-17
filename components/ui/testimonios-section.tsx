@@ -51,7 +51,7 @@ export function TestimoniosSection() {
                 className="text-6xl font-bold leading-none select-none"
                 style={{ color: "rgba(197,112,75,0.18)", fontFamily: "Georgia, serif" }}
               >
-                "
+                &ldquo;
               </div>
 
               <blockquote className="text-black/75 text-[15px] leading-relaxed flex-1 -mt-4">

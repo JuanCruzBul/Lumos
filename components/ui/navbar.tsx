@@ -188,7 +188,7 @@ export function Navbar() {
     };
   }, []);
 
-  const handleLinkMouseDown = (e: React.MouseEvent, id: string) => {
+  const handleLinkMouseDown = (e: React.MouseEvent, _id: string) => {
     // Only start drag if the pill is already visible (a section is active)
     if (!pillVisibleRef.current) return;
     e.preventDefault();
@@ -200,7 +200,7 @@ export function Navbar() {
     setIsDragging(true);
   };
 
-  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+  const handleLinkClick = (e: React.MouseEvent, _href: string) => {
     // Suppress navigation if this was a drag, not a click
     if (didDragRef.current) {
       e.preventDefault();
