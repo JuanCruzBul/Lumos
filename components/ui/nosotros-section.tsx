@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { Globe2, Share2, Mail, Link2 } from "lucide-react";
+
 import { motion } from "framer-motion";
 
 const JUAN_IMG = "/images/juan-cruz-bulatovich.webp";
@@ -99,19 +99,9 @@ export function NosotrosSection() {
                 <span className="text-xs font-semibold text-[#c5704b] mb-4 tracking-widest uppercase">
                   Fundador
                 </span>
-                <p className="text-sm text-[#54433c] mb-6 leading-relaxed max-w-xs">
-                  Estratega visual con pasión por el diseño centrado en el ser
-                  humano. Juan lidera la visión estética de Lumos, asegurando
-                  que cada píxel transmita calidez y claridad.
+                <p className="text-sm text-[#54433c] leading-relaxed max-w-xs">
+                  Estudiante de Ingeniería apasionado por la tecnología. Reparo y armo PCs, diseño y desarrollo páginas web, y creo automatizaciones con IA. En Lumos me encargo del diseño, la identidad visual, las redes sociales, la interacción con clientes y las pautas publicitarias.
                 </p>
-                <div className="flex justify-center sm:justify-start gap-4">
-                  <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
-                    <Globe2 size={18} />
-                  </a>
-                  <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
-                    <Share2 size={18} />
-                  </a>
-                </div>
               </div>
             </div>
           </motion.div>
@@ -140,19 +130,9 @@ export function NosotrosSection() {
                 <span className="text-xs font-semibold text-[#c5704b] mb-4 tracking-widest uppercase">
                   Cofundador
                 </span>
-                <p className="text-sm text-[#54433c] mb-6 leading-relaxed max-w-xs">
-                  Arquitecto de soluciones innovadoras. Jesús combina la
-                  precisión técnica con una visión de futuro para construir
-                  productos digitales que no solo funcionan, sino que inspiran.
+                <p className="text-sm text-[#54433c] leading-relaxed max-w-xs">
+                  Estudiante de Ingeniería y electricista de oficio. Desarrollo páginas web y aplicaciones, y ejecuto instalaciones eléctricas con precisión. En Lumos lidera el código, las revisiones técnicas y todas las instalaciones de domótica.
                 </p>
-                <div className="flex justify-center sm:justify-end gap-4">
-                  <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
-                    <Mail size={18} />
-                  </a>
-                  <a href="#" className="text-[#87736b] hover:text-[#c5704b] transition-colors">
-                    <Link2 size={18} />
-                  </a>
-                </div>
               </div>
             </div>
           </motion.div>

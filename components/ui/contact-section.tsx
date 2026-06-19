@@ -57,8 +57,8 @@ export function ContactSection() {
   }
 
   const contactInfo = [
-    { label: "Email", value: "hola@lumos.ar" },
-    { label: "Teléfono", value: "+54 351 400-0000" },
+    { label: "Email", value: "lumosdomotica@gmail.com" },
+    { label: "Teléfono", value: "+54 3541 598686" },
     { label: "Ciudad", value: "Villa Carlos Paz, Córdoba" },
   ];
 
