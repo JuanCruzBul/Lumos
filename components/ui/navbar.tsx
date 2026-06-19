@@ -33,8 +33,8 @@ export function Navbar() {
   const suppressScrollRef = useRef(false);
 
   useEffect(() => {
-    const CIRCLE_DELAY = 100;
-    const EXPAND_DELAY = 480;
+    const CIRCLE_DELAY = 200;
+    const EXPAND_DELAY = 1800;
 
     const t1 = setTimeout(() => {
       setNavPhase("circle");
@@ -190,55 +190,63 @@ export function Navbar() {
   const isCircle = navPhase !== "expanded";
 
   const pillStyle: React.CSSProperties = (() => {
-    const base: React.CSSProperties = {
-      background: "rgba(254,254,254,0.93)",
-      backdropFilter: "blur(16px)",
-      WebkitBackdropFilter: "blur(16px)",
-      boxShadow: "0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06)",
-      display: "flex",
-      alignItems: "center",
-      height: "62px",
-      overflow: "hidden",
-      whiteSpace: "nowrap" as const,
-      pointerEvents: isCircle ? "none" : "auto",
-    };
-
     if (navPhase === "hidden") {
       return {
-        ...base,
+        display: "flex",
+        alignItems: "center",
+        height: "62px",
+        overflow: "hidden",
+        whiteSpace: "nowrap" as const,
+        pointerEvents: "none",
         width: "62px",
         maxWidth: "62px",
         padding: "12px",
         justifyContent: "center",
         borderRadius: "9999px",
+        background: "#FAB358",
         opacity: 0,
-        transform: "translateY(-80px) scale(0.4)",
+        transform: "translateY(-60px) scale(0.3)",
         transition: "none",
       };
     }
     if (navPhase === "circle") {
       return {
-        ...base,
+        display: "flex",
+        alignItems: "center",
+        height: "62px",
+        overflow: "visible",
+        whiteSpace: "nowrap" as const,
+        pointerEvents: "none",
         width: "62px",
         maxWidth: "62px",
         padding: "12px",
         justifyContent: "center",
         borderRadius: "9999px",
+        background: "#FAB358",
         opacity: 1,
         transform: "translateY(0px) scale(1)",
-        transition: "transform 480ms cubic-bezier(0.34,1.56,0.64,1), opacity 300ms ease",
+        transition: "transform 600ms cubic-bezier(0.34,1.56,0.64,1), opacity 400ms ease",
       };
     }
     return {
-      ...base,
+      display: "flex",
+      alignItems: "center",
+      height: "62px",
+      overflow: "hidden",
+      whiteSpace: "nowrap" as const,
+      pointerEvents: "auto",
       width: "max-content",
       maxWidth: "900px",
       padding: "12px",
       justifyContent: "flex-start",
       borderRadius: "9999px",
+      background: "rgba(254,254,254,0.93)",
+      backdropFilter: "blur(16px)",
+      WebkitBackdropFilter: "blur(16px)",
+      boxShadow: "0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06)",
       opacity: 1,
       transform: "translateY(0px) scale(1)",
-      transition: "max-width 1000ms cubic-bezier(0.16,1,0.3,1)",
+      transition: "max-width 900ms cubic-bezier(0.16,1,0.3,1)",
     };
   })();
 
@@ -247,7 +255,7 @@ export function Navbar() {
       <style>{`html { scroll-behavior: smooth; }`}</style>
 
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4">
-        <div style={pillStyle}>
+        <div style={pillStyle} className={navPhase === "circle" ? "lumos-circle" : ""}>
 
           <Link
             href="/"
@@ -259,7 +267,16 @@ export function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <Image src="/logo.svg" alt="Lumos" width={38} height={38} />
+            <Image
+              src="/logo.svg"
+              alt="Lumos"
+              width={38}
+              height={38}
+              style={{
+                opacity: navPhase === "expanded" ? 1 : 0,
+                transition: navPhase === "expanded" ? "opacity 400ms ease" : "none",
+              }}
+            />
           </Link>
 
           {navPhase === "expanded" && (
@@ -353,6 +370,15 @@ export function Navbar() {
         @keyframes navFadeIn {
           from { opacity: 0; }
           to   { opacity: 1; }
+        }
+        .lumos-circle {
+          animation: lumosGlow 1.8s ease-in-out infinite;
+          animation-delay: 400ms;
+        }
+        @keyframes lumosGlow {
+          0%   { box-shadow: 0 0 12px 4px rgba(250,179,88,0.4), 0 0 30px 10px rgba(250,179,88,0.15); }
+          50%  { box-shadow: 0 0 35px 14px rgba(250,179,88,0.75), 0 0 70px 28px rgba(250,179,88,0.35), 0 0 100px 40px rgba(250,200,120,0.12); }
+          100% { box-shadow: 0 0 12px 4px rgba(250,179,88,0.4), 0 0 30px 10px rgba(250,179,88,0.15); }
         }
       `}</style>
     </>
