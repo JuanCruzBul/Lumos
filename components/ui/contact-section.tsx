@@ -13,7 +13,7 @@ export function ContactSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const [formState, setFormState] = useState<FormState>("idle");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [, setErrorMsg] = useState("");
   const [fields, setFields] = useState({
     nombre: "",
     email: "",

@@ -187,8 +187,6 @@ export function Navbar() {
     if (didDragRef.current) e.preventDefault();
   };
 
-  const isCircle = navPhase !== "expanded";
-
   const pillStyle: React.CSSProperties = (() => {
     if (navPhase === "hidden") {
       return {
