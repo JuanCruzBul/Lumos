@@ -274,7 +274,10 @@ export function Navbar() {
               height={38}
               style={{
                 opacity: navPhase === "expanded" ? 1 : 0,
-                transition: navPhase === "expanded" ? "opacity 400ms ease" : "none",
+                transform: navPhase === "expanded" ? "scale(1)" : "scale(0.5)",
+                transition: navPhase === "expanded"
+                  ? "opacity 400ms ease 100ms, transform 500ms cubic-bezier(0.34,1.4,0.64,1) 100ms"
+                  : "none",
               }}
             />
           </Link>
@@ -285,7 +288,6 @@ export function Navbar() {
                 display: "flex",
                 alignItems: "center",
                 marginLeft: "10px",
-                animation: "navFadeIn 500ms ease 350ms both",
               }}
             >
               <div
@@ -310,7 +312,7 @@ export function Navbar() {
                       : "left 300ms cubic-bezier(0.4,0,0.2,1), width 300ms cubic-bezier(0.4,0,0.2,1), opacity 200ms ease",
                   }}
                 />
-                {navLinks.map(({ label, href }) => {
+                {navLinks.map(({ label, href }, i) => {
                   const id = href.replace("#", "");
                   const isHighlighted = isDragging ? dragHoverId === id : active === id;
                   return (
@@ -324,6 +326,9 @@ export function Navbar() {
                       className={`relative z-10 text-sm font-semibold px-5 py-2.5 rounded-full whitespace-nowrap select-none transition-colors duration-200 ${
                         isDragging ? "cursor-grabbing" : "cursor-pointer"
                       } ${isHighlighted ? "text-white" : "text-black hover:text-black/60"}`}
+                      style={{
+                        animation: `navLinkIn 400ms ease ${200 + i * 60}ms both`,
+                      }}
                     >
                       {label}
                     </Link>
@@ -335,6 +340,7 @@ export function Navbar() {
                 className="md:hidden ml-2 p-1.5 text-black/60 hover:text-black transition-colors"
                 onClick={() => setMobileOpen((v) => !v)}
                 aria-label="Menú"
+                style={{ animation: "navLinkIn 400ms ease 200ms both" }}
               >
                 {mobileOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
@@ -367,9 +373,9 @@ export function Navbar() {
       </nav>
 
       <style>{`
-        @keyframes navFadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
+        @keyframes navLinkIn {
+          from { opacity: 0; transform: translateY(6px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
         .lumos-circle {
           animation: lumosGlow 1.8s ease-in-out infinite;
