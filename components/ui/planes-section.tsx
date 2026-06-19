@@ -25,7 +25,7 @@ const planes = [
       "Home Assistant configurado",
       "Cerraduras y cámaras Wi-Fi incluidas",
       "Automatizaciones ilimitadas a medida",
-      "Soporte 24/7 prioritario",
+      "Soporte prioritario",
     ],
     highlight: true,
     cta: "Elegir Kit Completo",
@@ -58,7 +58,7 @@ export function PlanesSection() {
             Elegí tu kit Lumos
           </h2>
           <p className="text-black/65 text-[15px] max-w-sm mx-auto">
-            Sin permanencia. Sin letra chica. Solo tu hogar inteligente.
+            Planes flexibles, sin ataduras. Solo tu hogar inteligente.
           </p>
         </div>
 

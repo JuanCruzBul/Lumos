@@ -42,9 +42,9 @@ const SERVICES = [
     accent: "#F59E0B",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85",
     description:
-      "Reemplazamos tus interruptores convencionales por switches WiFi sin romper paredes ni hacer obras. En un solo día tu hogar puede responder a tu voz, una app o un horario programado. La iluminación deja de ser algo que simplemente encendés o apagás, y se convierte en parte de la experiencia de vivir en tu casa.",
+      "Reemplazamos tus interruptores convencionales por switches WiFi sin romper paredes ni hacer obras. Tu hogar puede responder a tu voz, una app o un horario programado. La iluminación deja de ser algo que simplemente encendés o apagás, y se convierte en parte de la experiencia de vivir en tu casa.",
     features: [
-      "Switches WiFi instalados en un día, sin obras ni cableado nuevo",
+      "Switches WiFi instalados sin obras ni cableado nuevo",
       "Control por voz con Alexa, Google Assistant o Siri",
       "Escenas personalizadas: Cine, Lectura, Bienvenida",
       "Horarios, temporizadores y modo ausente automático",
@@ -67,7 +67,7 @@ const SERVICES = [
       "Integración multi-marca sin fricciones ni hubs extra",
       "Panel de control centralizado con dashboard propio",
       "Automatizaciones cruzadas entre distintos ecosistemas",
-      "Home Assistant local: privacidad 100% tuya, sin la nube",
+      "Home Assistant local: tus datos quedan en tu red, sin la nube",
       "Rutinas de voz para toda la familia",
       "Perfiles de acceso separados por miembro del hogar",
     ],

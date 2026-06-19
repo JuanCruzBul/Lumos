@@ -14,7 +14,7 @@ const testimonios = [
     role: "Emprendedor · Nueva Córdoba",
     initial: "P",
     quote:
-      "La instalación fue rápida y sin obras. En menos de un día tenía todo funcionando. El equipo estuvo presente en cada paso y el soporte es excelente.",
+      "La instalación fue rápida y sin obras. Todo quedó funcionando perfecto. El equipo estuvo presente en cada paso y el soporte es excelente.",
     stars: 5,
   },
   {

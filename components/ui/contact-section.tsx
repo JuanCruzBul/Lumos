@@ -140,7 +140,7 @@ export function ContactSection() {
 
           <p className="text-black/60 text-sm leading-relaxed max-w-xs mb-12">
             Nuestro equipo diseña la solución perfecta para tu espacio.
-            Contanos qué necesitás y te respondemos en menos de 24&nbsp;hs.
+            Contanos qué necesitás y nos ponemos en contacto a la brevedad.
           </p>
 
           {/* Contact info — stagger */}
@@ -179,7 +179,7 @@ export function ContactSection() {
             whileHover={{ scale: 1.03 }}
           >
             <span className="h-2 w-2 rounded-full bg-[#c5704b] animate-pulse" />
-            <span className="text-black/40 text-xs tracking-wide">Respuesta en menos de 24 hs</span>
+            <span className="text-black/40 text-xs tracking-wide">Respondemos a la brevedad</span>
           </motion.div>
         </motion.div>
 

@@ -6,7 +6,7 @@ const pasos = [
   {
     num: "01",
     title: "Consultá",
-    desc: "Nos contás qué querés mejorar. La visita es sin cargo y sin compromiso.",
+    desc: "Nos contás qué querés mejorar. Analizamos tu espacio y te proponemos la mejor solución.",
   },
   {
     num: "02",
@@ -16,7 +16,7 @@ const pasos = [
   {
     num: "03",
     title: "Instalamos",
-    desc: "Nuestro equipo instala y configura todo en un solo día. Sin obras ni remodelaciones.",
+    desc: "Nuestro equipo instala y configura todo de forma prolija y eficiente. Sin obras ni remodelaciones mayores.",
   },
   {
     num: "04",

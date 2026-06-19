@@ -65,8 +65,8 @@ const features = [
     title: "Nosotros instalamos todo",
     tagline: "Sin tecnicismos, sin complicaciones",
     description:
-      "No necesitás saber nada de tecnología. Nuestro equipo se encarga del relevamiento, la instalación y la configuración completa. Al final del día, te mostramos cómo usar tu nuevo hogar.",
-    detail: "Instalación en un día. Soporte posterior incluido.",
+      "No necesitás saber nada de tecnología. Nuestro equipo se encarga del relevamiento, la instalación y la configuración completa. Te acompañamos en cada paso hasta que tu hogar funcione exactamente como querés.",
+    detail: "Instalación profesional. Soporte posterior incluido.",
   },
 ];
 
