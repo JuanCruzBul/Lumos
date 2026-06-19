@@ -143,7 +143,7 @@ export function NosotrosSection() {
       {/* Quote */}
       <div className="w-full max-w-xl mt-20 lg:mt-28 text-center">
         <p className="text-sm text-[#87736b] mb-8 italic">
-          &ldquo;La luz no solo nos permite ver, nos permite entender el camino.&rdquo;
+          &ldquo;Cada detalle, pensado para que vivas mejor.&rdquo;
         </p>
         <div
           className="h-px w-24 mx-auto rounded-full"
