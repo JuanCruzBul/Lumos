@@ -4,8 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Lightbulb, Shield, Cpu, Zap, Check } from "lucide-react";
 import Image from "next/image";
 
-// ── Ecosystem logos ───────────────────────────────────────────────────────────
-
 function AlexaLogo() {
   return <Image src="/icon-alexa.svg" alt="Amazon Alexa" width={48} height={48} className="w-full h-full object-contain" />;
 }
@@ -34,8 +32,6 @@ const ECOSYSTEMS: Record<string, { Logo: () => React.ReactElement; label: string
   ha:      { Logo: HomeAssistantLogo, label: "Home Assistant" },
   homekit: { Logo: HomeKitLogo,       label: "Apple HomeKit" },
 };
-
-// ── Data ──────────────────────────────────────────────────────────────────────
 
 const SERVICES = [
   {
@@ -119,8 +115,6 @@ const SERVICES = [
     ecosystems: ["alexa", "google", "ha"],
   },
 ];
-
-// ── Component ─────────────────────────────────────────────────────────────────
 
 export function SistemasSection() {
   const [activeIndex, setActiveIndex] = useState(0);

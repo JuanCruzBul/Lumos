@@ -1,0 +1,11 @@
+.next/
+node_modules/
+public/
+Iconos/
+test-results/
+contexto/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.ico

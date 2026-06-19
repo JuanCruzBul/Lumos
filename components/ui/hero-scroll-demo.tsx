@@ -18,13 +18,6 @@ import {
 } from "lucide-react";
 import { ContainerScroll } from "./container-scroll-animation";
 
-// NOTA PARA TU PROYECTO NEXT.JS:
-// Descomenta la siguiente línea y elimina el mock de ContainerScroll que está al final de este archivo.
-// import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-
-/**
- * 1. COMPONENTE INTERACTIVO DE DOMÓTICA (MÓDULO DE TABLET)
- */
 export function SmartHomeDashboard({ 
   embeddedMode = true, 
   defaultDarkMode = false,
@@ -129,8 +122,6 @@ export function SmartHomeDashboard({
 
   return (
     <div className={containerClasses}>
-      
-      {/* HEADER DE LA TABLET */}
       <header className={`px-6 py-4 flex items-center justify-between border-b transition-colors duration-300 ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'}`}>
         <div className="flex items-center gap-4">
           <button className={`p-2 rounded-full hover:bg-opacity-80 transition-colors ${darkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-100 text-slate-600'}`}>
@@ -153,13 +144,8 @@ export function SmartHomeDashboard({
         </div>
       </header>
 
-      {/* CONTENIDO INTERNO DE LA TABLET */}
       <div className="p-4 md:p-6 space-y-6 flex-1 overflow-y-auto custom-scrollbar">
-        
-        {/* FILA SUPERIOR */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          {/* Clima Rápido */}
           <div className={`p-4 rounded-2xl flex items-center gap-3 shadow-xs border transition-all ${darkMode ? 'bg-slate-900 border-slate-800/80' : 'bg-white border-slate-100'}`}>
             <div className="p-2.5 bg-amber-100 text-amber-500 rounded-xl dark:bg-amber-950/25 dark:text-amber-400">
               <Sun size={22} className="animate-spin-slow" />
@@ -170,7 +156,6 @@ export function SmartHomeDashboard({
             </div>
           </div>
 
-          {/* Reloj */}
           <div className={`p-4 rounded-2xl flex items-center gap-3 shadow-xs border transition-all ${darkMode ? 'bg-slate-900 border-slate-800/80' : 'bg-white border-slate-100'}`}>
             <div className="p-2.5 bg-blue-50 text-blue-500 rounded-xl dark:bg-blue-950/40 dark:text-blue-400">
               <Clock size={22} className="animate-pulse" />
@@ -181,7 +166,6 @@ export function SmartHomeDashboard({
             </div>
           </div>
 
-          {/* Estado de presencia */}
           <div className={`p-4 rounded-2xl flex items-center gap-3 shadow-xs border transition-all ${darkMode ? 'bg-slate-900 border-slate-800/80' : 'bg-white border-slate-100'}`}>
             <div className="p-2.5 bg-green-50 text-green-500 rounded-xl dark:bg-green-950/40 dark:text-green-400">
               <HomeIcon size={22} />
@@ -194,10 +178,7 @@ export function SmartHomeDashboard({
 
         </section>
 
-        {/* REJILLA DE WIDGETS */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-          {/* LUCES */}
           <div className={`rounded-2xl border shadow-xs flex flex-col justify-between overflow-hidden transition-all duration-300 ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'}`}>
             <div className="p-5">
               <div className="flex items-center gap-2 mb-4">
@@ -228,7 +209,6 @@ export function SmartHomeDashboard({
             </div>
           </div>
 
-          {/* CLIMA INTERACTIVO */}
           <div className={`rounded-2xl border shadow-xs p-5 flex flex-col justify-between transition-all duration-300 ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'}`}>
             <div>
               <div className="flex items-center gap-2 mb-4">
@@ -266,7 +246,6 @@ export function SmartHomeDashboard({
             </div>
           </div>
 
-          {/* SEGURIDAD */}
           <div className={`rounded-2xl border shadow-xs flex flex-col justify-between overflow-hidden transition-all duration-300 ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'}`}>
             <div className="p-5">
               <div className="flex items-center gap-2 mb-4">
@@ -311,7 +290,6 @@ export function SmartHomeDashboard({
             </div>
           </div>
 
-          {/* ENERGÍA */}
           <div className={`rounded-2xl border shadow-xs p-5 transition-all duration-300 ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'}`}>
             <div className="flex items-center gap-2 mb-3">
               <Zap size={18} className="text-blue-500" />
@@ -323,7 +301,6 @@ export function SmartHomeDashboard({
               <span className="text-xs text-slate-500 font-semibold">kWh Hoy</span>
             </div>
 
-            {/* Micro Gráfica de Barras */}
             <div className="h-16 flex items-end justify-between gap-[2px] mt-3">
               {energyData.map((d, index) => {
                 const finalVal = getAdjustedEnergyValue(index, d.val);
@@ -347,7 +324,6 @@ export function SmartHomeDashboard({
 
       </div>
 
-      {/* MODALES FLOTANTES */}
       {activeModal === 'lights' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
           <div className={`w-full max-w-sm rounded-2xl shadow-xl overflow-hidden ${darkMode ? 'bg-slate-900 text-white border border-slate-800' : 'bg-white text-slate-800'}`}>
@@ -418,9 +394,6 @@ export function SmartHomeDashboard({
   );
 }
 
-/**
- * 2. COMPONENTE DE DEMO EN HERO SCROLL (NEXT.JS READY)
- */
 export function HeroScrollDemo() {
   return (
     <div className="flex flex-col overflow-hidden bg-[#fefefe]">
@@ -464,9 +437,6 @@ export function HeroScrollDemo() {
   );
 }
 
-/**
- * EXPORTACIÓN COMPORTAMENTAL DE LA PÁGINA (Para el visor o renderizado por defecto)
- */
 export default function App() {
   return (
     <div className="min-h-screen bg-[#fefefe]">

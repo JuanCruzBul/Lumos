@@ -13,12 +13,15 @@ const navLinks = [
   { label: "Contacto", href: "#contacto" },
 ];
 
+type NavPhase = "hidden" | "circle" | "expanded";
+
 export function Navbar() {
   const [active, setActive] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [pill, setPill] = useState({ left: 0, width: 0, visible: false });
   const [isDragging, setIsDragging] = useState(false);
   const [dragHoverId, setDragHoverId] = useState("");
+  const [navPhase, setNavPhase] = useState<NavPhase>("hidden");
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const pillVisibleRef = useRef(false);
@@ -29,7 +32,21 @@ export function Navbar() {
   const didDragRef = useRef(false);
   const suppressScrollRef = useRef(false);
 
-  // Disable browser scroll restoration so reload always starts at top
+  useEffect(() => {
+    const CIRCLE_DELAY = 100;
+    const EXPAND_DELAY = 480;
+
+    const t1 = setTimeout(() => {
+      setNavPhase("circle");
+    }, CIRCLE_DELAY);
+
+    const t2 = setTimeout(() => {
+      setNavPhase("expanded");
+    }, EXPAND_DELAY);
+
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
   useEffect(() => {
     if (window.history.scrollRestoration) {
       window.history.scrollRestoration = "manual";
@@ -37,21 +54,14 @@ export function Navbar() {
     window.scrollTo(0, 0);
   }, []);
 
-  // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (isDraggingRef.current || suppressScrollRef.current) return;
-      if (window.scrollY < 10) {
-        setActive("");
-        return;
-      }
+      if (window.scrollY < 10) { setActive(""); return; }
       const ids = navLinks.map((l) => l.href.replace("#", ""));
       for (const id of [...ids].reverse()) {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActive(id);
-          return;
-        }
+        if (el && window.scrollY >= el.offsetTop - 120) { setActive(id); return; }
       }
       setActive("");
     };
@@ -59,7 +69,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Slide indicator to active link
   useEffect(() => {
     if (isDraggingRef.current) return;
     if (!active) {
@@ -67,9 +76,7 @@ export function Navbar() {
       setPill((p) => ({ ...p, visible: false }));
       return;
     }
-
     const update = () => {
-      // Re-check: if drag started again while we were waiting, bail out
       if (isDraggingRef.current) return;
       const link = linkRefs.current[active];
       const list = listRef.current;
@@ -78,7 +85,6 @@ export function Navbar() {
       const nr = list.getBoundingClientRect();
       const newLeft = lr.left - nr.left;
       const newWidth = lr.width;
-
       if (!pillVisibleRef.current) {
         setPill({ left: newLeft, width: newWidth, visible: false });
         requestAnimationFrame(() => {
@@ -91,14 +97,10 @@ export function Navbar() {
         setPill({ left: newLeft, width: newWidth, visible: true });
       }
     };
-
-    // Small delay after drag-release so the pill is already at the target
-    // position before we re-apply the transition — prevents visual jump.
     const tid = setTimeout(update, 20);
     return () => clearTimeout(tid);
   }, [active]);
 
-  // Global mouse move / up for drag
   useEffect(() => {
     const getClosestLink = (mouseX: number, nr: DOMRect) => {
       let closestId = "";
@@ -110,10 +112,7 @@ export function Navbar() {
         const lr = link.getBoundingClientRect();
         const center = lr.left - nr.left + lr.width / 2;
         const dist = Math.abs(mouseX - center);
-        if (dist < closestDist) {
-          closestDist = dist;
-          closestId = id;
-        }
+        if (dist < closestDist) { closestDist = dist; closestId = id; }
       }
       return closestId;
     };
@@ -123,34 +122,23 @@ export function Navbar() {
       e.preventDefault();
       const dx = e.clientX - dragStartXRef.current;
       if (Math.abs(dx) > 3) didDragRef.current = true;
-
       const list = listRef.current;
       if (!list) return;
       const nr = list.getBoundingClientRect();
       const mouseX = e.clientX - nr.left;
-
-      // Clamp pill center within container
       const clampedX = Math.max(0, Math.min(mouseX, nr.width));
       const rawLeft = dragPillStartLeftRef.current + dx;
-
-      // Preview: morph width toward nearest link
       const nearestId = getClosestLink(clampedX, nr);
       const nearestLink = nearestId ? linkRefs.current[nearestId] : null;
       const nearestLr = nearestLink?.getBoundingClientRect();
       const previewWidth = nearestLr ? nearestLr.width : dragPillStartWidthRef.current;
       const previewLeft = nearestLr ? nearestLr.left - nr.left : rawLeft;
-
-      // Interpolate left between raw drag position and snapped position
-      // based on how close we are to the nearest link center
-      const nearestCenter = nearestLr
-        ? nearestLr.left - nr.left + nearestLr.width / 2
-        : clampedX;
+      const nearestCenter = nearestLr ? nearestLr.left - nr.left + nearestLr.width / 2 : clampedX;
       const distToNearest = Math.abs(clampedX - nearestCenter);
-      const snapRadius = 30; // px — starts pulling toward link within this range
+      const snapRadius = 30;
       const t = Math.max(0, 1 - distToNearest / snapRadius);
       const interpolatedLeft = rawLeft + (previewLeft - rawLeft) * t * 0.5;
       const clampedLeft = Math.max(0, Math.min(interpolatedLeft, nr.width - previewWidth));
-
       setPill((p) => ({ ...p, left: clampedLeft, width: previewWidth }));
       setDragHoverId(nearestId);
     };
@@ -160,21 +148,17 @@ export function Navbar() {
       isDraggingRef.current = false;
       setIsDragging(false);
       setDragHoverId("");
-
       const list = listRef.current;
       if (!list) return;
       const nr = list.getBoundingClientRect();
       const mouseX = e.clientX - nr.left;
-
       const closestId = getClosestLink(mouseX, nr);
-
       if (closestId) {
         setActive(closestId);
         const el = document.getElementById(closestId);
         if (el) {
           suppressScrollRef.current = true;
           el.scrollIntoView({ behavior: "smooth" });
-          // Release suppression after scroll animation completes (~800ms)
           setTimeout(() => { suppressScrollRef.current = false; }, 800);
         }
       }
@@ -189,7 +173,6 @@ export function Navbar() {
   }, []);
 
   const handleLinkMouseDown = (e: React.MouseEvent, _id: string) => {
-    // Only start drag if the pill is already visible (a section is active)
     if (!pillVisibleRef.current) return;
     e.preventDefault();
     isDraggingRef.current = true;
@@ -201,31 +184,75 @@ export function Navbar() {
   };
 
   const handleLinkClick = (e: React.MouseEvent, _href: string) => {
-    // Suppress navigation if this was a drag, not a click
-    if (didDragRef.current) {
-      e.preventDefault();
-    }
+    if (didDragRef.current) e.preventDefault();
   };
+
+  const isCircle = navPhase !== "expanded";
+
+  const pillStyle: React.CSSProperties = (() => {
+    const base: React.CSSProperties = {
+      background: "rgba(254,254,254,0.93)",
+      backdropFilter: "blur(16px)",
+      WebkitBackdropFilter: "blur(16px)",
+      boxShadow: "0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06)",
+      display: "flex",
+      alignItems: "center",
+      height: "62px",
+      overflow: "hidden",
+      whiteSpace: "nowrap" as const,
+      pointerEvents: isCircle ? "none" : "auto",
+    };
+
+    if (navPhase === "hidden") {
+      return {
+        ...base,
+        width: "62px",
+        maxWidth: "62px",
+        padding: "12px",
+        justifyContent: "center",
+        borderRadius: "9999px",
+        opacity: 0,
+        transform: "translateY(-80px) scale(0.4)",
+        transition: "none",
+      };
+    }
+    if (navPhase === "circle") {
+      return {
+        ...base,
+        width: "62px",
+        maxWidth: "62px",
+        padding: "12px",
+        justifyContent: "center",
+        borderRadius: "9999px",
+        opacity: 1,
+        transform: "translateY(0px) scale(1)",
+        transition: "transform 480ms cubic-bezier(0.34,1.56,0.64,1), opacity 300ms ease",
+      };
+    }
+    return {
+      ...base,
+      width: "max-content",
+      maxWidth: "900px",
+      padding: "12px",
+      justifyContent: "flex-start",
+      borderRadius: "9999px",
+      opacity: 1,
+      transform: "translateY(0px) scale(1)",
+      transition: "max-width 1000ms cubic-bezier(0.16,1,0.3,1)",
+    };
+  })();
 
   return (
     <>
       <style>{`html { scroll-behavior: smooth; }`}</style>
 
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4">
-        {/* Pill container */}
-        <div
-          className="flex items-center px-4 py-3 rounded-full"
-          style={{
-            background: "rgba(254,254,254,0.93)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            boxShadow: "0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06)",
-          }}
-        >
-          {/* Logo */}
+        <div style={pillStyle}>
+
           <Link
             href="/"
-            className="flex items-center px-3 mr-3 flex-shrink-0"
+            className="flex items-center flex-shrink-0"
+            style={{ padding: 0 }}
             onClick={(e) => {
               e.preventDefault();
               setActive("");
@@ -235,65 +262,69 @@ export function Navbar() {
             <Image src="/logo.svg" alt="Lumos" width={38} height={38} />
           </Link>
 
-          {/* Nav links + sliding pill — desktop */}
-          <div
-            ref={listRef}
-            className="hidden md:flex items-center relative overflow-hidden rounded-full"
-            style={{ userSelect: "none" }}
-          >
-            {/* Animated pill indicator */}
-            <span
-              aria-hidden
-              className="absolute rounded-full pointer-events-none"
+          {navPhase === "expanded" && (
+            <div
               style={{
-                top: "50%",
-                transform: "translateY(-50%)",
-                height: "100%",
-                left: pill.left,
-                width: pill.width,
-                background: "#c5704b",
-                opacity: pill.visible ? 1 : 0,
-                willChange: "left, width, opacity",
-                transition: isDragging
-                  ? "opacity 200ms ease"
-                  : "left 300ms cubic-bezier(0.4,0,0.2,1), width 300ms cubic-bezier(0.4,0,0.2,1), opacity 200ms ease",
+                display: "flex",
+                alignItems: "center",
+                marginLeft: "10px",
+                animation: "navFadeIn 500ms ease 350ms both",
               }}
-            />
-
-            {navLinks.map(({ label, href }) => {
-              const id = href.replace("#", "");
-              const isHighlighted = isDragging ? dragHoverId === id : active === id;
-              return (
-                <Link
-                  key={label}
-                  href={href}
-                  ref={(el) => {
-                    linkRefs.current[id] = el;
+            >
+              <div
+                ref={listRef}
+                className="hidden md:flex items-center relative overflow-hidden rounded-full"
+                style={{ userSelect: "none" }}
+              >
+                <span
+                  aria-hidden
+                  className="absolute rounded-full pointer-events-none"
+                  style={{
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    height: "100%",
+                    left: pill.left,
+                    width: pill.width,
+                    background: "#c5704b",
+                    opacity: pill.visible ? 1 : 0,
+                    willChange: "left, width, opacity",
+                    transition: isDragging
+                      ? "opacity 200ms ease"
+                      : "left 300ms cubic-bezier(0.4,0,0.2,1), width 300ms cubic-bezier(0.4,0,0.2,1), opacity 200ms ease",
                   }}
-                  onMouseDown={(e) => handleLinkMouseDown(e, id)}
-                  onClick={(e) => handleLinkClick(e, href)}
-                  draggable={false}
-                  className={`relative z-10 text-sm font-semibold px-5 py-2.5 rounded-full whitespace-nowrap select-none transition-colors duration-200 ${
-                    isDragging ? "cursor-grabbing" : "cursor-pointer"
-                  } ${isHighlighted ? "text-white" : "text-black hover:text-black/60"}`}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-          </div>
+                />
+                {navLinks.map(({ label, href }) => {
+                  const id = href.replace("#", "");
+                  const isHighlighted = isDragging ? dragHoverId === id : active === id;
+                  return (
+                    <Link
+                      key={label}
+                      href={href}
+                      ref={(el) => { linkRefs.current[id] = el; }}
+                      onMouseDown={(e) => handleLinkMouseDown(e, id)}
+                      onClick={(e) => handleLinkClick(e, href)}
+                      draggable={false}
+                      className={`relative z-10 text-sm font-semibold px-5 py-2.5 rounded-full whitespace-nowrap select-none transition-colors duration-200 ${
+                        isDragging ? "cursor-grabbing" : "cursor-pointer"
+                      } ${isHighlighted ? "text-white" : "text-black hover:text-black/60"}`}
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
+              </div>
 
-          {/* Mobile toggle */}
-          <button
-            className="md:hidden ml-2 p-1.5 text-black/60 hover:text-black transition-colors"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Menú"
-          >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+              <button
+                className="md:hidden ml-2 p-1.5 text-black/60 hover:text-black transition-colors"
+                onClick={() => setMobileOpen((v) => !v)}
+                aria-label="Menú"
+              >
+                {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
+          )}
         </div>
 
-        {/* Mobile dropdown */}
         {mobileOpen && (
           <div
             className="absolute top-[76px] left-4 right-4 rounded-2xl p-2 flex flex-col gap-0.5 md:hidden"
@@ -317,6 +348,13 @@ export function Navbar() {
           </div>
         )}
       </nav>
+
+      <style>{`
+        @keyframes navFadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+      `}</style>
     </>
   );
 }
