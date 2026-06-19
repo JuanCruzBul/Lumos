@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
     const { error } = await resend.emails.send({
       from: "Lumos Contacto <onboarding@resend.dev>",
-      to: "LumosDomotica@gmail.com",
+      to: "lumosdomotica@gmail.com",
       subject: `Nuevo contacto desde lumoshogar.ar — ${nombre}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 32px; background: #f9f9f9; border-radius: 8px;">
