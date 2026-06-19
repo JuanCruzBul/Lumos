@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 
@@ -20,6 +20,15 @@ export function ContactSection() {
     telefono: "",
     mensaje: "",
   });
+
+  useEffect(() => {
+    function onPlanSelected(e: Event) {
+      const { mensaje } = (e as CustomEvent<{ mensaje: string }>).detail;
+      setFields((prev) => ({ ...prev, mensaje }));
+    }
+    window.addEventListener("lumos:plan-selected", onPlanSelected);
+    return () => window.removeEventListener("lumos:plan-selected", onPlanSelected);
+  }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
