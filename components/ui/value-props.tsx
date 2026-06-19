@@ -74,8 +74,8 @@ export function ValueProps() {
   const { ref, inView } = useInView(0.05);
 
   return (
-    <section ref={ref} className="py-20 relative z-10 bg-[#fefefe]">
-      <div className="max-w-6xl mx-auto px-8">
+    <section ref={ref} className="py-12 sm:py-20 relative z-10 bg-[#fefefe]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
 
         {/* Header */}
         <div
@@ -85,7 +85,7 @@ export function ValueProps() {
           <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#c5704b] mb-3">
             Por qué Lumos
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight max-w-lg">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black leading-tight max-w-lg">
             Todo lo que necesitás para un hogar{" "}
             <span className="italic font-normal text-[#c5704b]">verdaderamente inteligente.</span>
           </h2>
@@ -96,7 +96,7 @@ export function ValueProps() {
           {features.map(({ icon: Icon, title, tagline, description, detail }, i) => (
             <div
               key={title}
-              className="bg-[#fefefe] p-8 group hover:bg-[#fdf8f4] transition-colors duration-300"
+              className="bg-[#fefefe] p-5 sm:p-8 group hover:bg-[#fdf8f4] transition-colors duration-300"
               style={{
                 opacity: inView ? 1 : 0,
                 transform: inView ? "translateY(0)" : "translateY(24px)",
@@ -104,7 +104,7 @@ export function ValueProps() {
               }}
             >
               {/* Icon */}
-              <div className="w-10 h-10 rounded-xl bg-[#c5704b]/08 flex items-center justify-center mb-5 group-hover:bg-[#c5704b]/15 transition-colors duration-300"
+              <div className="w-10 h-10 rounded-xl bg-[#c5704b]/[8%] flex items-center justify-center mb-5 group-hover:bg-[#c5704b]/[15%] transition-colors duration-300"
                 style={{ background: "rgba(197,112,75,0.08)" }}>
                 <Icon size={20} className="text-[#c5704b]" />
               </div>

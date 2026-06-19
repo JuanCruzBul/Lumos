@@ -106,7 +106,7 @@ export function ContactSection() {
   return (
     <section
       id="contacto"
-      className="relative overflow-hidden bg-[#fdf8f4] min-h-screen flex flex-col justify-center py-20 lg:py-28 px-8"
+      className="relative overflow-hidden bg-[#fdf8f4] min-h-screen flex flex-col justify-center py-16 lg:py-28 px-4 sm:px-8"
     >
       {/* Warm glow — animates in */}
       <motion.div
@@ -119,7 +119,7 @@ export function ContactSection() {
 
       <div
         ref={ref}
-        className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-20 items-start"
+        className="relative max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-start"
       >
         {/* Left: copy */}
         <motion.div
@@ -136,7 +136,7 @@ export function ContactSection() {
             Contacto
           </span>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.08] mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.08] mb-6 tracking-tight">
             Transformá tu<br />
             hogar con{" "}
             <span
@@ -203,7 +203,7 @@ export function ContactSection() {
           </p>
 
           <form className="space-y-8" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <Field
                 label="Nombre"
                 type="text"

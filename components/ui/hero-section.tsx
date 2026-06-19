@@ -22,7 +22,7 @@ export function HeroSection() {
       />
 
       {/* Above-the-fold: logo + LUMOS centered in full viewport */}
-      <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center px-8">
+      <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center px-4 sm:px-8">
         {/* Logo mark */}
         <div className="mb-3 fade-in-up" style={{ animationDelay: "0.1s" }}>
           <Image
@@ -30,13 +30,13 @@ export function HeroSection() {
             alt="Lumos"
             width={200}
             height={200}
-            className="mx-auto drop-shadow-[0_0_50px_rgba(197,112,75,0.32)]"
+            className="mx-auto w-32 h-32 sm:w-40 sm:h-40 md:w-[200px] md:h-[200px] drop-shadow-[0_0_50px_rgba(197,112,75,0.32)]"
             priority
           />
         </div>
 
         {/* Animated LUMOS text */}
-        <div className="w-full max-w-sm mb-10">
+        <div className="w-full max-w-[220px] sm:max-w-xs md:max-w-sm mb-6 sm:mb-10">
           <svg
             className="w-full h-auto drop-shadow-[0_0_20px_rgba(197,112,75,0.4)]"
             viewBox="20 10 340 80"
@@ -53,10 +53,10 @@ export function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="hero-buttons flex flex-wrap justify-center gap-4">
-          <button className="hero-btn-primary bg-[#c5704b] text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-wider">
+          <button className="hero-btn-primary bg-[#c5704b] text-white px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-bold uppercase tracking-wider">
             Conocer Sistemas
           </button>
-          <button className="hero-btn-outline text-[#c5704b] px-10 py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#c5704b]/40 hover:border-[#c5704b]/70 transition-colors duration-300">
+          <button className="hero-btn-outline text-[#c5704b] px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#c5704b]/40 hover:border-[#c5704b]/70 transition-colors duration-300">
             Ver Demo
           </button>
         </div>

@@ -10,8 +10,8 @@ const footerLinks: Record<string, string[]> = {
 export function Footer() {
   return (
     <footer className="w-full bg-[#000000]" style={{ borderTop: "1px solid rgba(197,112,75,0.15)" }}>
-      <div className="max-w-6xl mx-auto px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2">
@@ -60,7 +60,7 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-        <div className="max-w-6xl mx-auto px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left">
           <p className="text-white/20 text-xs">
             © 2025 Lumos Home Automation. Todos los derechos reservados.
           </p>

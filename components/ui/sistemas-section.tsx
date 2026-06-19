@@ -144,12 +144,12 @@ export function SistemasSection() {
       <div className="pointer-events-none absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#fab257]/6 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#c5704b]/5 blur-3xl" />
 
-      <div className="relative max-w-6xl mx-auto px-8">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-8">
 
         {/* Section header */}
-        <div className="pt-24 pb-14">
+        <div className="pt-16 sm:pt-24 pb-10 sm:pb-14">
           <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#c5704b] mb-4">Servicios</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight max-w-xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight max-w-xl">
             Todo lo que tu hogar{" "}
             <span className="italic font-normal text-[#c5704b]">necesita.</span>
           </h2>
@@ -158,16 +158,16 @@ export function SistemasSection() {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 pb-24">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 pb-16 sm:pb-24">
 
           {/* LEFT — tab list */}
           <div className="lg:w-56 shrink-0">
-            <div className="lg:sticky lg:top-28 flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+            <div className="lg:sticky lg:top-28 flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 scrollbar-hide -mx-4 px-4 lg:mx-0 lg:px-0">
               {SERVICES.map(({ id, Icon, title, accent }, i) => (
                 <button
                   key={id}
                   onClick={() => select(i)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-left shrink-0 transition-all duration-250 cursor-pointer"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-left shrink-0 transition-all duration-300 cursor-pointer"
                   style={{
                     background: activeIndex === i ? "rgba(197,112,75,0.09)" : "transparent",
                   }}
@@ -182,7 +182,7 @@ export function SistemasSection() {
                     style={{ color: activeIndex === i ? accent : "rgba(0,0,0,0.28)" }}
                   />
                   <span
-                    className="text-sm font-semibold leading-snug whitespace-nowrap transition-colors duration-300"
+                    className="text-xs sm:text-sm font-semibold leading-snug whitespace-nowrap transition-colors duration-300"
                     style={{ color: activeIndex === i ? "rgba(0,0,0,0.90)" : "rgba(0,0,0,0.58)" }}
                   >
                     {title}
@@ -196,7 +196,7 @@ export function SistemasSection() {
           <div className="flex-1 min-w-0">
             <div
               key={animKey}
-              className="flex flex-col gap-7 transition-all duration-400"
+              className="flex flex-col gap-7 transition-all duration-[400ms]"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(16px)",
@@ -231,7 +231,7 @@ export function SistemasSection() {
               </div>
 
               {/* Text grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 {/* Description col */}
                 <div
                   style={{

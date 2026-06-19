@@ -61,11 +61,11 @@ export function PlanesSection() {
   }
 
   return (
-    <section id="planes" className="min-h-screen flex flex-col justify-center py-24 px-8 bg-[#fdf8f4]">
+    <section id="planes" className="min-h-screen flex flex-col justify-center py-16 sm:py-24 px-4 sm:px-8 bg-[#fdf8f4]">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Planes</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
             Elegí tu kit Lumos
           </h2>
           <p className="text-black/65 text-[15px] max-w-sm mx-auto">
@@ -73,12 +73,12 @@ export function PlanesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-center">
           {planes.map(({ name, desc, features, highlight, cta, badge, mensaje }) => (
             <div
               key={name}
               className={`rounded-2xl flex flex-col gap-6 relative glass-panel ${
-                highlight ? "p-10 md:-my-4" : "p-8"
+                highlight ? "p-7 sm:p-10 lg:-my-4" : "p-6 sm:p-8"
               }`}
               style={
                 highlight

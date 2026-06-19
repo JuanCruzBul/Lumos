@@ -29,11 +29,11 @@ const testimonios = [
 
 export function TestimoniosSection() {
   return (
-    <section id="clientes" className="min-h-screen flex flex-col justify-center py-24 px-8 bg-[#fefefe]">
+    <section id="clientes" className="min-h-screen flex flex-col justify-center py-16 md:py-24 px-4 sm:px-8 bg-[#fefefe]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Testimonios</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mt-3">
+          <h2 className="text-3xl md:text-5xl font-bold text-black mt-3">
             Lo que dicen nuestros clientes
           </h2>
         </div>

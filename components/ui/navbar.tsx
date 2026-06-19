@@ -254,7 +254,7 @@ export function Navbar() {
     <>
       <style>{`html { scroll-behavior: smooth; }`}</style>
 
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 md:pt-5 px-3 md:px-4">
         <div style={pillStyle} className={navPhase === "circle" ? "lumos-circle" : ""}>
 
           <Link
@@ -350,7 +350,7 @@ export function Navbar() {
 
         {mobileOpen && (
           <div
-            className="absolute top-[76px] left-4 right-4 rounded-2xl p-2 flex flex-col gap-0.5 md:hidden"
+            className="absolute top-[68px] md:top-[76px] left-3 right-3 md:left-4 md:right-4 rounded-2xl p-2 flex flex-col gap-0.5 md:hidden"
             style={{
               background: "rgba(254,254,254,0.97)",
               backdropFilter: "blur(16px)",

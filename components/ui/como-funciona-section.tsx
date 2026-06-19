@@ -63,7 +63,7 @@ function StepItem({
   const descY = useTransform(scrollYProgress, [start + 0.09, start + 0.13], [10, 0]);
 
   return (
-    <div className="flex flex-col items-center text-center px-6 mb-12 md:mb-0">
+    <div className="flex flex-col items-center text-center px-4 sm:px-6 mb-10 md:mb-0">
       <motion.div
         style={{ opacity: circleOpacity, y: circleY }}
         className="relative mb-8 z-10"
@@ -83,7 +83,7 @@ function StepItem({
       </motion.h3>
       <motion.p
         style={{ opacity: descOpacity, y: descY }}
-        className="text-black/65 text-sm leading-relaxed max-w-[160px] mx-auto"
+        className="text-black/65 text-sm leading-relaxed max-w-[200px] md:max-w-[160px] mx-auto"
       >
         {desc}
       </motion.p>
@@ -112,24 +112,24 @@ export function ComoFuncionaSection() {
       className="relative bg-[#fefefe]"
       style={{ height: "280vh" }}
     >
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center px-8">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center px-4 sm:px-8">
 
         {/* Header */}
         <motion.div
           style={{ opacity: headerOpacity, y: headerY }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-20"
         >
           <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">
             Proceso
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mt-3">Así de simple</h2>
-          <p className="text-black/60 text-[15px] mt-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mt-3">Así de simple</h2>
+          <p className="text-black/60 text-sm sm:text-[15px] mt-4">
             De la primera consulta a tu hogar funcionando, en cuatro pasos.
           </p>
         </motion.div>
 
         {/* Steps grid */}
-        <div className="relative grid grid-cols-1 md:grid-cols-4 max-w-5xl w-full">
+        <div className="relative grid grid-cols-2 md:grid-cols-4 max-w-5xl w-full gap-y-2 md:gap-y-0">
 
           {/* Base line (faint) */}
           <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-black/8" />

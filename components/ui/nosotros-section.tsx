@@ -28,7 +28,7 @@ export function NosotrosSection() {
   return (
     <section
       id="nosotros"
-      className="relative min-h-screen flex flex-col items-center justify-center py-20 px-6 lg:px-24 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center py-16 md:py-20 px-4 sm:px-8 lg:px-24 overflow-hidden"
       style={{ background: "#fff8f6" }}
     >
       {/* Background glows */}
@@ -44,11 +44,11 @@ export function NosotrosSection() {
       />
 
       {/* Header */}
-      <div className="w-full max-w-6xl mb-20">
+      <div className="w-full max-w-6xl mb-12 md:mb-20">
         <span className="text-xs font-semibold text-[#c5704b] bg-[#ffdbcd]/30 px-4 py-1.5 rounded-full mb-6 inline-block uppercase tracking-widest">
           El Equipo
         </span>
-        <h2 className="text-4xl md:text-5xl lg:text-[60px] font-semibold text-[#221a17] leading-tight mb-5 mt-4">
+        <h2 className="text-3xl md:text-5xl lg:text-[60px] font-semibold text-[#221a17] leading-tight mb-5 mt-4">
           Mentes creativas <br />
           <span className="text-[#c5704b] font-bold">impulsando Lumos.</span>
         </h2>
@@ -141,7 +141,7 @@ export function NosotrosSection() {
       </div>
 
       {/* Quote */}
-      <div className="w-full max-w-xl mt-20 lg:mt-28 text-center">
+      <div className="w-full max-w-xl mt-12 md:mt-20 lg:mt-28 text-center">
         <p className="text-sm text-[#87736b] mb-8 italic">
           &ldquo;Cada detalle, pensado para que vivas mejor.&rdquo;
         </p>
