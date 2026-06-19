@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
-import { ChatWidget } from "@/components/ui/chat-widget";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -25,7 +24,6 @@ export default function RootLayout({
       <body suppressHydrationWarning className={`${quicksand.variable} font-quicksand font-normal antialiased overflow-x-hidden`}>
         <Navbar />
         {children}
-        <ChatWidget />
       </body>
     </html>
   );
