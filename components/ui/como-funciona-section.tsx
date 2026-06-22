@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useScroll, useTransform, motion, MotionValue, useSpring, useReducedMotion } from "framer-motion";
 
 const pasos = [
   {
@@ -25,14 +25,14 @@ const pasos = [
   },
 ];
 
-// Line spans scrollYProgress [0.15, 0.80].
-// It reaches each circle at: 01=0.15, 02≈0.37, 03≈0.58, 04≈0.80
-// Each circle appears ~0.10 before the line arrives so it's settled when touched.
+// Line spans scrollYProgress [0.20, 0.85].
+// It reaches each circle at: 01=0.20, 02≈0.38, 03≈0.57, 04≈0.75
+// Circles start ~0.18 before the line arrives to be fully settled (springs need buffer).
 const STEP_TIMINGS = [
-  { start: 0.06, end: 0.14 }, // 01 — appears before line starts
-  { start: 0.27, end: 0.35 }, // 02 — line arrives ~0.37
-  { start: 0.48, end: 0.56 }, // 03 — line arrives ~0.58
-  { start: 0.69, end: 0.77 }, // 04 — line arrives ~0.80
+  { start: 0.02, end: 0.10 }, // 01 — fully settled by 0.07, line arrives 0.20
+  { start: 0.20, end: 0.28 }, // 02 — fully settled by 0.25, line arrives 0.38
+  { start: 0.38, end: 0.46 }, // 03 — fully settled by 0.43, line arrives 0.57
+  { start: 0.57, end: 0.65 }, // 04 — fully settled by 0.62, line arrives 0.75
 ];
 
 function StepItem({
@@ -48,41 +48,96 @@ function StepItem({
   index: number;
   scrollYProgress: MotionValue<number>;
 }) {
+  const prefersReduced = useReducedMotion();
   const { start } = STEP_TIMINGS[index];
 
-  // 1. Circle
-  const circleOpacity = useTransform(scrollYProgress, [start, start + 0.05], [0, 1]);
-  const circleY = useTransform(scrollYProgress, [start, start + 0.05], [20, 0]);
+  // 1. Circle — fade + drop (no spring on Y/opacity so it stays ahead of the line)
+  const circleOpacity = useTransform(scrollYProgress, [start, start + 0.04], [0, 1]);
+  const circleY = useTransform(scrollYProgress, [start, start + 0.04], [24, 0]);
 
-  // 2. Title — starts after circle settles
-  const titleOpacity = useTransform(scrollYProgress, [start + 0.05, start + 0.09], [0, 1]);
-  const titleY = useTransform(scrollYProgress, [start + 0.05, start + 0.09], [12, 0]);
+  // Scale pop: overshoot then settle (spring only here — decorative, can lag a bit)
+  const circleScaleRaw = useTransform(scrollYProgress, [start, start + 0.03, start + 0.06], [0.55, 1.15, 1]);
+  const circleScale = useSpring(circleScaleRaw, { stiffness: 320, damping: 20 });
 
-  // 3. Description — starts after title settles
-  const descOpacity = useTransform(scrollYProgress, [start + 0.09, start + 0.13], [0, 1]);
-  const descY = useTransform(scrollYProgress, [start + 0.09, start + 0.13], [10, 0]);
+  // Ripple ring: expands outward and fades
+  const ringScale = useTransform(scrollYProgress, [start + 0.02, start + 0.10], [0.8, 1.9]);
+  const ringOpacity = useTransform(scrollYProgress, [start + 0.02, start + 0.06, start + 0.10], [0, 0.5, 0]);
+
+  // Second ring, slightly delayed
+  const ring2Scale = useTransform(scrollYProgress, [start + 0.04, start + 0.13], [0.8, 2.2]);
+  const ring2Opacity = useTransform(scrollYProgress, [start + 0.04, start + 0.08, start + 0.13], [0, 0.3, 0]);
+
+  // Inner glow pulse mapped to scroll
+  const glowOpacity = useTransform(scrollYProgress, [start + 0.05, start + 0.12], [0, 0.6]);
+
+  // 2. Title
+  const titleOpacity = useTransform(scrollYProgress, [start + 0.04, start + 0.07], [0, 1]);
+  const titleY = useTransform(scrollYProgress, [start + 0.04, start + 0.07], [12, 0]);
+
+  // 3. Description
+  const descOpacity = useTransform(scrollYProgress, [start + 0.07, start + 0.10], [0, 1]);
+  const descY = useTransform(scrollYProgress, [start + 0.07, start + 0.10], [8, 0]);
 
   return (
     <div className="flex flex-col items-center text-center px-4 sm:px-6 mb-10 md:mb-0">
       <motion.div
-        style={{ opacity: circleOpacity, y: circleY }}
+        style={{ opacity: circleOpacity, y: prefersReduced ? 0 : circleY }}
         className="relative mb-8 z-10"
       >
-        <div
-          className="w-16 h-16 rounded-full flex items-center justify-center bg-[#fefefe]"
-          style={{ border: "1.5px solid rgba(197,112,75,0.45)" }}
+        {/* Ripple ring 1 */}
+        {!prefersReduced && (
+          <motion.div
+            className="absolute inset-0 rounded-full pointer-events-none"
+            style={{
+              scale: ringScale,
+              opacity: ringOpacity,
+              border: "1.5px solid rgba(197,112,75,0.6)",
+            }}
+          />
+        )}
+        {/* Ripple ring 2 */}
+        {!prefersReduced && (
+          <motion.div
+            className="absolute inset-0 rounded-full pointer-events-none"
+            style={{
+              scale: ring2Scale,
+              opacity: ring2Opacity,
+              border: "1px solid rgba(197,112,75,0.35)",
+            }}
+          />
+        )}
+        {/* Glow behind circle */}
+        {!prefersReduced && (
+          <motion.div
+            className="absolute inset-0 rounded-full pointer-events-none"
+            style={{
+              opacity: glowOpacity,
+              background: "radial-gradient(circle, rgba(197,112,75,0.22) 0%, transparent 75%)",
+              scale: 1.5,
+            }}
+          />
+        )}
+        {/* Circle itself */}
+        <motion.div
+          style={{ scale: prefersReduced ? 1 : circleScale }}
+          className="w-16 h-16 rounded-full flex items-center justify-center bg-[#fefefe] relative z-10"
         >
-          <span className="text-[#c5704b] text-lg font-bold">{num}</span>
-        </div>
+          <div
+            className="w-16 h-16 rounded-full flex items-center justify-center bg-[#fefefe]"
+            style={{ border: "1.5px solid rgba(197,112,75,0.45)" }}
+          >
+            <span className="text-[#c5704b] text-lg font-bold">{num}</span>
+          </div>
+        </motion.div>
       </motion.div>
       <motion.h3
-        style={{ opacity: titleOpacity, y: titleY }}
+        style={{ opacity: titleOpacity, y: prefersReduced ? 0 : titleY }}
         className="text-black font-bold text-base mb-2"
       >
         {title}
       </motion.h3>
       <motion.p
-        style={{ opacity: descOpacity, y: descY }}
+        style={{ opacity: descOpacity, y: prefersReduced ? 0 : descY }}
         className="text-black/65 text-sm leading-relaxed max-w-[200px] md:max-w-[160px] mx-auto"
       >
         {desc}
@@ -94,16 +149,18 @@ function StepItem({
 export function ComoFuncionaSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  // offset "start 0.4" means progress=0 when section top is 40% down the viewport
+  // → by the time sticky kicks in (top=0), progress ≈ 0.18, so content is already visible
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"],
+    offset: ["start 0.4", "end end"],
   });
 
-  // Line draws after step 01 settles, reaching each circle in sync
-  const lineWidth = useTransform(scrollYProgress, [0.15, 0.80], ["0%", "100%"]);
+  // Line draws from circle 01 to 04, delayed so circles are already visible
+  const lineWidth = useTransform(scrollYProgress, [0.20, 0.85], ["0%", "100%"]);
 
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.06], [0, 1]);
-  const headerY = useTransform(scrollYProgress, [0, 0.06], [20, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.04], [0, 1]);
+  const headerY = useTransform(scrollYProgress, [0, 0.04], [20, 0]);
 
   return (
     <section
