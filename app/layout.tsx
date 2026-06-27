@@ -52,6 +52,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lumos — Domótica y Hogar Inteligente",
+    description:
+      "Transforma tu hogar en un espacio inteligente. Luces, clima, seguridad y energía automatizados con instalación profesional.",
+    images: ["/og-image.png"],
+  },
   robots: {
     index: true,
     follow: true,

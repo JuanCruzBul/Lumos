@@ -27,7 +27,7 @@ const testimonios = [
 
 function StarRating({ rating, name }: { rating: number; name: string }) {
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1" role="img" aria-label={`${rating} de 5 estrellas`}>
       {Array.from({ length: 5 }, (_, i) => {
         const fill = Math.min(1, Math.max(0, rating - i));
         const clipId = `clip-${name.replace(/\s/g, "")}-${i}`;

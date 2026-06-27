@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 
 export function HeroSection() {
@@ -10,7 +11,7 @@ export function HeroSection() {
           alt=""
           fill
           className="object-cover object-center opacity-20"
-          loading="lazy"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#fdf8f4]/85 via-[#fefefe]/65 to-[#fefefe]" />
       </div>
@@ -56,10 +57,16 @@ export function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="hero-buttons flex flex-wrap justify-center gap-4">
-          <button className="hero-btn-primary bg-[#c5704b] text-white px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-bold uppercase tracking-wider">
+          <button
+            className="hero-btn-primary bg-[#c5704b] text-white px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-bold uppercase tracking-wider"
+            onClick={() => document.getElementById("productos")?.scrollIntoView({ behavior: "smooth" })}
+          >
             Conocer Sistemas
           </button>
-          <button className="hero-btn-outline text-[#c5704b] px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#c5704b]/40 hover:border-[#c5704b]/70 transition-colors duration-300">
+          <button
+            className="hero-btn-outline text-[#c5704b] px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#c5704b]/40 hover:border-[#c5704b]/70 transition-colors duration-300"
+            onClick={() => document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" })}
+          >
             Ver Demo
           </button>
         </div>

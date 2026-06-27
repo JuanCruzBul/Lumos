@@ -62,7 +62,7 @@ export function Footer() {
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left">
           <p className="text-white/20 text-xs">
-            © 2025 Lumos Home Automation. Todos los derechos reservados.
+            © 2026 Lumos Home Automation. Todos los derechos reservados.
           </p>
           <p className="text-white/15 text-xs">Villa Carlos Paz, Córdoba · Argentina</p>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Check } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -164,18 +164,61 @@ const imageVariants = {
   exit: { opacity: 0, scale: 0.97, transition: { duration: 0.2, ease: [0.4, 0, 1, 1] } },
 };
 
+const DURATION = 4000; // ms por servicio
+
 export function SistemasSection({ hideHeader }: { hideHeader?: boolean } = {}) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const pausedRef = useRef(false);
+  const startRef = useRef<number>(Date.now());
+  const rafRef = useRef<number | null>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const activeIndexRef = useRef(0);
+
+  // Avanzar al siguiente servicio (solo actualiza React state para cambiar la card)
+  const advance = useCallback(() => {
+    const next = (activeIndexRef.current + 1) % SERVICES.length;
+    activeIndexRef.current = next;
+    startRef.current = Date.now();
+    setActiveIndex(next);
+  }, []);
+
+  // RAF loop — actualiza el DOM directamente, sin re-renders de React
+  useEffect(() => {
+    const tick = () => {
+      if (!pausedRef.current) {
+        const pct = Math.min((Date.now() - startRef.current) / DURATION, 1);
+        if (progressBarRef.current) {
+          progressBarRef.current.style.width = `${pct * 100}%`;
+        }
+        if (pct >= 1) {
+          advance();
+        }
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [advance]);
+
+  // Reiniciar barra al cambiar de servicio
+  useEffect(() => {
+    startRef.current = Date.now();
+    if (progressBarRef.current) progressBarRef.current.style.width = "0%";
+  }, [activeIndex]);
 
   const select = (i: number) => {
-    if (i === activeIndex) return;
+    activeIndexRef.current = i;
+    startRef.current = Date.now();
     setActiveIndex(i);
   };
 
   const svc = SERVICES[activeIndex];
 
   return (
-    <section id="productos" className="relative bg-[#fdf8f4] py-16 sm:py-24">
+    <section
+      id="productos"
+      className="relative bg-[#fdf8f4] py-16 sm:py-24"
+    >
       <div className="pointer-events-none absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#fab257]/6 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#c5704b]/5 blur-3xl" />
 
@@ -199,8 +242,10 @@ export function SistemasSection({ hideHeader }: { hideHeader?: boolean } = {}) {
             return (
               <button
                 key={id}
+                type="button"
+                aria-label={title}
                 onClick={() => select(i)}
-                className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-semibold shrink-0 transition-all duration-250 cursor-pointer"
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-semibold shrink-0 transition-all duration-300 cursor-pointer"
                 style={{
                   background: active ? "white" : "transparent",
                   borderColor: active ? accent : "rgba(0,0,0,0.10)",
@@ -219,6 +264,8 @@ export function SistemasSection({ hideHeader }: { hideHeader?: boolean } = {}) {
         <div
           className="rounded-3xl border border-black/[0.06] overflow-hidden bg-white"
           style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.06)" }}
+          onMouseEnter={() => { pausedRef.current = true; }}
+          onMouseLeave={() => { pausedRef.current = false; }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -319,6 +366,15 @@ export function SistemasSection({ hideHeader }: { hideHeader?: boolean } = {}) {
 
             </motion.div>
           </AnimatePresence>
+
+          {/* Progress bar — borde inferior de la card */}
+          <div className="h-[3px] w-full" style={{ background: `${svc.accent}20` }}>
+            <div
+              ref={progressBarRef}
+              className="h-full"
+              style={{ width: "0%", background: svc.accent }}
+            />
+          </div>
         </div>
 
       </div>

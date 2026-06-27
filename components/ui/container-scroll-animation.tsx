@@ -13,7 +13,7 @@ export const ContainerScroll = ({
   const { scrollYProgress } = useScroll({
     target: containerRef,
   });
-  const [isMobile, setIsMobile] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState<boolean | null>(null);
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -33,6 +33,25 @@ export const ContainerScroll = ({
   const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
   const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
+  if (isMobile === null) {
+    return null;
+  }
+
+  if (isMobile) {
+    return (
+      <div className="flex flex-col items-center justify-center relative p-4 pb-10">
+        <div className="w-full text-center mb-6">{titleComponent}</div>
+        <div
+          className="w-full max-w-sm border-[4px] border-black p-[4px] bg-black rounded-[20px] shadow-xl"
+        >
+          <div className="h-full w-full overflow-hidden rounded-[20px]">
+            {children}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -66,7 +85,7 @@ export const Header = ({
       style={{
         translateY: translate,
       }}
-      className="div max-w-5xl mx-auto text-center"
+      className="max-w-5xl mx-auto text-center"
     >
       {titleComponent}
     </motion.div>
@@ -76,6 +95,7 @@ export const Header = ({
 export const Card = ({
   rotate,
   scale,
+  translate,
   children,
 }: {
   rotate: MotionValue<number>;
@@ -88,6 +108,7 @@ export const Card = ({
       style={{
         rotateX: rotate,
         scale,
+        translateY: translate,
         willChange: "transform",
         boxShadow:
           "0 0 #0000001a, 0 9px 20px #00000018, 0 37px 37px #00000012, 0 84px 50px #0000000a, 0 149px 60px #00000005, 0 233px 65px #00000002",

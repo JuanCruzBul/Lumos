@@ -13,7 +13,6 @@ export function ContactSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const [formState, setFormState] = useState<FormState>("idle");
-  const [, setErrorMsg] = useState("");
   const [fields, setFields] = useState({
     nombre: "",
     email: "",
@@ -39,7 +38,6 @@ export function ContactSection() {
     if (formState === "loading" || formState === "success") return;
 
     setFormState("loading");
-    setErrorMsg("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -50,7 +48,6 @@ export function ContactSection() {
       const data = await res.json();
 
       if (!res.ok || data.error) {
-        setErrorMsg(data.error || "Error al enviar. Intentá de nuevo.");
         setFormState("error");
         setTimeout(() => setFormState("idle"), 4000);
       } else {
@@ -59,7 +56,6 @@ export function ContactSection() {
         setTimeout(() => setFormState("idle"), 4000);
       }
     } catch {
-      setErrorMsg("Error de red. Revisá tu conexión.");
       setFormState("error");
       setTimeout(() => setFormState("idle"), 4000);
     }
@@ -285,9 +281,16 @@ function Field({
 }) {
   const [focused, setFocused] = useState(false);
 
+  const autoCompleteMap: Record<string, string> = {
+    nombre: "name",
+    email: "email",
+    telefono: "tel",
+  };
+
   return (
-    <motion.div whileFocus={{ y: -2 }}>
+    <div>
       <label
+        htmlFor={name}
         className="block text-[10px] font-semibold uppercase tracking-widest mb-3 transition-colors duration-200"
         style={{ color: focused ? "#c5704b" : "rgba(197,112,75,0.7)" }}
       >
@@ -295,6 +298,7 @@ function Field({
       </label>
       <div className="relative">
         <input
+          id={name}
           type={type}
           name={name}
           placeholder={placeholder}
@@ -302,6 +306,8 @@ function Field({
           onChange={onChange}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
+          required
+          autoComplete={autoCompleteMap[name] ?? "off"}
           className="w-full bg-transparent border-0 border-b border-black/12 py-3 text-sm text-black placeholder:text-black/35 focus:outline-none focus:ring-0"
         />
         <motion.span
@@ -311,7 +317,7 @@ function Field({
           transition={{ duration: 0.3, ease: "easeOut" }}
         />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -331,8 +337,9 @@ function TextareaField({
   const [focused, setFocused] = useState(false);
 
   return (
-    <motion.div whileFocus={{ y: -2 }}>
+    <div>
       <label
+        htmlFor={name}
         className="block text-[10px] font-semibold uppercase tracking-widest mb-3 transition-colors duration-200"
         style={{ color: focused ? "#c5704b" : "rgba(197,112,75,0.7)" }}
       >
@@ -340,6 +347,7 @@ function TextareaField({
       </label>
       <div className="relative">
         <textarea
+          id={name}
           name={name}
           placeholder={placeholder}
           value={value}
@@ -347,6 +355,7 @@ function TextareaField({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           rows={4}
+          required
           className="w-full bg-transparent border-0 border-b border-black/12 py-3 text-sm text-black placeholder:text-black/35 focus:outline-none focus:ring-0 resize-none"
         />
         <motion.span
@@ -356,6 +365,6 @@ function TextareaField({
           transition={{ duration: 0.3, ease: "easeOut" }}
         />
       </div>
-    </motion.div>
+    </div>
   );
 }

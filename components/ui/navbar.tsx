@@ -339,6 +339,7 @@ export function Navbar() {
                 className="md:hidden ml-2 p-1.5 text-black/60 hover:text-black transition-colors"
                 onClick={() => setMobileOpen((v) => !v)}
                 aria-label="Menú"
+                aria-expanded={mobileOpen}
                 style={{ animation: "navLinkIn 400ms ease 200ms both" }}
               >
                 {mobileOpen ? <X size={20} /> : <Menu size={20} />}

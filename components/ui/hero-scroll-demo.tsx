@@ -124,7 +124,7 @@ export function SmartHomeDashboard({
     <div className={containerClasses}>
       <header className={`px-6 py-4 flex items-center justify-between border-b transition-colors duration-300 ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'}`}>
         <div className="flex items-center gap-4">
-          <button className={`p-2 rounded-full hover:bg-opacity-80 transition-colors ${darkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-100 text-slate-600'}`}>
+          <button aria-label="Abrir menú" className={`p-2 rounded-full hover:bg-opacity-80 transition-colors ${darkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-100 text-slate-600'}`}>
             <Menu size={20} />
           </button>
           <h1 className="text-lg font-medium tracking-tight">Mi hogar</h1>
@@ -138,7 +138,7 @@ export function SmartHomeDashboard({
           >
             {darkMode ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <button className={`p-2 rounded-full hover:bg-opacity-80 transition-colors ${darkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-100 text-slate-600'}`}>
+          <button aria-label="Más opciones" className={`p-2 rounded-full hover:bg-opacity-80 transition-colors ${darkMode ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-100 text-slate-600'}`}>
             <MoreVertical size={18} />
           </button>
         </div>
@@ -191,6 +191,9 @@ export function SmartHomeDashboard({
                   <div key={light.id} className="flex items-center justify-between">
                     <span className="text-sm font-medium">{light.name}</span>
                     <button
+                      role="switch"
+                      aria-checked={light.active}
+                      aria-label={`${light.name}: ${light.active ? 'encendida' : 'apagada'}`}
                       onClick={() => toggleLight(light.id)}
                       className={`relative inline-flex h-5 w-10 items-center rounded-full transition-colors ${
                         light.active ? 'bg-blue-500' : (darkMode ? 'bg-slate-700' : 'bg-slate-200')
@@ -256,7 +259,10 @@ export function SmartHomeDashboard({
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-sm">Puerta principal</span>
-                  <button 
+                  <button
+                    role="switch"
+                    aria-checked={security.doorLocked}
+                    aria-label={`Puerta principal: ${security.doorLocked ? 'cerrada' : 'abierta'}`}
                     onClick={() => setSecurity(prev => ({ ...prev, doorLocked: !prev.doorLocked }))}
                     className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold ${
                       security.doorLocked 
@@ -270,7 +276,10 @@ export function SmartHomeDashboard({
 
                 <div className="flex items-center justify-between">
                   <span className="text-sm">Movimiento</span>
-                  <button 
+                  <button
+                    role="switch"
+                    aria-checked={security.motionDetected}
+                    aria-label={`Detección de movimiento: ${security.motionDetected ? 'alerta activa' : 'sin movimiento'}`}
                     onClick={() => setSecurity(prev => ({ ...prev, motionDetected: !prev.motionDetected }))}
                     className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all ${
                       security.motionDetected
