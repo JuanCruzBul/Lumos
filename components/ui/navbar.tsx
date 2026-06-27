@@ -23,6 +23,7 @@ export function Navbar() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragHoverId, setDragHoverId] = useState("");
   const [navPhase, setNavPhase] = useState<NavPhase>("hidden");
+  const [mounted, setMounted] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const pillVisibleRef = useRef(false);
@@ -36,6 +37,8 @@ export function Navbar() {
   useEffect(() => {
     const CIRCLE_DELAY = 200;
     const EXPAND_DELAY = 1800;
+
+    setMounted(true);
 
     const t1 = setTimeout(() => {
       setNavPhase("circle");
@@ -189,19 +192,22 @@ export function Navbar() {
   };
 
   const pillStyle: React.CSSProperties = (() => {
+    const base: React.CSSProperties = {
+      display: "flex",
+      alignItems: "center",
+      height: "62px",
+      whiteSpace: "nowrap" as const,
+      borderRadius: "9999px",
+    };
+
     if (navPhase === "hidden") {
       return {
-        display: "flex",
-        alignItems: "center",
-        height: "62px",
+        ...base,
         overflow: "hidden",
-        whiteSpace: "nowrap" as const,
         pointerEvents: "none",
-        width: "62px",
         maxWidth: "62px",
         padding: "12px",
         justifyContent: "center",
-        borderRadius: "9999px",
         background: "#FAB358",
         opacity: 0,
         transform: "translateY(-60px) scale(0.3)",
@@ -210,17 +216,12 @@ export function Navbar() {
     }
     if (navPhase === "circle") {
       return {
-        display: "flex",
-        alignItems: "center",
-        height: "62px",
+        ...base,
         overflow: "visible",
-        whiteSpace: "nowrap" as const,
         pointerEvents: "none",
-        width: "62px",
-        maxWidth: "calc(100vw - 32px)",
+        maxWidth: "62px",
         padding: "12px",
         justifyContent: "center",
-        borderRadius: "9999px",
         background: "#FAB358",
         opacity: 1,
         transform: "translateY(0px) scale(1)",
@@ -228,33 +229,29 @@ export function Navbar() {
       };
     }
     return {
-      display: "flex",
-      alignItems: "center",
-      height: "62px",
+      ...base,
       overflow: "hidden",
-      whiteSpace: "nowrap" as const,
       pointerEvents: "auto",
-      width: "max-content",
-      maxWidth: "calc(100vw - 32px)",
+      maxWidth: "800px",
       padding: "12px",
       justifyContent: "flex-start",
-      borderRadius: "9999px",
       background: "rgba(254,254,254,0.93)",
       backdropFilter: "blur(16px)",
       WebkitBackdropFilter: "blur(16px)",
       boxShadow: "0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06)",
       opacity: 1,
       transform: "translateY(0px) scale(1)",
-      transition: "opacity 300ms ease, transform 300ms ease",
+      transition: "max-width 600ms cubic-bezier(0.4,0,0.2,1), background 400ms ease, box-shadow 400ms ease",
     };
   })();
 
-  return (
-    <>
-      <style>{`html { scroll-behavior: smooth; }`}</style>
+  if (!mounted) {
+    return <nav className="fixed top-0 left-0 right-0 z-50" aria-hidden />;
+  }
 
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 md:pt-5 px-3 md:px-4">
-        <div style={pillStyle} className={navPhase === "circle" ? "lumos-circle" : ""}>
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 md:pt-5 px-3 md:px-4">
+        <div suppressHydrationWarning style={pillStyle} className={navPhase === "circle" ? "lumos-circle" : ""}>
 
           <Link
             href="/"
@@ -371,22 +368,7 @@ export function Navbar() {
           </div>
         )}
       </nav>
-
-      <style>{`
-        @keyframes navLinkIn {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .lumos-circle {
-          animation: lumosGlow 1.8s ease-in-out infinite;
-          animation-delay: 400ms;
-        }
-        @keyframes lumosGlow {
-          0%   { box-shadow: 0 0 12px 4px rgba(250,179,88,0.4), 0 0 30px 10px rgba(250,179,88,0.15); }
-          50%  { box-shadow: 0 0 35px 14px rgba(250,179,88,0.75), 0 0 70px 28px rgba(250,179,88,0.35), 0 0 100px 40px rgba(250,200,120,0.12); }
-          100% { box-shadow: 0 0 12px 4px rgba(250,179,88,0.4), 0 0 30px 10px rgba(250,179,88,0.15); }
-        }
-      `}</style>
-    </>
   );
 }
+
+export default Navbar;

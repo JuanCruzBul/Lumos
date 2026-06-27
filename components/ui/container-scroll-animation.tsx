@@ -12,6 +12,7 @@ export const ContainerScroll = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
+    offset: ["start end", "end start"],
   });
   const [isMobile, setIsMobile] = React.useState<boolean | null>(null);
 
@@ -30,14 +31,15 @@ export const ContainerScroll = ({
     return isMobile ? [0.7, 0.9] : [1.05, 1];
   };
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const rotate = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], scaleDimensions());
+  const translate = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
 
   if (isMobile === null) {
     return null;
   }
 
+  // Mobile: static, no animation
   if (isMobile) {
     return (
       <div className="flex flex-col items-center justify-center relative p-4 pb-10">
@@ -53,6 +55,7 @@ export const ContainerScroll = ({
     );
   }
 
+  // Desktop: animated scroll
   return (
     <div
       className="h-[44rem] sm:h-[52rem] md:h-[72rem] flex items-center justify-center relative p-2 md:p-10"

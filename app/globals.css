@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes navLinkIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lumos-circle {
+  animation: lumosGlow 1.8s ease-in-out infinite;
+  animation-delay: 400ms;
+}
+
+@keyframes lumosGlow {
+  0%   { box-shadow: 0 0 12px 4px rgba(250,179,88,0.4), 0 0 30px 10px rgba(250,179,88,0.15); }
+  50%  { box-shadow: 0 0 35px 14px rgba(250,179,88,0.75), 0 0 70px 28px rgba(250,179,88,0.35), 0 0 100px 40px rgba(250,200,120,0.12); }
+  100% { box-shadow: 0 0 12px 4px rgba(250,179,88,0.4), 0 0 30px 10px rgba(250,179,88,0.15); }
+}
+
 @layer components {
   h1, .title {
     @apply font-quicksand font-bold;
