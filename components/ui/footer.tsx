@@ -19,7 +19,7 @@ export function Footer() {
               <span className="text-2xl font-bold text-[#fab257]">Lumos</span>
             </div>
             <p className="text-white/30 text-xs leading-relaxed mt-3 max-w-[180px]">
-              Automatización residencial simple, confiable y accesible para cualquier hogar.
+              Domótica residencial instalada por expertos. Sin obras. Sin complicaciones.
             </p>
             <div className="flex gap-4 mt-6">
               {["IG", "LI", "WA"].map((s) => (

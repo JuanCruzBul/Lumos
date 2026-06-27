@@ -73,11 +73,11 @@ export function ContactSection() {
 
   const buttonConfig = {
     idle: {
-      bg: "linear-gradient(135deg, #c5704b 0%, #fab257 100%)",
+      bg: "#c5704b",
       content: <span className="relative">Enviar Mensaje</span>,
     },
     loading: {
-      bg: "linear-gradient(135deg, #c5704b 0%, #fab257 100%)",
+      bg: "#c5704b",
       content: (
         <span className="relative flex items-center justify-center gap-2">
           <Loader2 className="h-4 w-4 animate-spin" /> Enviando...
@@ -85,7 +85,7 @@ export function ContactSection() {
       ),
     },
     success: {
-      bg: "linear-gradient(135deg, #3a9c6e 0%, #5dd99c 100%)",
+      bg: "#3a9c6e",
       content: (
         <span className="relative flex items-center justify-center gap-2">
           <CheckCircle className="h-4 w-4" /> ¡Mensaje enviado!
@@ -93,7 +93,7 @@ export function ContactSection() {
       ),
     },
     error: {
-      bg: "linear-gradient(135deg, #c5504b 0%, #e07050 100%)",
+      bg: "#c5504b",
       content: (
         <span className="relative flex items-center justify-center gap-2">
           <AlertCircle className="h-4 w-4 shrink-0" />
@@ -136,9 +136,8 @@ export function ContactSection() {
             Contacto
           </span>
 
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.08] mb-6 tracking-tight">
-            Transformá tu<br />
-            hogar con{" "}
+          <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.08] mb-6 tracking-tight">
+            Transformá tu hogar con{" "}
             <span
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: "linear-gradient(135deg, #c5704b 0%, #fab257 100%)" }}
@@ -181,7 +180,7 @@ export function ContactSection() {
 
           {/* Response time badge */}
           <motion.div
-            className="mt-10 inline-flex items-center gap-3 border border-black/10 rounded-full px-5 py-2.5 cursor-default"
+            className="mt-10 inline-flex items-center gap-3 border border-black/10 rounded-full px-3 sm:px-5 py-2.5 cursor-default"
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.55, ease: "easeOut" }}

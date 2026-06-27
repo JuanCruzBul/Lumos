@@ -79,7 +79,7 @@
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 .hero-btn-primary:hover {
-  box-shadow: 0 6px 32px rgba(250, 178, 87, 0.45);
+  box-shadow: 0 6px 32px rgba(197, 112, 75, 0.4);
   transform: translateY(-2px);
 }
 .hero-btn-primary:active { transform: scale(0.97); }

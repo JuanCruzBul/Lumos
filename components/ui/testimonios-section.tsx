@@ -1,5 +1,3 @@
-import { Star } from "lucide-react";
-
 const testimonios = [
   {
     name: "Mariana R.",
@@ -7,7 +5,7 @@ const testimonios = [
     initial: "M",
     quote:
       "Lumos transformó por completo cómo vivo mi casa. Las luces se adaptan solas a cada momento del día y puedo controlar todo desde el celular. Increíble.",
-    stars: 5,
+    stars: 4.5,
   },
   {
     name: "Pablo F.",
@@ -15,7 +13,7 @@ const testimonios = [
     initial: "P",
     quote:
       "La instalación fue rápida y sin obras. Todo quedó funcionando perfecto. El equipo estuvo presente en cada paso y el soporte es excelente.",
-    stars: 5,
+    stars: 4.2,
   },
   {
     name: "Sofía M.",
@@ -23,9 +21,38 @@ const testimonios = [
     initial: "S",
     quote:
       "Lo que más me sorprende es la simplicidad. Mis clientes preguntan cómo funciona y la respuesta es siempre la misma: simplemente funciona.",
-    stars: 5,
+    stars: 4.7,
   },
 ];
+
+function StarRating({ rating, name }: { rating: number; name: string }) {
+  return (
+    <div className="flex gap-1">
+      {Array.from({ length: 5 }, (_, i) => {
+        const fill = Math.min(1, Math.max(0, rating - i));
+        const clipId = `clip-${name.replace(/\s/g, "")}-${i}`;
+        return (
+          <svg key={i} width="13" height="13" viewBox="0 0 24 24">
+            <defs>
+              <clipPath id={clipId}>
+                <rect x="0" y="0" width={`${fill * 100}%`} height="100%" />
+              </clipPath>
+            </defs>
+            <path
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+              fill="rgba(250,178,87,0.2)"
+            />
+            <path
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+              fill="#fab257"
+              clipPath={`url(#${clipId})`}
+            />
+          </svg>
+        );
+      })}
+    </div>
+  );
+}
 
 export function TestimoniosSection() {
   return (
@@ -41,11 +68,7 @@ export function TestimoniosSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonios.map(({ name, role, initial, quote, stars }) => (
             <div key={name} className="glass-panel rounded-2xl p-8 flex flex-col gap-5">
-              <div className="flex gap-1">
-                {Array.from({ length: stars }).map((_, i) => (
-                  <Star key={i} size={13} className="text-[#fab257] fill-[#fab257]" />
-                ))}
-              </div>
+                  <StarRating rating={stars} name={name} />
 
               <div
                 className="text-6xl font-bold leading-none select-none"

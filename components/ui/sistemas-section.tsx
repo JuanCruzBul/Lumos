@@ -164,7 +164,7 @@ const imageVariants = {
   exit: { opacity: 0, scale: 0.97, transition: { duration: 0.2, ease: [0.4, 0, 1, 1] } },
 };
 
-export function SistemasSection() {
+export function SistemasSection({ hideHeader }: { hideHeader?: boolean } = {}) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const select = (i: number) => {
@@ -182,6 +182,7 @@ export function SistemasSection() {
       <div className="relative max-w-5xl mx-auto px-4 sm:px-8">
 
         {/* Header */}
+        {!hideHeader && (
         <div className="mb-10">
           <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#c5704b] mb-3">Servicios</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-black leading-tight">
@@ -189,6 +190,7 @@ export function SistemasSection() {
             <span className="italic font-normal text-[#c5704b]">necesita.</span>
           </h2>
         </div>
+        )}
 
         {/* Tabs — íconos + nombre */}
         <div className="flex gap-2 sm:gap-3 mb-10 overflow-x-auto pb-1 scrollbar-hide">
@@ -283,7 +285,7 @@ export function SistemasSection() {
                   <a
                     href="#contacto"
                     className="ml-auto text-xs font-bold uppercase tracking-widest text-white px-5 py-2.5 rounded-full transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
-                    style={{ background: "linear-gradient(135deg, #c5704b 0%, #fab257 100%)" }}
+                    style={{ background: "#c5704b" }}
                   >
                     Consultar
                   </a>

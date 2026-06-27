@@ -94,7 +94,7 @@ export function PlanesSection() {
             >
               {badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full whitespace-nowrap"
-                  style={{ background: "linear-gradient(135deg, #c5704b 0%, #fab257 100%)" }}
+                  style={{ background: "#c5704b" }}
                 >
                   {badge}
                 </div>
@@ -122,9 +122,7 @@ export function PlanesSection() {
                 onClick={() => handleCta(mensaje)}
                 className="w-full py-3.5 rounded-lg font-bold text-xs uppercase tracking-widest transition-all duration-200 active:scale-[0.99] text-white"
                 style={{
-                  background: highlight
-                    ? "linear-gradient(135deg, #c5704b 0%, #fab257 100%)"
-                    : "rgba(197,112,75,0.12)",
+                  background: highlight ? "#c5704b" : "rgba(197,112,75,0.10)",
                   color: highlight ? "white" : "#c5704b",
                   boxShadow: highlight ? "0 4px 20px rgba(197,112,75,0.3)" : "none",
                 }}

@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+  { label: "Integración", href: "#sistema" },
   { label: "Sistemas", href: "#productos" },
   { label: "Proceso", href: "#proceso" },
   { label: "Planes", href: "#planes" },
@@ -61,7 +62,7 @@ export function Navbar() {
       const ids = navLinks.map((l) => l.href.replace("#", ""));
       for (const id of [...ids].reverse()) {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 120) { setActive(id); return; }
+        if (el && window.scrollY >= el.offsetTop - 200) { setActive(id); return; }
       }
       setActive("");
     };
@@ -216,7 +217,7 @@ export function Navbar() {
         whiteSpace: "nowrap" as const,
         pointerEvents: "none",
         width: "62px",
-        maxWidth: "62px",
+        maxWidth: "calc(100vw - 32px)",
         padding: "12px",
         justifyContent: "center",
         borderRadius: "9999px",
@@ -234,7 +235,7 @@ export function Navbar() {
       whiteSpace: "nowrap" as const,
       pointerEvents: "auto",
       width: "max-content",
-      maxWidth: "900px",
+      maxWidth: "calc(100vw - 32px)",
       padding: "12px",
       justifyContent: "flex-start",
       borderRadius: "9999px",
@@ -244,7 +245,7 @@ export function Navbar() {
       boxShadow: "0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06)",
       opacity: 1,
       transform: "translateY(0px) scale(1)",
-      transition: "max-width 900ms cubic-bezier(0.16,1,0.3,1)",
+      transition: "opacity 300ms ease, transform 300ms ease",
     };
   })();
 
