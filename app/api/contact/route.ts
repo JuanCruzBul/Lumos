@@ -3,6 +3,15 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -15,10 +24,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const safeNombre = escapeHtml(String(nombre));
+    const safeEmail = escapeHtml(String(email));
+    const safeTelefono = telefono ? escapeHtml(String(telefono)) : "No proporcionado";
+    const safeMensaje = escapeHtml(String(mensaje));
+
     const { error } = await resend.emails.send({
-      from: "Lumos Contacto <onboarding@resend.dev>",
+      from: process.env.RESEND_FROM_EMAIL ?? "Lumos Contacto <onboarding@resend.dev>",
       to: "lumosdomotica@gmail.com",
-      subject: `Nuevo contacto desde lumoshogar.ar — ${nombre}`,
+      subject: `Nuevo contacto desde lumoshogar.ar — ${safeNombre}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 32px; background: #f9f9f9; border-radius: 8px;">
           <h2 style="color: #1a1a1a; margin-bottom: 24px;">Nuevo mensaje de contacto</h2>
@@ -29,7 +43,7 @@ export async function POST(req: NextRequest) {
                 <strong style="color: #555;">Nombre</strong>
               </td>
               <td style="padding: 12px 0; border-bottom: 1px solid #e5e5e5; color: #1a1a1a;">
-                ${nombre}
+                ${safeNombre}
               </td>
             </tr>
             <tr>
@@ -37,7 +51,7 @@ export async function POST(req: NextRequest) {
                 <strong style="color: #555;">Email</strong>
               </td>
               <td style="padding: 12px 0; border-bottom: 1px solid #e5e5e5; color: #1a1a1a;">
-                <a href="mailto:${email}" style="color: #6366f1;">${email}</a>
+                <a href="mailto:${safeEmail}" style="color: #6366f1;">${safeEmail}</a>
               </td>
             </tr>
             <tr>
@@ -45,7 +59,7 @@ export async function POST(req: NextRequest) {
                 <strong style="color: #555;">Teléfono</strong>
               </td>
               <td style="padding: 12px 0; border-bottom: 1px solid #e5e5e5; color: #1a1a1a;">
-                ${telefono || "No proporcionado"}
+                ${safeTelefono}
               </td>
             </tr>
             <tr>
@@ -53,7 +67,7 @@ export async function POST(req: NextRequest) {
                 <strong style="color: #555;">Mensaje</strong>
               </td>
               <td style="padding: 12px 0; color: #1a1a1a; white-space: pre-wrap;">
-                ${mensaje}
+                ${safeMensaje}
               </td>
             </tr>
           </table>

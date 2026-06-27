@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       "Transforma tu hogar en un espacio inteligente. Luces, clima, seguridad y energía automatizados con instalación profesional.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Lumos — Hogar Inteligente",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "Lumos — Domótica y Hogar Inteligente",
     description:
       "Transforma tu hogar en un espacio inteligente. Luces, clima, seguridad y energía automatizados con instalación profesional.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -91,7 +91,7 @@ const jsonLd = {
         "Empresa especializada en domótica y automatización del hogar. Instalación profesional de sistemas de luces, clima, seguridad y energía inteligente.",
       url: siteUrl,
       logo: `${siteUrl}/logo.svg`,
-      image: `${siteUrl}/og-image.png`,
+      image: `${siteUrl}/opengraph-image`,
       areaServed: {
         "@type": "Country",
         name: "Argentina",
@@ -125,7 +125,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body suppressHydrationWarning className={`${quicksand.variable} font-quicksand font-normal antialiased overflow-x-hidden`}>
+      <body suppressHydrationWarning className={`${quicksand.variable} font-quicksand font-normal antialiased overflow-x-clip`}>
         <Navbar />
         {children}
       </body>

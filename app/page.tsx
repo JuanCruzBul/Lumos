@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic";
+import { HeroScrollDemo } from "@/components/ui/hero-scroll-demo";
 import { HeroSection } from "@/components/ui/hero-section";
 import { IntegracionesSection } from "@/components/ui/integraciones-section";
 import { SistemasSection } from "@/components/ui/sistemas-section";
@@ -8,10 +8,6 @@ import { TestimoniosSection } from "@/components/ui/testimonios-section";
 import { NosotrosSection } from "@/components/ui/nosotros-section";
 import { ContactSection } from "@/components/ui/contact-section";
 
-const HeroScrollDemo = dynamic(
-  () => import("@/components/ui/hero-scroll-demo").then((m) => m.HeroScrollDemo),
-  { loading: () => <div className="h-[44rem] sm:h-[52rem] md:h-[72rem]" /> }
-);
 
 export default function Home() {
   return (
@@ -25,7 +21,6 @@ export default function Home() {
       <TestimoniosSection />
       <NosotrosSection />
       <ContactSection />
-      {/* <Footer /> */}
     </main>
   );
 }

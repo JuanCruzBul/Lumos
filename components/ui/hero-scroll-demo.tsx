@@ -405,7 +405,7 @@ export function SmartHomeDashboard({
 
 export function HeroScrollDemo() {
   return (
-    <div className="flex flex-col overflow-hidden bg-[#fefefe]">
+    <div suppressHydrationWarning className="flex flex-col bg-[#fefefe]">
       <ContainerScroll
         titleComponent={
           <div className="flex flex-col items-center">
@@ -446,10 +446,3 @@ export function HeroScrollDemo() {
   );
 }
 
-export default function App() {
-  return (
-    <div className="min-h-screen bg-[#fefefe]">
-      <HeroScrollDemo />
-    </div>
-  );
-}
