@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="285.75mm" height="285.75mm" version="1.1" style="shape-rendering: geometricprecision; text-rendering: geometricprecision; fill-rule: evenodd; clip-rule: evenodd;" viewBox="7500 7800 13500 13500">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:#C5704B}
+    .fil2 {fill:#FAB359}
+   ]]>
+  </style>
+  <filter id="glow-yellow" x="-900%" y="-900%" width="1900%" height="1900%">
+   <feGaussianBlur in="SourceGraphic" stdDeviation="700" result="blur0"/>
+   <feFlood flood-color="#FAB359" flood-opacity="0.35" result="color0"/>
+   <feComposite in="color0" in2="blur0" operator="in" result="glow0"/>
+   <feGaussianBlur in="SourceGraphic" stdDeviation="420" result="blur1"/>
+   <feFlood flood-color="#FAB359" flood-opacity="0.7" result="color1"/>
+   <feComposite in="color1" in2="blur1" operator="in" result="glow1"/>
+   <feGaussianBlur in="SourceGraphic" stdDeviation="200" result="blur2"/>
+   <feFlood flood-color="#FFCC44" flood-opacity="1.0" result="color2"/>
+   <feComposite in="color2" in2="blur2" operator="in" result="glow2"/>
+   <feGaussianBlur in="SourceGraphic" stdDeviation="80" result="blur3"/>
+   <feFlood flood-color="#FFF0A0" flood-opacity="1.0" result="color3"/>
+   <feComposite in="color3" in2="blur3" operator="in" result="glow3"/>
+   <feMerge>
+    <feMergeNode in="glow0"/>
+    <feMergeNode in="glow1"/>
+    <feMergeNode in="glow2"/>
+    <feMergeNode in="glow3"/>
+    <feMergeNode in="SourceGraphic"/>
+   </feMerge>
+  </filter>
+ </defs>
+ <g id="Capa_x0020_1">
+  <g id="_1778822023008">
+   <path class="fil1" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
+   <path class="fil2" filter="url(#glow-yellow)" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+  </g>
+ </g>
+</svg>
