@@ -7,45 +7,6 @@ import { motion, useReducedMotion } from "framer-motion";
 const JUAN_IMG = "/images/juan-cruz-bulatovich.webp";
 const JESUS_IMG = "/images/jesus-manuel-martinez.webp";
 
-function WordReveal({ text, className }: { text: string; className?: string }) {
-  const shouldReduce = useReducedMotion();
-  const words = text.split(" ");
-
-  return (
-    <motion.p
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={{
-        visible: { transition: { staggerChildren: shouldReduce ? 0 : 0.018 } },
-        hidden: {},
-      }}
-    >
-      {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden align-bottom mr-[0.28em]">
-          <motion.span
-            className="inline-block"
-            variants={
-              shouldReduce
-                ? {}
-                : {
-                    hidden: { y: "105%", opacity: 0 },
-                    visible: {
-                      y: "0%",
-                      opacity: 1,
-                      transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
-                    },
-                  }
-            }
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </motion.p>
-  );
-}
 
 const MisionIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -300,7 +261,7 @@ export function NosotrosSection() {
             {[
               { img: JUAN_IMG, name: "Juan Cruz Bulatovich", role: "Fundador" },
               { img: JESUS_IMG, name: "Jesús Manuel Martínez", role: "Cofundador" },
-            ].map(({ img, name, role }, i) => (
+            ].map(({ img, name, role }) => (
               <div key={name} className="flex flex-col items-center gap-3">
                 <div
                   className="relative w-[140px] h-[186px] sm:w-[180px] sm:h-[240px] md:w-[210px] md:h-[280px] rounded-2xl overflow-hidden"
