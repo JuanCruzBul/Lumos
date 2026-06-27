@@ -15,9 +15,9 @@ export const ContainerScroll = ({
     offset: ["start end", "end start"],
   });
 
-  const rotate = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1.05, 1]);
-  const translate = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
+  const rotate = useTransform(scrollYProgress, [0, 0.4], [40, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.4], [0.8, 1]);
+  const translate = useTransform(scrollYProgress, [0, 0.4], [0, -150]);
 
   return (
     <div
