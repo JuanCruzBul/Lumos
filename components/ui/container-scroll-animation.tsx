@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 
 export const ContainerScroll = ({
@@ -14,34 +14,11 @@ export const ContainerScroll = ({
     target: containerRef,
     offset: ["start end", "end start"],
   });
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   const rotate = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1.05, 1]);
   const translate = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
 
-  // Mobile: static layout, no animation — ref still attached for consistency
-  if (isMobile) {
-    return (
-      <div ref={containerRef} className="flex flex-col items-center justify-center relative p-4 pb-10">
-        <div className="w-full text-center mb-6">{titleComponent}</div>
-        <div className="w-full max-w-sm border-[4px] border-black p-[4px] bg-black rounded-[20px] shadow-xl">
-          <div className="h-full w-full overflow-hidden rounded-[20px]">
-            {children}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Desktop (and initial null state): animated scroll
   return (
     <div
       className="h-[44rem] sm:h-[52rem] md:h-[72rem] flex items-center justify-center relative p-2 md:p-10"
