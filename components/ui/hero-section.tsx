@@ -37,7 +37,9 @@ export function HeroSection() {
 
         {/* Animated LUMOS text */}
         <div className="w-full max-w-[220px] sm:max-w-xs md:max-w-sm mb-6 sm:mb-10">
+          <h1 className="sr-only">Lumos — Domótica y Hogar Inteligente</h1>
           <svg
+            aria-hidden="true"
             className="w-full h-auto drop-shadow-[0_0_20px_rgba(197,112,75,0.4)]"
             viewBox="20 10 340 80"
             fill="none"
