@@ -35,20 +35,20 @@
   }
 }
 
-/* SVG path draw animation */
+/* SVG path fade-in animation (opacity only — GPU compositable) */
 .path-draw {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawPath 3s ease-in-out forwards;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  will-change: opacity;
 }
-@keyframes drawPath {
-  to { stroke-dashoffset: 0; }
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
-.stagger-1 { animation-delay: 0.2s; }
-.stagger-2 { animation-delay: 0.6s; }
-.stagger-3 { animation-delay: 1.0s; }
-.stagger-4 { animation-delay: 1.4s; }
-.stagger-5 { animation-delay: 1.8s; }
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.25s; }
+.stagger-3 { animation-delay: 0.4s; }
+.stagger-4 { animation-delay: 0.55s; }
+.stagger-5 { animation-delay: 0.7s; }
 
 @keyframes floating {
   0%   { transform: translateY(0px); }
@@ -63,6 +63,7 @@
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 1s ease-out 2.5s forwards;
+  will-change: opacity, transform;
 }
 @keyframes fadeInUp {
   to { opacity: 1; transform: translateY(0); }
@@ -73,6 +74,7 @@
   opacity: 0;
   transform: translateY(16px);
   animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 2.8s forwards;
+  will-change: opacity, transform;
 }
 .hero-btn-primary {
   box-shadow: 0 4px 24px rgba(197, 112, 75, 0.25);

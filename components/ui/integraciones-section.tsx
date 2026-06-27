@@ -202,6 +202,7 @@ export function IntegracionesSection() {
                 width={720}
                 height={520}
                 className="w-full h-auto object-cover"
+                loading="lazy"
               />
               {/* Subtle warm overlay */}
               <div

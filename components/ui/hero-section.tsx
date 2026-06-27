@@ -6,11 +6,11 @@ export function HeroSection() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=80"
+          src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=60"
           alt=""
           fill
           className="object-cover object-center opacity-20"
-          priority
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#fdf8f4]/85 via-[#fefefe]/65 to-[#fefefe]" />
       </div>
@@ -24,7 +24,7 @@ export function HeroSection() {
       {/* Above-the-fold: logo + LUMOS centered in full viewport */}
       <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center px-4 sm:px-8">
         {/* Logo mark */}
-        <div className="mb-3 fade-in-up" style={{ animationDelay: "0.1s" }}>
+        <div className="mb-3">
           <Image
             src="/logo.svg"
             alt="Lumos"
@@ -32,6 +32,7 @@ export function HeroSection() {
             height={200}
             className="mx-auto w-32 h-32 sm:w-40 sm:h-40 md:w-[200px] md:h-[200px] drop-shadow-[0_0_50px_rgba(197,112,75,0.32)]"
             priority
+            fetchPriority="high"
           />
         </div>
 
