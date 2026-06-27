@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 
 export const ContainerScroll = ({
@@ -14,39 +14,25 @@ export const ContainerScroll = ({
     target: containerRef,
     offset: ["start end", "end start"],
   });
-  const [isMobile, setIsMobile] = React.useState<boolean | null>(null);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
-  React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
-  };
-
   const rotate = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], scaleDimensions());
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1.05, 1]);
   const translate = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
 
-  if (isMobile === null) {
-    return null;
-  }
-
-  // Mobile: static, no animation
+  // Mobile: static layout, no animation — ref still attached for consistency
   if (isMobile) {
     return (
-      <div className="flex flex-col items-center justify-center relative p-4 pb-10">
+      <div ref={containerRef} className="flex flex-col items-center justify-center relative p-4 pb-10">
         <div className="w-full text-center mb-6">{titleComponent}</div>
-        <div
-          className="w-full max-w-sm border-[4px] border-black p-[4px] bg-black rounded-[20px] shadow-xl"
-        >
+        <div className="w-full max-w-sm border-[4px] border-black p-[4px] bg-black rounded-[20px] shadow-xl">
           <div className="h-full w-full overflow-hidden rounded-[20px]">
             {children}
           </div>
@@ -55,7 +41,7 @@ export const ContainerScroll = ({
     );
   }
 
-  // Desktop: animated scroll
+  // Desktop (and initial null state): animated scroll
   return (
     <div
       className="h-[44rem] sm:h-[52rem] md:h-[72rem] flex items-center justify-center relative p-2 md:p-10"
@@ -63,9 +49,7 @@ export const ContainerScroll = ({
     >
       <div
         className="py-6 md:py-20 w-full relative"
-        style={{
-          perspective: "1000px",
-        }}
+        style={{ perspective: "1000px" }}
       >
         <Header translate={translate} titleComponent={titleComponent} />
         <Card rotate={rotate} translate={translate} scale={scale}>
@@ -85,9 +69,7 @@ export const Header = ({
 }) => {
   return (
     <motion.div
-      style={{
-        translateY: translate,
-      }}
+      style={{ translateY: translate }}
       className="max-w-5xl mx-auto text-center"
     >
       {titleComponent}
