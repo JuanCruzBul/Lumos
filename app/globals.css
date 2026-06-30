@@ -4,6 +4,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* framer-motion's useScroll mide el scroll root y warnea si es position: static */
+  position: relative;
 }
 
 @keyframes navLinkIn {
