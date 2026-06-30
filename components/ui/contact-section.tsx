@@ -8,7 +8,13 @@ type FormState = "idle" | "loading" | "success" | "error";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-export function ContactSection() {
+export function ContactSection({
+  sectionId = "contacto",
+  idSuffix = "",
+}: {
+  sectionId?: string;
+  idSuffix?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -101,7 +107,7 @@ export function ContactSection() {
 
   return (
     <section
-      id="contacto"
+      id={sectionId}
       className="relative overflow-hidden bg-[#fdf8f4] min-h-screen flex flex-col justify-center py-16 lg:py-28 px-4 sm:px-8"
     >
       {/* Warm glow — animates in */}
@@ -127,17 +133,14 @@ export function ContactSection() {
           <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#c5704b] mb-6">
             <span
               className="inline-block w-6 h-px"
-              style={{ background: "linear-gradient(to right, #c5704b, #fab257)" }}
+              style={{ background: "#c5704b" }}
             />
             Contacto
           </span>
 
           <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.08] mb-6 tracking-tight">
             Transformá tu hogar con{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "linear-gradient(135deg, #c5704b 0%, #fab257 100%)" }}
-            >
+            <span className="text-[#c5704b]">
               Lumos
             </span>
           </h2>
@@ -203,6 +206,7 @@ export function ContactSection() {
                 label="Nombre"
                 type="text"
                 name="nombre"
+                id={`nombre${idSuffix}`}
                 placeholder="Juan García"
                 value={fields.nombre}
                 onChange={handleChange}
@@ -211,6 +215,7 @@ export function ContactSection() {
                 label="Email"
                 type="email"
                 name="email"
+                id={`email${idSuffix}`}
                 placeholder="juan@email.com"
                 value={fields.email}
                 onChange={handleChange}
@@ -221,6 +226,7 @@ export function ContactSection() {
               label="Teléfono"
               type="tel"
               name="telefono"
+              id={`telefono${idSuffix}`}
               placeholder="+54 11 0000-0000"
               value={fields.telefono}
               onChange={handleChange}
@@ -229,6 +235,7 @@ export function ContactSection() {
             <TextareaField
               label="Mensaje"
               name="mensaje"
+              id={`mensaje${idSuffix}`}
               placeholder="Contanos sobre tu proyecto, tipo de hogar, qué sistemas te interesan..."
               value={fields.mensaje}
               onChange={handleChange}
@@ -268,6 +275,7 @@ function Field({
   label,
   type,
   name,
+  id,
   placeholder,
   value,
   onChange,
@@ -275,6 +283,7 @@ function Field({
   label: string;
   type: string;
   name: string;
+  id: string;
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -290,7 +299,7 @@ function Field({
   return (
     <div>
       <label
-        htmlFor={name}
+        htmlFor={id}
         className="block text-[10px] font-semibold uppercase tracking-widest mb-3 transition-colors duration-200"
         style={{ color: focused ? "#c5704b" : "rgba(197,112,75,0.7)" }}
       >
@@ -298,7 +307,7 @@ function Field({
       </label>
       <div className="relative">
         <input
-          id={name}
+          id={id}
           type={type}
           name={name}
           placeholder={placeholder}
@@ -312,7 +321,7 @@ function Field({
         />
         <motion.span
           className="absolute bottom-0 left-0 h-px origin-left"
-          style={{ background: "linear-gradient(to right, #c5704b, #fab257)" }}
+          style={{ background: "#c5704b" }}
           animate={{ scaleX: focused ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         />
@@ -324,12 +333,14 @@ function Field({
 function TextareaField({
   label,
   name,
+  id,
   placeholder,
   value,
   onChange,
 }: {
   label: string;
   name: string;
+  id: string;
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -339,7 +350,7 @@ function TextareaField({
   return (
     <div>
       <label
-        htmlFor={name}
+        htmlFor={id}
         className="block text-[10px] font-semibold uppercase tracking-widest mb-3 transition-colors duration-200"
         style={{ color: focused ? "#c5704b" : "rgba(197,112,75,0.7)" }}
       >
@@ -347,7 +358,7 @@ function TextareaField({
       </label>
       <div className="relative">
         <textarea
-          id={name}
+          id={id}
           name={name}
           placeholder={placeholder}
           value={value}
@@ -360,7 +371,7 @@ function TextareaField({
         />
         <motion.span
           className="absolute bottom-0 left-0 h-px origin-left"
-          style={{ background: "linear-gradient(to right, #c5704b, #fab257)" }}
+          style={{ background: "#c5704b" }}
           animate={{ scaleX: focused ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         />

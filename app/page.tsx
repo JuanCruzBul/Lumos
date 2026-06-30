@@ -7,6 +7,7 @@ import { PlanesSection } from "@/components/ui/planes-section";
 import { TestimoniosSection } from "@/components/ui/testimonios-section";
 import { NosotrosSection } from "@/components/ui/nosotros-section";
 import { ContactSection } from "@/components/ui/contact-section";
+import { LeadFormSection } from "@/components/ui/lead-form-section";
 
 
 export default function Home() {
@@ -15,12 +16,13 @@ export default function Home() {
       <HeroSection />
       <IntegracionesSection />
       <HeroScrollDemo />
+      <TestimoniosSection />
+      <LeadFormSection />
       <SistemasSection />
       <ComoFuncionaSection />
       <PlanesSection />
-      <TestimoniosSection />
       <NosotrosSection />
-      <ContactSection />
+      <ContactSection sectionId="contacto-footer" idSuffix="-footer" />
     </main>
   );
 }

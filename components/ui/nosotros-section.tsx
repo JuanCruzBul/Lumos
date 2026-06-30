@@ -92,10 +92,7 @@ export function NosotrosSection() {
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-bold text-[#221a17] leading-[1.04] tracking-tight mb-5">
             Lumos es domótica
             <br />
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "linear-gradient(120deg, #c5704b 0%, #fab257 55%, #c5704b 100%)" }}
-            >
+            <span className="text-[#c5704b]">
               para todos.
             </span>
           </h2>
@@ -112,7 +109,7 @@ export function NosotrosSection() {
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 h-[2px] max-w-[260px] rounded-full"
-            style={{ background: "linear-gradient(to right, #c5704b, #fab257, transparent)" }}
+            style={{ background: "#c5704b" }}
           />
         </motion.div>
 
@@ -297,10 +294,7 @@ export function NosotrosSection() {
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c5704b] mb-5 block">El equipo</span>
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#221a17] leading-snug mb-6">
               Dos ingenieros con<br />
-              <span
-                className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(120deg, #c5704b 0%, #fab257 55%, #c5704b 100%)" }}
-              >
+              <span className="text-[#c5704b]">
                 una pregunta simple.
               </span>
             </h3>
@@ -318,7 +312,7 @@ export function NosotrosSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="mt-8 h-[2px] max-w-[180px] rounded-full"
-              style={{ background: "linear-gradient(to right, #c5704b, #fab257, transparent)" }}
+              style={{ background: "#c5704b" }}
             />
           </motion.div>
 

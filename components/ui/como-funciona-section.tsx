@@ -197,7 +197,7 @@ export function ComoFuncionaSection() {
               className="h-full"
               style={{
                 width: lineWidth,
-                background: "linear-gradient(to right, #c5704b, #fab257)",
+                background: "#c5704b",
               }}
             />
           </div>

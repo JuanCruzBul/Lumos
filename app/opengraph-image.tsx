@@ -66,7 +66,7 @@ export default function OgImage() {
             marginTop: 40,
             width: 80,
             height: 3,
-            background: "linear-gradient(to right, #c5704b, #fab257)",
+            background: "#c5704b",
             borderRadius: 9999,
           }}
         />
