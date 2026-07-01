@@ -6,12 +6,11 @@
 
 ## Alta
 
-### TD-001 — Duplicación de lógica de formulario entre `contact-section` y `lead-form-section`
+### TD-001 — Duplicación de lógica de formulario entre `contact-section` y `lead-form-section` ✅ Resuelto (2026-07-01)
 
-- **Archivos afectados:** `components/ui/contact-section.tsx:1-273`, `components/ui/lead-form-section.tsx:1-246`
-- **Descripción:** Ambos componentes definen el mismo `type FormState`, el mismo estado `fields` (nombre/email/telefono/mensaje), el mismo listener del evento `lumos:plan-selected`, y la misma función `handleSubmit` que hace `fetch("/api/contact", ...)` con el mismo manejo de loading/success/error. Solo difieren los subcomponentes de campo (línea inferior vs. bordes redondeados) y el layout. Ya empezó a divergir sin razón funcional (`contact-section.tsx` maneja un estado `focused` por campo que el otro no tiene). Detectado en auditoría 2026-07-01.
-- **Riesgo:** Alto. Cualquier cambio de comportamiento (validación, endpoint, nuevo campo, manejo de errores) hay que aplicarlo dos veces; un fix en un solo formulario deja al otro con el bug sin que sea obvio.
-- **Recomendación:** Extraer la lógica compartida a un hook `useContactForm()` (estado de campos, `FormState`, listener de `lumos:plan-selected`, `handleSubmit`). Cada componente sigue siendo responsable solo de su presentación y consume el mismo hook para el comportamiento.
+- **Archivos afectados:** `components/ui/contact-section.tsx`, `components/ui/lead-form-section.tsx`, `lib/use-contact-form.ts`
+- **Descripción:** Ambos componentes definían el mismo `type FormState`, el mismo estado `fields` (nombre/email/telefono/mensaje), el mismo listener del evento `lumos:plan-selected`, y la misma función `handleSubmit` que hace `fetch("/api/contact", ...)` con el mismo manejo de loading/success/error. Solo diferían los subcomponentes de campo (línea inferior vs. bordes redondeados) y el layout.
+- **Resolución:** Se extrajo la lógica compartida al hook `useContactForm()` en `lib/use-contact-form.ts` (estado de campos, `FormState`, listener de `lumos:plan-selected`, `handleChange`, `handleSubmit`). Ambos componentes ahora solo son responsables de su presentación y consumen el mismo hook para el comportamiento.
 
 ## Media
 
