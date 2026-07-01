@@ -1,5 +1,6 @@
 "use client";
 
+import { LUMOS_PRIMARY_HEX, LUMOS_PRIMARY_RGB } from "@/lib/utils";
 import { Check } from "lucide-react";
 
 const planes = [
@@ -64,7 +65,7 @@ export function PlanesSection() {
     <section id="planes" className="min-h-screen flex flex-col justify-center py-16 sm:py-24 px-4 sm:px-8 bg-[#fdf8f4]">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Planes</span>
+          <span className="text-xs uppercase tracking-widest font-semibold text-lumos-primary">Planes</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mt-3 mb-4">
             Elegí tu kit Lumos
           </h2>
@@ -84,24 +85,24 @@ export function PlanesSection() {
                 highlight
                   ? {
                       background: "linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(253,248,244,0.98) 100%)",
-                      border: "1.5px solid rgba(197,112,75,0.35)",
-                      boxShadow: "0 24px 60px rgba(197,112,75,0.18), 0 4px 20px rgba(197,112,75,0.10)",
+                      border: `1.5px solid rgba(${LUMOS_PRIMARY_RGB},0.35)`,
+                      boxShadow: `0 24px 60px rgba(${LUMOS_PRIMARY_RGB},0.18), 0 4px 20px rgba(${LUMOS_PRIMARY_RGB},0.10)`,
                     }
                   : {
-                      boxShadow: "0 8px 32px rgba(197,112,75,0.09), 0 2px 8px rgba(0,0,0,0.04)",
+                      boxShadow: `0 8px 32px rgba(${LUMOS_PRIMARY_RGB},0.09), 0 2px 8px rgba(0,0,0,0.04)`,
                     }
               }
             >
               {badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full whitespace-nowrap"
-                  style={{ background: "#c5704b" }}
+                  style={{ background: LUMOS_PRIMARY_HEX }}
                 >
                   {badge}
                 </div>
               )}
 
               <div>
-                <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">
+                <span className="text-xs uppercase tracking-widest font-semibold text-lumos-primary">
                   {name}
                 </span>
                 <p className="text-sm mt-3 text-black/60">{desc}</p>
@@ -112,7 +113,7 @@ export function PlanesSection() {
               <ul className="space-y-3 flex-1">
                 {features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
-                    <Check size={14} className="mt-0.5 flex-shrink-0 text-[#c5704b]" />
+                    <Check size={14} className="mt-0.5 flex-shrink-0 text-lumos-primary" />
                     <span className="text-sm text-black/75">{f}</span>
                   </li>
                 ))}
@@ -122,9 +123,9 @@ export function PlanesSection() {
                 onClick={() => handleCta(mensaje)}
                 className="w-full py-3.5 rounded-lg font-bold text-xs uppercase tracking-widest transition-all duration-200 active:scale-[0.99] text-white"
                 style={{
-                  background: highlight ? "#c5704b" : "rgba(197,112,75,0.10)",
-                  color: highlight ? "white" : "#c5704b",
-                  boxShadow: highlight ? "0 4px 20px rgba(197,112,75,0.3)" : "none",
+                  background: highlight ? LUMOS_PRIMARY_HEX : `rgba(${LUMOS_PRIMARY_RGB},0.10)`,
+                  color: highlight ? "white" : LUMOS_PRIMARY_HEX,
+                  boxShadow: highlight ? `0 4px 20px rgba(${LUMOS_PRIMARY_RGB},0.3)` : "none",
                 }}
               >
                 {cta}

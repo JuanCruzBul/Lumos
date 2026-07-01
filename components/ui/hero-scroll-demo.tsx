@@ -1,5 +1,6 @@
 "use client";
 
+import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
 import React, { useState, useEffect } from "react";
 import {
   Sun,
@@ -17,18 +18,21 @@ import {
   Trash2,
 } from "lucide-react";
 import { ContainerScroll } from "./container-scroll-animation";
+import { defaultInitialLights, forecast, securityLogs, energyData, type Light } from "./smart-home-dashboard-data";
 
-export function SmartHomeDashboard({ 
-  embeddedMode = true, 
+type SmartHomeDashboardProps = {
+  embeddedMode?: boolean;
+  defaultDarkMode?: boolean;
+  initialLights?: Light[];
+  className?: string;
+};
+
+export function SmartHomeDashboard({
+  embeddedMode = true,
   defaultDarkMode = false,
-  initialLights = [
-    { id: 1, name: 'Sala', active: true },
-    { id: 2, name: 'Cocina', active: true },
-    { id: 3, name: 'Habitación', active: false },
-    { id: 4, name: 'Pasillo', active: false }
-  ],
-  className = ""
-}) {
+  initialLights = defaultInitialLights,
+  className = "",
+}: SmartHomeDashboardProps) {
   const [darkMode, setDarkMode] = useState(defaultDarkMode);
   const [time, setTime] = useState<Date | null>(null);
   const [lights, setLights] = useState(initialLights);
@@ -36,22 +40,6 @@ export function SmartHomeDashboard({
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const [newLightName, setNewLightName] = useState('');
   const [security, setSecurity] = useState({ doorLocked: true, motionDetected: false });
-
-  const [forecast] = useState([
-    { day: 'Jue', tempMax: 22, tempMin: 12, text: 'Despejado', humidity: 45, wind: 12 },
-    { day: 'Vie', tempMax: 24, tempMin: 13, text: 'Soleado', humidity: 40, wind: 15 },
-    { day: 'Sáb', tempMax: 23, tempMin: 12, text: 'Parcialmente Nublado', humidity: 50, wind: 10 },
-    { day: 'Dom', tempMax: 21, tempMin: 11, text: 'Despejado', humidity: 42, wind: 8 },
-    { day: 'Lun', tempMax: 22, tempMin: 12, text: 'Despejado', humidity: 45, wind: 12 }
-  ]);
-
-  const [securityLogs] = useState([
-    { time: '02:15 AM', event: 'No se detecta movimiento en el pasillo', status: 'normal' },
-    { time: '11:45 PM', event: 'Puerta Principal cerrada y asegurada', status: 'secure' },
-    { time: '09:30 PM', event: 'Movimiento detectado en entrada exterior', status: 'warning' },
-    { time: '07:15 PM', event: 'Puerta Principal abierta por Usuario de Casa', status: 'info' },
-    { time: '06:00 PM', event: 'Modo seguridad en casa activado', status: 'secure' }
-  ]);
 
   useEffect(() => {
     setTime(new Date());
@@ -91,17 +79,6 @@ export function SmartHomeDashboard({
 
   const activeLightsCount = lights.filter(l => l.active).length;
   const calculatedEnergyToday = (10.2 + (activeLightsCount * 0.55)).toFixed(1);
-
-  const energyData = [
-    { hour: '0', val: 0.15 }, { hour: '1', val: 0.12 }, { hour: '2', val: 0.10 },
-    { hour: '3', val: 0.10 }, { hour: '4', val: 0.12 }, { hour: '5', val: 0.25 },
-    { hour: '6', val: 0.45 }, { hour: '7', val: 0.75 }, { hour: '8', val: 0.60 },
-    { hour: '9', val: 0.82 }, { hour: '10', val: 0.50 }, { hour: '11', val: 0.95 },
-    { hour: '12', val: 1.10 }, { hour: '13', val: 0.85 }, { hour: '14', val: 0.70 },
-    { hour: '15', val: 0.65 }, { hour: '16', val: 0.50 }, { hour: '17', val: 0.72 },
-    { hour: '18', val: 0.90 }, { hour: '19', val: 1.15 }, { hour: '20', val: 1.30 },
-    { hour: '21', val: 1.20 }, { hour: '22', val: 0.80 }, { hour: '23', val: 0.40 }
-  ];
 
   const getAdjustedEnergyValue = (index:number, baseVal:number) => {
     if (index >= 18 && index <= 22) {
@@ -409,12 +386,12 @@ export function HeroScrollDemo() {
       <ContainerScroll
         titleComponent={
           <div className="flex flex-col items-center">
-            <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#c5704b] mb-5">
+            <p className="text-xs font-bold tracking-[0.25em] uppercase text-lumos-primary mb-5">
               Probá la experiencia
             </p>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-black leading-tight mb-4 sm:mb-5 px-2 sm:px-0">
               Tu panel de control,{" "}
-              <span className="italic font-normal text-[#c5704b]">en tu hogar.</span>
+              <span className="italic font-normal text-lumos-primary">en tu hogar.</span>
             </h2>
             <p className="text-[13px] sm:text-[15px] text-black/55 leading-relaxed max-w-xl mb-4 sm:mb-6 px-4 sm:px-0">
               Usamos <strong className="text-black font-semibold">Home Assistant</strong> — la plataforma de automatización del hogar más potente del mundo,
@@ -423,15 +400,15 @@ export function HeroScrollDemo() {
             </p>
             <div className="hidden sm:flex flex-wrap justify-center gap-6 text-[12px] text-black/45 font-medium mb-2">
               <span className="flex items-center gap-2">
-                <svg viewBox="0 0 16 16" fill="#c5704b" className="w-3.5 h-3.5 shrink-0"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a.75.75 0 0 0-.75.75v3.5c0 .28.154.538.4.673l2.5 1.5a.75.75 0 1 0 .75-1.3L8.75 8.2V5.25A.75.75 0 0 0 8 4.5z"/></svg>
+                <svg viewBox="0 0 16 16" fill={LUMOS_PRIMARY_HEX} className="w-3.5 h-3.5 shrink-0"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a.75.75 0 0 0-.75.75v3.5c0 .28.154.538.4.673l2.5 1.5a.75.75 0 1 0 .75-1.3L8.75 8.2V5.25A.75.75 0 0 0 8 4.5z"/></svg>
                 Servidor privado local
               </span>
               <span className="flex items-center gap-2">
-                <svg viewBox="0 0 16 16" fill="#c5704b" className="w-3.5 h-3.5 shrink-0"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm3.25 3.97a.75.75 0 0 1 0 1.06L7.06 10.72a.75.75 0 0 1-1.06 0L4.25 8.97a.75.75 0 0 1 1.06-1.06l1.22 1.22 3.66-3.66a.75.75 0 0 1 1.06 0z"/></svg>
+                <svg viewBox="0 0 16 16" fill={LUMOS_PRIMARY_HEX} className="w-3.5 h-3.5 shrink-0"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm3.25 3.97a.75.75 0 0 1 0 1.06L7.06 10.72a.75.75 0 0 1-1.06 0L4.25 8.97a.75.75 0 0 1 1.06-1.06l1.22 1.22 3.66-3.66a.75.75 0 0 1 1.06 0z"/></svg>
                 Totalmente personalizable
               </span>
               <span className="flex items-center gap-2">
-                <svg viewBox="0 0 16 16" fill="#c5704b" className="w-3.5 h-3.5 shrink-0"><path d="M8 0C5.24 0 3 2.24 3 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5zm0 7.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+                <svg viewBox="0 0 16 16" fill={LUMOS_PRIMARY_HEX} className="w-3.5 h-3.5 shrink-0"><path d="M8 0C5.24 0 3 2.24 3 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5zm0 7.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
                 Sin dependencia de la nube
               </span>
             </div>

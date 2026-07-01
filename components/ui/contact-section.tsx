@@ -1,5 +1,6 @@
 "use client";
 
+import { LUMOS_PRIMARY_HEX, LUMOS_PRIMARY_RGB } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
@@ -27,11 +28,11 @@ export function ContactSection({
 
   const buttonConfig = {
     idle: {
-      bg: "#c5704b",
+      bg: LUMOS_PRIMARY_HEX,
       content: <span className="relative">Enviar Mensaje</span>,
     },
     loading: {
-      bg: "#c5704b",
+      bg: LUMOS_PRIMARY_HEX,
       content: (
         <span className="relative flex items-center justify-center gap-2">
           <Loader2 className="h-4 w-4 animate-spin" /> Enviando...
@@ -82,17 +83,17 @@ export function ContactSection({
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7, ease }}
         >
-          <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#c5704b] mb-6">
+          <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-lumos-primary mb-6">
             <span
               className="inline-block w-6 h-px"
-              style={{ background: "#c5704b" }}
+              style={{ background: LUMOS_PRIMARY_HEX }}
             />
             Contacto
           </span>
 
           <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.08] mb-6 tracking-tight">
             Transformá tu hogar con{" "}
-            <span className="text-[#c5704b]">
+            <span className="text-lumos-primary">
               Lumos
             </span>
           </h2>
@@ -121,7 +122,7 @@ export function ContactSection({
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
                 }}
               >
-                <span className="text-[10px] uppercase tracking-widest text-[#c5704b]/70 w-16 shrink-0">
+                <span className="text-[10px] uppercase tracking-widest text-lumos-primary/70 w-16 shrink-0">
                   {label}
                 </span>
                 <span className="text-[#2a2420] text-sm">{value}</span>
@@ -137,7 +138,7 @@ export function ContactSection({
             transition={{ duration: 0.5, delay: 0.55, ease: "easeOut" }}
             whileHover={{ scale: 1.03 }}
           >
-            <span className="h-2 w-2 rounded-full bg-[#c5704b] animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-lumos-primary animate-pulse" />
             <span className="text-black/40 text-xs tracking-wide">Respondemos a la brevedad</span>
           </motion.div>
         </motion.div>
@@ -253,7 +254,7 @@ function Field({
       <label
         htmlFor={id}
         className="block text-[10px] font-semibold uppercase tracking-widest mb-3 transition-colors duration-200"
-        style={{ color: focused ? "#c5704b" : "rgba(197,112,75,0.7)" }}
+        style={{ color: focused ? LUMOS_PRIMARY_HEX : `rgba(${LUMOS_PRIMARY_RGB},0.7)` }}
       >
         {label}
       </label>
@@ -273,7 +274,7 @@ function Field({
         />
         <motion.span
           className="absolute bottom-0 left-0 h-px origin-left"
-          style={{ background: "#c5704b" }}
+          style={{ background: LUMOS_PRIMARY_HEX }}
           animate={{ scaleX: focused ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         />
@@ -304,7 +305,7 @@ function TextareaField({
       <label
         htmlFor={id}
         className="block text-[10px] font-semibold uppercase tracking-widest mb-3 transition-colors duration-200"
-        style={{ color: focused ? "#c5704b" : "rgba(197,112,75,0.7)" }}
+        style={{ color: focused ? LUMOS_PRIMARY_HEX : `rgba(${LUMOS_PRIMARY_RGB},0.7)` }}
       >
         {label}
       </label>
@@ -323,7 +324,7 @@ function TextareaField({
         />
         <motion.span
           className="absolute bottom-0 left-0 h-px origin-left"
-          style={{ background: "#c5704b" }}
+          style={{ background: LUMOS_PRIMARY_HEX }}
           animate={{ scaleX: focused ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         />

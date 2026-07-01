@@ -1,5 +1,6 @@
 "use client";
 
+import { LUMOS_PRIMARY_HEX, LUMOS_PRIMARY_RGB } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -73,7 +74,7 @@ export function NosotrosSection() {
       <div
         ref={bg1Ref}
         className="absolute top-[-60px] left-[20%] w-[560px] h-[560px] rounded-full blur-[130px] pointer-events-none"
-        style={{ background: "rgba(197,112,75,0.09)", transition: "transform 0.8s ease-out" }}
+        style={{ background: `rgba(${LUMOS_PRIMARY_RGB},0.09)`, transition: "transform 0.8s ease-out" }}
       />
       <div
         ref={bg2Ref}
@@ -85,14 +86,14 @@ export function NosotrosSection() {
 
         {/* ── HEADER ── */}
         <motion.div {...fadeUp(0)} className="mb-14 md:mb-20">
-          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c5704b] bg-[#c5704b]/8 px-4 py-1.5 rounded-full inline-block mb-6">
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-lumos-primary bg-lumos-primary/8 px-4 py-1.5 rounded-full inline-block mb-6">
             Nosotros
           </span>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-bold text-[#221a17] leading-[1.04] tracking-tight mb-5">
             Lumos es domótica
             <br />
-            <span className="text-[#c5704b]">
+            <span className="text-lumos-primary">
               para todos.
             </span>
           </h2>
@@ -109,7 +110,7 @@ export function NosotrosSection() {
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 h-[2px] max-w-[260px] rounded-full"
-            style={{ background: "#c5704b" }}
+            style={{ background: LUMOS_PRIMARY_HEX }}
           />
         </motion.div>
 
@@ -125,21 +126,21 @@ export function NosotrosSection() {
             className="relative md:col-span-2 rounded-2xl p-7 md:p-8 overflow-hidden cursor-default"
             style={{
               background: "rgba(255,255,255,0.85)",
-              border: "1px solid rgba(197,112,75,0.13)",
+              border: `1px solid rgba(${LUMOS_PRIMARY_RGB},0.13)`,
               backdropFilter: "blur(16px)",
-              boxShadow: "0 2px 32px rgba(197,112,75,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+              boxShadow: `0 2px 32px rgba(${LUMOS_PRIMARY_RGB},0.07), 0 1px 4px rgba(0,0,0,0.04)`,
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#c5704b]/6 to-transparent pointer-events-none" />
-            <span className="absolute top-4 right-6 text-[90px] font-black leading-none select-none pointer-events-none" style={{ color: "rgba(197,112,75,0.05)" }}>01</span>
+            <div className="absolute inset-0 bg-gradient-to-br from-lumos-primary/6 to-transparent pointer-events-none" />
+            <span className="absolute top-4 right-6 text-[90px] font-black leading-none select-none pointer-events-none" style={{ color: `rgba(${LUMOS_PRIMARY_RGB},0.05)` }}>01</span>
             <div className="relative flex flex-col sm:flex-row sm:items-start sm:gap-7">
               <div className="mb-4 sm:mb-0 sm:pt-1 shrink-0">
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: "rgba(197,112,75,0.1)", color: "#c5704b" }}>
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: `rgba(${LUMOS_PRIMARY_RGB},0.1)`, color: LUMOS_PRIMARY_HEX }}>
                   <MisionIcon />
                 </div>
               </div>
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#c5704b] block mb-2">Misión</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-lumos-primary block mb-2">Misión</span>
                 <h3 className="text-xl md:text-2xl font-bold text-[#221a17] leading-snug mb-3">
                   Hacer accesible lo que siempre fue exclusivo
                 </h3>
@@ -157,13 +158,13 @@ export function NosotrosSection() {
             className="relative rounded-2xl p-7 overflow-hidden cursor-default"
             style={{
               background: "rgba(255,255,255,0.85)",
-              border: "1px solid rgba(197,112,75,0.13)",
+              border: `1px solid rgba(${LUMOS_PRIMARY_RGB},0.13)`,
               backdropFilter: "blur(16px)",
-              boxShadow: "0 2px 32px rgba(197,112,75,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+              boxShadow: `0 2px 32px rgba(${LUMOS_PRIMARY_RGB},0.07), 0 1px 4px rgba(0,0,0,0.04)`,
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#d97d52]/7 to-transparent pointer-events-none" />
-            <span className="absolute top-4 right-5 text-[90px] font-black leading-none select-none pointer-events-none" style={{ color: "rgba(197,112,75,0.05)" }}>02</span>
+            <span className="absolute top-4 right-5 text-[90px] font-black leading-none select-none pointer-events-none" style={{ color: `rgba(${LUMOS_PRIMARY_RGB},0.05)` }}>02</span>
             <div className="relative">
               <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style={{ background: "rgba(217,125,82,0.1)", color: "#d97d52" }}>
                 <VisionIcon />
@@ -187,13 +188,13 @@ export function NosotrosSection() {
             className="relative rounded-2xl p-7 overflow-hidden cursor-default"
             style={{
               background: "rgba(255,255,255,0.85)",
-              border: "1px solid rgba(197,112,75,0.13)",
+              border: `1px solid rgba(${LUMOS_PRIMARY_RGB},0.13)`,
               backdropFilter: "blur(16px)",
-              boxShadow: "0 2px 32px rgba(197,112,75,0.07), 0 1px 4px rgba(0,0,0,0.04)",
+              boxShadow: `0 2px 32px rgba(${LUMOS_PRIMARY_RGB},0.07), 0 1px 4px rgba(0,0,0,0.04)`,
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#fab257]/6 to-transparent pointer-events-none" />
-            <span className="absolute top-4 right-5 text-[90px] font-black leading-none select-none pointer-events-none" style={{ color: "rgba(197,112,75,0.05)" }}>03</span>
+            <span className="absolute top-4 right-5 text-[90px] font-black leading-none select-none pointer-events-none" style={{ color: `rgba(${LUMOS_PRIMARY_RGB},0.05)` }}>03</span>
             <div className="relative">
               <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style={{ background: "rgba(250,178,87,0.12)", color: "#fab257" }}>
                 <ValoresIcon />
@@ -214,15 +215,15 @@ export function NosotrosSection() {
             className="relative md:col-span-2 rounded-2xl px-8 py-8 overflow-hidden flex items-center"
             style={{
               background: "rgba(255,255,255,0.55)",
-              border: "1px solid rgba(197,112,75,0.1)",
+              border: `1px solid rgba(${LUMOS_PRIMARY_RGB},0.1)`,
               backdropFilter: "blur(14px)",
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#c5704b]/5 via-transparent to-[#fab257]/5 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-lumos-primary/5 via-transparent to-[#fab257]/5 pointer-events-none" />
             <div className="relative flex items-start gap-5">
               <div
                 className="text-[72px] font-black leading-[0.8] shrink-0 select-none mt-1"
-                style={{ color: "rgba(197,112,75,0.18)", fontFamily: "Georgia, serif" }}
+                style={{ color: `rgba(${LUMOS_PRIMARY_RGB},0.18)`, fontFamily: "Georgia, serif" }}
               >
                 &ldquo;
               </div>
@@ -240,7 +241,7 @@ export function NosotrosSection() {
     {/* ── PARTE 2: founders — fondo oscuro ── */}
     <section className="relative overflow-hidden py-20 md:py-28 px-4 sm:px-8" style={{ background: "#f5ede6" }}>
       {/* Glow decorativo cálido */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full blur-[120px] pointer-events-none" style={{ background: "rgba(197,112,75,0.08)" }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full blur-[120px] pointer-events-none" style={{ background: `rgba(${LUMOS_PRIMARY_RGB},0.08)` }} />
 
       <div className="max-w-6xl mx-auto relative">
         <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
@@ -262,7 +263,7 @@ export function NosotrosSection() {
               <div key={name} className="flex flex-col items-center gap-3">
                 <div
                   className="relative w-[140px] h-[186px] sm:w-[180px] sm:h-[240px] md:w-[210px] md:h-[280px] rounded-2xl overflow-hidden"
-                  style={{ border: "1.5px solid rgba(197,112,75,0.18)", boxShadow: "0 8px 32px rgba(197,112,75,0.12)" }}
+                  style={{ border: `1.5px solid rgba(${LUMOS_PRIMARY_RGB},0.18)`, boxShadow: `0 8px 32px rgba(${LUMOS_PRIMARY_RGB},0.12)` }}
                 >
                   <Image
                     src={img}
@@ -275,7 +276,7 @@ export function NosotrosSection() {
                 </div>
                 <div className="text-center">
                   <p className="text-sm font-semibold text-[#221a17] leading-tight">{name}</p>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#c5704b] mt-0.5">{role}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-lumos-primary mt-0.5">{role}</p>
                 </div>
               </div>
             ))}
@@ -291,10 +292,10 @@ export function NosotrosSection() {
             })}
             className="flex flex-col justify-center"
           >
-            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c5704b] mb-5 block">El equipo</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-lumos-primary mb-5 block">El equipo</span>
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#221a17] leading-snug mb-6">
               Dos ingenieros con<br />
-              <span className="text-[#c5704b]">
+              <span className="text-lumos-primary">
                 una pregunta simple.
               </span>
             </h3>
@@ -312,7 +313,7 @@ export function NosotrosSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="mt-8 h-[2px] max-w-[180px] rounded-full"
-              style={{ background: "#c5704b" }}
+              style={{ background: LUMOS_PRIMARY_HEX }}
             />
           </motion.div>
 

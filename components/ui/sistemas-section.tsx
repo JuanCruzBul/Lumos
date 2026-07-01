@@ -1,5 +1,6 @@
 "use client";
 
+import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Check } from "lucide-react";
 import Image from "next/image";
@@ -220,16 +221,16 @@ export function SistemasSection() {
       className="relative bg-[#fdf8f4] py-16 sm:py-24"
     >
       <div className="pointer-events-none absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#fab257]/6 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#c5704b]/5 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-lumos-primary/5 blur-3xl" />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-8">
 
         {/* Header */}
         <div className="mb-10">
-          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#c5704b] mb-3">Servicios</p>
+          <p className="text-xs font-bold tracking-[0.25em] uppercase text-lumos-primary mb-3">Servicios</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-black leading-tight">
             Todo lo que tu hogar{" "}
-            <span className="italic font-normal text-[#c5704b]">necesita.</span>
+            <span className="italic font-normal text-lumos-primary">necesita.</span>
           </h2>
         </div>
 
@@ -330,7 +331,7 @@ export function SistemasSection() {
                   <a
                     href="#contacto"
                     className="ml-auto text-xs font-bold uppercase tracking-widest text-white px-5 py-2.5 rounded-full transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
-                    style={{ background: "#c5704b" }}
+                    style={{ background: LUMOS_PRIMARY_HEX }}
                   >
                     Consultar
                   </a>

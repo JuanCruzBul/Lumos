@@ -51,6 +51,7 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
         // Lumos palette tokens
+        "lumos-primary": "#c5704b",
         "primary-container": "#fab359",
         "on-primary-container": "#3d1800",
         "on-surface": "#e4e6ed",

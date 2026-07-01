@@ -1,4 +1,5 @@
 "use client";
+import { LUMOS_PRIMARY_HEX, LUMOS_PRIMARY_RGB } from "@/lib/utils";
 import { useRef } from "react";
 import { useScroll, useTransform, motion, MotionValue, useSpring, useReducedMotion } from "framer-motion";
 
@@ -91,7 +92,7 @@ function StepItem({
             style={{
               scale: ringScale,
               opacity: ringOpacity,
-              border: "1.5px solid rgba(197,112,75,0.6)",
+              border: `1.5px solid rgba(${LUMOS_PRIMARY_RGB},0.6)`,
             }}
           />
         )}
@@ -102,7 +103,7 @@ function StepItem({
             style={{
               scale: ring2Scale,
               opacity: ring2Opacity,
-              border: "1px solid rgba(197,112,75,0.35)",
+              border: `1px solid rgba(${LUMOS_PRIMARY_RGB},0.35)`,
             }}
           />
         )}
@@ -112,7 +113,7 @@ function StepItem({
             className="absolute inset-0 rounded-full pointer-events-none"
             style={{
               opacity: glowOpacity,
-              background: "radial-gradient(circle, rgba(197,112,75,0.22) 0%, transparent 75%)",
+              background: `radial-gradient(circle, rgba(${LUMOS_PRIMARY_RGB},0.22) 0%, transparent 75%)`,
               scale: 1.5,
             }}
           />
@@ -124,9 +125,9 @@ function StepItem({
         >
           <div
             className="w-16 h-16 rounded-full flex items-center justify-center bg-[#fefefe]"
-            style={{ border: "1.5px solid rgba(197,112,75,0.45)" }}
+            style={{ border: `1.5px solid rgba(${LUMOS_PRIMARY_RGB},0.45)` }}
           >
-            <span className="text-[#c5704b] text-lg font-bold">{num}</span>
+            <span className="text-lumos-primary text-lg font-bold">{num}</span>
           </div>
         </motion.div>
       </motion.div>
@@ -169,14 +170,14 @@ export function ComoFuncionaSection() {
       className="relative bg-[#fefefe]"
       style={{ height: "280vh" }}
     >
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center px-4 sm:px-8">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center pt-24 md:pt-28 px-4 sm:px-8">
 
         {/* Header */}
         <motion.div
           style={{ opacity: headerOpacity, y: headerY }}
           className="text-center mb-10 md:mb-20"
         >
-          <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">
+          <span className="text-xs uppercase tracking-widest font-semibold text-lumos-primary">
             Proceso
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mt-3">Así de simple</h2>
@@ -197,7 +198,7 @@ export function ComoFuncionaSection() {
               className="h-full"
               style={{
                 width: lineWidth,
-                background: "#c5704b",
+                background: LUMOS_PRIMARY_HEX,
               }}
             />
           </div>

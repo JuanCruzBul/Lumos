@@ -1,3 +1,5 @@
+import { LUMOS_PRIMARY_RGB } from "@/lib/utils";
+
 const testimonios = [
   {
     name: "Mariana R.",
@@ -59,7 +61,7 @@ export function TestimoniosSection() {
     <section id="clientes" className="min-h-screen flex flex-col justify-center py-16 md:py-24 px-4 sm:px-8 bg-[#fefefe]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-widest font-semibold text-[#c5704b]">Testimonios</span>
+          <span className="text-xs uppercase tracking-widest font-semibold text-lumos-primary">Testimonios</span>
           <h2 className="text-3xl md:text-5xl font-bold text-black mt-3">
             Lo que dicen nuestros clientes
           </h2>
@@ -72,7 +74,7 @@ export function TestimoniosSection() {
 
               <div
                 className="text-6xl font-bold leading-none select-none"
-                style={{ color: "rgba(197,112,75,0.18)", fontFamily: "Georgia, serif" }}
+                style={{ color: `rgba(${LUMOS_PRIMARY_RGB},0.18)`, fontFamily: "Georgia, serif" }}
               >
                 &ldquo;
               </div>
@@ -85,8 +87,8 @@ export function TestimoniosSection() {
                 className="flex items-center gap-3 pt-4"
                 style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}
               >
-                <div className="w-9 h-9 rounded-full bg-[#c5704b]/12 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#c5704b] text-xs font-bold">{initial}</span>
+                <div className="w-9 h-9 rounded-full bg-lumos-primary/12 flex items-center justify-center flex-shrink-0">
+                  <span className="text-lumos-primary text-xs font-bold">{initial}</span>
                 </div>
                 <div>
                   <p className="text-black text-sm font-semibold leading-tight">{name}</p>

@@ -1,7 +1,11 @@
 "use client";
+import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
+import { useScrollSpy } from "@/lib/use-scroll-spy";
+import { useNavEntranceAnimation } from "@/lib/use-nav-entrance-animation";
+import { usePillDrag } from "@/lib/use-pill-drag";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -14,182 +18,22 @@ const navLinks = [
   { label: "Contacto", href: "#contacto" },
 ];
 
-type NavPhase = "hidden" | "circle" | "expanded";
-
 export function Navbar() {
-  const [active, setActive] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [pill, setPill] = useState({ left: 0, width: 0, visible: false });
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragHoverId, setDragHoverId] = useState("");
-  const [navPhase, setNavPhase] = useState<NavPhase>("hidden");
-  const [mounted, setMounted] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
-  const pillVisibleRef = useRef(false);
-  const isDraggingRef = useRef(false);
-  const dragStartXRef = useRef(0);
-  const dragPillStartLeftRef = useRef(0);
-  const dragPillStartWidthRef = useRef(0);
-  const didDragRef = useRef(false);
-  const suppressScrollRef = useRef(false);
+  const scrollPauseRef = useRef(false);
 
-  useEffect(() => {
-    const CIRCLE_DELAY = 200;
-    const EXPAND_DELAY = 1800;
-
-    setMounted(true);
-
-    const t1 = setTimeout(() => {
-      setNavPhase("circle");
-    }, CIRCLE_DELAY);
-
-    const t2 = setTimeout(() => {
-      setNavPhase("expanded");
-    }, EXPAND_DELAY);
-
-    return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, []);
-
-  useEffect(() => {
-    if (window.history.scrollRestoration) {
-      window.history.scrollRestoration = "manual";
-    }
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isDraggingRef.current || suppressScrollRef.current) return;
-      if (window.scrollY < 10) { setActive(""); return; }
-      const ids = navLinks.map((l) => l.href.replace("#", ""));
-      for (const id of [...ids].reverse()) {
-        const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 200) { setActive(id); return; }
-      }
-      setActive("");
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (isDraggingRef.current) return;
-    if (!active) {
-      pillVisibleRef.current = false;
-      setPill((p) => ({ ...p, visible: false }));
-      return;
-    }
-    const update = () => {
-      if (isDraggingRef.current) return;
-      const link = linkRefs.current[active];
-      const list = listRef.current;
-      if (!link || !list) return;
-      const lr = link.getBoundingClientRect();
-      const nr = list.getBoundingClientRect();
-      const newLeft = lr.left - nr.left;
-      const newWidth = lr.width;
-      if (!pillVisibleRef.current) {
-        setPill({ left: newLeft, width: newWidth, visible: false });
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setPill({ left: newLeft, width: newWidth, visible: true });
-            pillVisibleRef.current = true;
-          });
-        });
-      } else {
-        setPill({ left: newLeft, width: newWidth, visible: true });
-      }
-    };
-    const tid = setTimeout(update, 20);
-    return () => clearTimeout(tid);
-  }, [active]);
-
-  useEffect(() => {
-    const getClosestLink = (mouseX: number, nr: DOMRect) => {
-      let closestId = "";
-      let closestDist = Infinity;
-      for (const { href } of navLinks) {
-        const id = href.replace("#", "");
-        const link = linkRefs.current[id];
-        if (!link) continue;
-        const lr = link.getBoundingClientRect();
-        const center = lr.left - nr.left + lr.width / 2;
-        const dist = Math.abs(mouseX - center);
-        if (dist < closestDist) { closestDist = dist; closestId = id; }
-      }
-      return closestId;
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDraggingRef.current) return;
-      e.preventDefault();
-      const dx = e.clientX - dragStartXRef.current;
-      if (Math.abs(dx) > 3) didDragRef.current = true;
-      const list = listRef.current;
-      if (!list) return;
-      const nr = list.getBoundingClientRect();
-      const mouseX = e.clientX - nr.left;
-      const clampedX = Math.max(0, Math.min(mouseX, nr.width));
-      const rawLeft = dragPillStartLeftRef.current + dx;
-      const nearestId = getClosestLink(clampedX, nr);
-      const nearestLink = nearestId ? linkRefs.current[nearestId] : null;
-      const nearestLr = nearestLink?.getBoundingClientRect();
-      const previewWidth = nearestLr ? nearestLr.width : dragPillStartWidthRef.current;
-      const previewLeft = nearestLr ? nearestLr.left - nr.left : rawLeft;
-      const nearestCenter = nearestLr ? nearestLr.left - nr.left + nearestLr.width / 2 : clampedX;
-      const distToNearest = Math.abs(clampedX - nearestCenter);
-      const snapRadius = 30;
-      const t = Math.max(0, 1 - distToNearest / snapRadius);
-      const interpolatedLeft = rawLeft + (previewLeft - rawLeft) * t * 0.5;
-      const clampedLeft = Math.max(0, Math.min(interpolatedLeft, nr.width - previewWidth));
-      setPill((p) => ({ ...p, left: clampedLeft, width: previewWidth }));
-      setDragHoverId(nearestId);
-    };
-
-    const handleMouseUp = (e: MouseEvent) => {
-      if (!isDraggingRef.current) return;
-      isDraggingRef.current = false;
-      setIsDragging(false);
-      setDragHoverId("");
-      const list = listRef.current;
-      if (!list) return;
-      const nr = list.getBoundingClientRect();
-      const mouseX = e.clientX - nr.left;
-      const closestId = getClosestLink(mouseX, nr);
-      if (closestId) {
-        setActive(closestId);
-        const el = document.getElementById(closestId);
-        if (el) {
-          suppressScrollRef.current = true;
-          el.scrollIntoView({ behavior: "smooth" });
-          setTimeout(() => { suppressScrollRef.current = false; }, 800);
-        }
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: false });
-    window.addEventListener("mouseup", handleMouseUp);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, []);
-
-  const handleLinkMouseDown = (e: React.MouseEvent) => {
-    if (!pillVisibleRef.current) return;
-    e.preventDefault();
-    isDraggingRef.current = true;
-    didDragRef.current = false;
-    dragStartXRef.current = e.clientX;
-    dragPillStartLeftRef.current = pill.left;
-    dragPillStartWidthRef.current = pill.width;
-    setIsDragging(true);
-  };
-
-  const handleLinkClick = (e: React.MouseEvent) => {
-    if (didDragRef.current) e.preventDefault();
-  };
+  const { navPhase, mounted } = useNavEntranceAnimation();
+  const { active, setActive } = useScrollSpy(navLinks, scrollPauseRef);
+  const { pill, isDragging, dragHoverId, handleLinkMouseDown, handleLinkClick } = usePillDrag({
+    navLinks,
+    active,
+    setActive,
+    listRef,
+    linkRefs,
+    scrollPauseRef,
+  });
 
   const pillStyle: React.CSSProperties = (() => {
     const base: React.CSSProperties = {
@@ -300,7 +144,7 @@ export function Navbar() {
                     height: "100%",
                     left: pill.left,
                     width: pill.width,
-                    background: "#c5704b",
+                    background: LUMOS_PRIMARY_HEX,
                     opacity: pill.visible ? 1 : 0,
                     willChange: "left, width, opacity",
                     transition: isDragging

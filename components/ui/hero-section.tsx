@@ -1,4 +1,5 @@
 "use client";
+import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
 import Image from "next/image";
 
 export function HeroSection() {
@@ -47,24 +48,24 @@ export function HeroSection() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path className="path-draw stagger-1" d="M 30 20 L 30 80 L 68 80" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            <path className="path-draw stagger-2" d="M 90 20 L 90 60 C 90 75 101 80 112 80 C 123 80 134 75 134 60 L 134 20" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            <path className="path-draw stagger-3" d="M 156 80 L 156 20 L 186 65 L 216 20 L 216 80" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            <circle className="path-draw stagger-4" cx="268" cy="50" r="30" stroke="#c5704b" strokeWidth="6" />
-            <path className="path-draw stagger-5" d="M 348 30 C 348 23 341 20 331 20 C 321 20 314 27 314 37 C 314 53 348 47 348 63 C 348 77 341 80 331 80 C 321 80 314 73 314 66" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" />
+            <path className="path-draw stagger-1" d="M 30 20 L 30 80 L 68 80" stroke={LUMOS_PRIMARY_HEX} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <path className="path-draw stagger-2" d="M 90 20 L 90 60 C 90 75 101 80 112 80 C 123 80 134 75 134 60 L 134 20" stroke={LUMOS_PRIMARY_HEX} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <path className="path-draw stagger-3" d="M 156 80 L 156 20 L 186 65 L 216 20 L 216 80" stroke={LUMOS_PRIMARY_HEX} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <circle className="path-draw stagger-4" cx="268" cy="50" r="30" stroke={LUMOS_PRIMARY_HEX} strokeWidth="6" />
+            <path className="path-draw stagger-5" d="M 348 30 C 348 23 341 20 331 20 C 321 20 314 27 314 37 C 314 53 348 47 348 63 C 348 77 341 80 331 80 C 321 80 314 73 314 66" stroke={LUMOS_PRIMARY_HEX} strokeWidth="6" strokeLinecap="round" />
           </svg>
         </div>
 
         {/* CTA Buttons */}
         <div className="hero-buttons flex flex-wrap justify-center gap-4">
           <button
-            className="hero-btn-primary bg-[#c5704b] text-white px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-bold uppercase tracking-wider"
+            className="hero-btn-primary bg-lumos-primary text-white px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-bold uppercase tracking-wider"
             onClick={() => document.getElementById("productos")?.scrollIntoView({ behavior: "smooth" })}
           >
             Conocer Sistemas
           </button>
           <button
-            className="hero-btn-outline text-[#c5704b] px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#c5704b]/40 hover:border-[#c5704b]/70 transition-colors duration-300"
+            className="hero-btn-outline text-lumos-primary px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-lumos-primary/40 hover:border-lumos-primary/70 transition-colors duration-300"
             onClick={() => document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" })}
           >
             Ver Demo

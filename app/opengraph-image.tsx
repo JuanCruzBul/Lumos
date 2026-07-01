@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
 
 export const runtime = "edge";
 export const alt = "Lumos — Domótica y Hogar Inteligente";
@@ -41,7 +42,7 @@ export default function OgImage() {
             fontSize: 96,
             fontWeight: 700,
             letterSpacing: "-0.03em",
-            color: "#c5704b",
+            color: LUMOS_PRIMARY_HEX,
             marginBottom: 16,
           }}
         >
@@ -66,7 +67,7 @@ export default function OgImage() {
             marginTop: 40,
             width: 80,
             height: 3,
-            background: "#c5704b",
+            background: LUMOS_PRIMARY_HEX,
             borderRadius: 9999,
           }}
         />

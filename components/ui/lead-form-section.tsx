@@ -1,5 +1,6 @@
 "use client";
 
+import { LUMOS_PRIMARY_HEX, LUMOS_PRIMARY_RGB } from "@/lib/utils";
 import { useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, Loader2, CheckCircle, AlertCircle, Sparkles, ShieldCheck, Clock } from "lucide-react";
@@ -68,7 +69,7 @@ export function LeadFormSection() {
       />
       <motion.div
         className="pointer-events-none absolute right-1/4 bottom-0 h-[400px] w-[400px] rounded-full blur-[130px]"
-        style={{ background: "radial-gradient(circle, rgba(197,112,75,0.15) 0%, transparent 70%)" }}
+        style={{ background: `radial-gradient(circle, rgba(${LUMOS_PRIMARY_RGB},0.15) 0%, transparent 70%)` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, delay: 0.2 }}
@@ -84,7 +85,7 @@ export function LeadFormSection() {
         >
           <span
             className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white mb-6"
-            style={{ background: "#c5704b" }}
+            style={{ background: LUMOS_PRIMARY_HEX }}
           >
             <Sparkles className="h-3.5 w-3.5" />
             Cotización gratis y sin compromiso
@@ -92,7 +93,7 @@ export function LeadFormSection() {
 
           <h2 className="text-3xl md:text-5xl font-bold text-[#2a2420] leading-[1.1] mb-4 tracking-tight">
             Empezá a transformar tu hogar{" "}
-            <span className="text-[#c5704b]">
+            <span className="text-lumos-primary">
               hoy mismo
             </span>
           </h2>
@@ -161,7 +162,7 @@ export function LeadFormSection() {
                     ? "#3a9c6e"
                     : formState === "error"
                       ? "#c5504b"
-                      : "#c5704b",
+                      : LUMOS_PRIMARY_HEX,
               }}
               whileHover={formState === "idle" ? { scale: 1.02 } : {}}
               whileTap={formState === "idle" ? { scale: 0.98 } : {}}
@@ -185,7 +186,7 @@ export function LeadFormSection() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-black/5 pt-6">
             {trustPoints.map(({ icon: Icon, label }) => (
               <span key={label} className="inline-flex items-center gap-1.5 text-black/50 text-xs">
-                <Icon className="h-3.5 w-3.5 text-[#c5704b]" />
+                <Icon className="h-3.5 w-3.5 text-lumos-primary" />
                 {label}
               </span>
             ))}
@@ -233,7 +234,7 @@ function RoundedField({
         onChange={onChange}
         required
         autoComplete={autoCompleteMap[name] ?? "off"}
-        className="w-full rounded-full bg-[#fdf8f4] border border-black/10 px-5 py-3.5 text-sm text-black placeholder:text-black/35 focus:outline-none focus:border-[#c5704b] focus:ring-2 focus:ring-[#c5704b]/15 transition-colors"
+        className="w-full rounded-full bg-[#fdf8f4] border border-black/10 px-5 py-3.5 text-sm text-black placeholder:text-black/35 focus:outline-none focus:border-lumos-primary focus:ring-2 focus:ring-lumos-primary/15 transition-colors"
       />
     </div>
   );
@@ -267,7 +268,7 @@ function RoundedTextarea({
         onChange={onChange}
         rows={3}
         required
-        className="w-full rounded-3xl bg-[#fdf8f4] border border-black/10 px-5 py-3.5 text-sm text-black placeholder:text-black/35 focus:outline-none focus:border-[#c5704b] focus:ring-2 focus:ring-[#c5704b]/15 transition-colors resize-none"
+        className="w-full rounded-3xl bg-[#fdf8f4] border border-black/10 px-5 py-3.5 text-sm text-black placeholder:text-black/35 focus:outline-none focus:border-lumos-primary focus:ring-2 focus:ring-lumos-primary/15 transition-colors resize-none"
       />
     </div>
   );

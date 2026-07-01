@@ -1,5 +1,6 @@
 "use client";
 
+import { LUMOS_PRIMARY_HEX, LUMOS_PRIMARY_RGB } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -61,7 +62,7 @@ export function IntegracionesSection() {
         className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at bottom left, rgba(197,112,75,0.07) 0%, transparent 65%)",
+            `radial-gradient(ellipse at bottom left, rgba(${LUMOS_PRIMARY_RGB},0.07) 0%, transparent 65%)`,
         }}
       />
 
@@ -74,7 +75,7 @@ export function IntegracionesSection() {
             <p
               className="text-xs font-bold tracking-[0.25em] uppercase mb-8 transition-all duration-700"
               style={{
-                color: "#c5704b",
+                color: LUMOS_PRIMARY_HEX,
                 opacity: inView ? 1 : 0,
                 transform: inView ? "translateY(0)" : "translateY(16px)",
                 transitionDelay: "0ms",
@@ -92,7 +93,7 @@ export function IntegracionesSection() {
               }}
             >
               Tu hogar, convertido en{" "}
-              <span className="italic font-normal" style={{ color: "#c5704b" }}>
+              <span className="italic font-normal" style={{ color: LUMOS_PRIMARY_HEX }}>
                 un sistema que te entiende.
               </span>
             </h2>
@@ -129,8 +130,8 @@ export function IntegracionesSection() {
                   <div
                     className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors duration-200 cursor-default"
                     style={{
-                      background: "rgba(197,112,75,0.07)",
-                      border: "1px solid rgba(197,112,75,0.18)",
+                      background: `rgba(${LUMOS_PRIMARY_RGB},0.07)`,
+                      border: `1px solid rgba(${LUMOS_PRIMARY_RGB},0.18)`,
                       color: "rgba(0,0,0,0.5)",
                     }}
                   >
@@ -155,7 +156,7 @@ export function IntegracionesSection() {
                 >
                   <span
                     className="text-xs font-bold tabular-nums pt-0.5 shrink-0 leading-none"
-                    style={{ color: "rgba(197,112,75,0.80)", letterSpacing: "0.05em" }}
+                    style={{ color: `rgba(${LUMOS_PRIMARY_RGB},0.80)`, letterSpacing: "0.05em" }}
                   >
                     {item.num}
                   </span>
@@ -193,7 +194,7 @@ export function IntegracionesSection() {
               className="relative rounded-3xl overflow-hidden"
               style={{
                 boxShadow:
-                  "0 40px 100px rgba(0,0,0,0.10), 0 0 0 1px rgba(197,112,75,0.08)",
+                  `0 40px 100px rgba(0,0,0,0.10), 0 0 0 1px rgba(${LUMOS_PRIMARY_RGB},0.08)`,
               }}
             >
               <Image
@@ -209,7 +210,7 @@ export function IntegracionesSection() {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(197,112,75,0.04) 0%, transparent 50%)",
+                    `linear-gradient(135deg, rgba(${LUMOS_PRIMARY_RGB},0.04) 0%, transparent 50%)`,
                 }}
               />
             </div>
@@ -220,7 +221,7 @@ export function IntegracionesSection() {
               style={{
                 background: "rgba(255,255,255,0.94)",
                 backdropFilter: "blur(14px)",
-                border: "1px solid rgba(197,112,75,0.16)",
+                border: `1px solid rgba(${LUMOS_PRIMARY_RGB},0.16)`,
                 boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
                 opacity: inView ? 1 : 0,
                 transform: inView ? "translateY(0)" : "translateY(-12px)",
@@ -228,7 +229,7 @@ export function IntegracionesSection() {
               }}
             >
               {/* Mic icon */}
-              <svg viewBox="0 0 24 24" fill="none" stroke="#c5704b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke={LUMOS_PRIMARY_HEX} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 shrink-0">
                 <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
                 <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
                 <line x1="12" y1="19" x2="12" y2="23" />
