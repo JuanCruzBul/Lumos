@@ -176,7 +176,7 @@ export function Navbar() {
     };
   }, []);
 
-  const handleLinkMouseDown = (e: React.MouseEvent, _id: string) => {
+  const handleLinkMouseDown = (e: React.MouseEvent) => {
     if (!pillVisibleRef.current) return;
     e.preventDefault();
     isDraggingRef.current = true;
@@ -187,7 +187,7 @@ export function Navbar() {
     setIsDragging(true);
   };
 
-  const handleLinkClick = (e: React.MouseEvent, _href: string) => {
+  const handleLinkClick = (e: React.MouseEvent) => {
     if (didDragRef.current) e.preventDefault();
   };
 
@@ -316,8 +316,8 @@ export function Navbar() {
                       key={label}
                       href={href}
                       ref={(el) => { linkRefs.current[id] = el; }}
-                      onMouseDown={(e) => handleLinkMouseDown(e, id)}
-                      onClick={(e) => handleLinkClick(e, href)}
+                      onMouseDown={handleLinkMouseDown}
+                      onClick={handleLinkClick}
                       draggable={false}
                       className={`relative z-10 text-sm font-semibold px-5 py-2.5 rounded-full whitespace-nowrap select-none transition-colors duration-200 ${
                         isDragging ? "cursor-grabbing" : "cursor-pointer"
