@@ -14,12 +14,11 @@
 
 ## Media
 
-### TD-002 — Código muerto: wrappers de dynamic import, prop y parámetros sin usar
+### TD-002 — Código muerto: wrappers de dynamic import, prop y parámetros sin usar ✅ Resuelto (2026-07-01)
 
-- **Archivos afectados:** `components/ui/navbar-client.tsx:1-11`, `components/ui/hero-scroll-client.tsx:1-11`, `components/ui/sistemas-section.tsx:169,228`, `components/ui/navbar.tsx:179,190`
-- **Descripción:** `navbar-client.tsx` y `hero-scroll-client.tsx` envuelven `Navbar`/`HeroScrollDemo` en `dynamic(..., { ssr: false })`, pero ninguno se importa en el proyecto: `app/layout.tsx` y `app/page.tsx` importan los componentes directo. `SistemasSection` acepta `hideHeader` pero su único caller (`app/page.tsx:21`) nunca la pasa. En `navbar.tsx`, `handleLinkMouseDown(e, _id)` y `handleLinkClick(e, _href)` reciben un parámetro que no usan. Detectado en auditoría 2026-07-01.
-- **Riesgo:** Medio. Sugiere una estrategia de code-splitting o funcionalidad que en realidad no está activa, y puede llevar a que alguien pierda tiempo editando el wrapper equivocado.
-- **Recomendación:** Decidir si el lazy-loading de `Navbar`/`HeroScrollDemo` aporta valor real; si no, borrar los dos wrappers. Quitar la prop `hideHeader` si no hay plan concreto de usarla, y simplificar las firmas de `handleLinkMouseDown`/`handleLinkClick` sin el parámetro sin uso.
+- **Archivos afectados:** `components/ui/navbar-client.tsx` (eliminado), `components/ui/hero-scroll-client.tsx` (eliminado), `components/ui/sistemas-section.tsx`, `components/ui/navbar.tsx`
+- **Descripción:** `navbar-client.tsx` y `hero-scroll-client.tsx` envolvían `Navbar`/`HeroScrollDemo` en `dynamic(..., { ssr: false })`, pero ninguno se importaba en el proyecto. `SistemasSection` aceptaba `hideHeader` sin ningún caller que la pasara. En `navbar.tsx`, `handleLinkMouseDown`/`handleLinkClick` recibían un parámetro que no usaban.
+- **Resolución:** Se borraron `navbar-client.tsx` y `hero-scroll-client.tsx`. Se quitó la prop `hideHeader` de `SistemasSection` (el header ahora siempre se renderiza). Se simplificaron las firmas de `handleLinkMouseDown`/`handleLinkClick` y sus callers, sin el parámetro sin uso.
 
 ### TD-003 — Color de marca hardcodeado en 67+ lugares
 
