@@ -57,20 +57,16 @@ html {
   }
 }
 
-/* SVG path fade-in animation (opacity only — GPU compositable) */
-.path-draw {
+/* Wordmark fallback: si el JS de la animación de dibujo no llega a
+   ejecutarse (hidratación rota, chunks cacheados), el nombre aparece
+   igual. El useEffect del hero cancela esta animación al tomar control. */
+.wordmark-fallback {
   opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-  will-change: opacity;
+  animation: wordmarkReveal 0.5s ease 1.2s forwards;
 }
-@keyframes fadeIn {
+@keyframes wordmarkReveal {
   to { opacity: 1; }
 }
-.stagger-1 { animation-delay: 0.05s; }
-.stagger-2 { animation-delay: 0.15s; }
-.stagger-3 { animation-delay: 0.25s; }
-.stagger-4 { animation-delay: 0.35s; }
-.stagger-5 { animation-delay: 0.45s; }
 
 @keyframes floating {
   0%   { transform: translateY(0px); }
