@@ -1,7 +1,38 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { animate, createDrawable, stagger } from "animejs";
 
 export function HeroSection() {
+  const wordmarkRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    const svg = wordmarkRef.current;
+    if (!svg) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      svg.style.animation = "none";
+      svg.style.opacity = "1";
+      return;
+    }
+
+    const drawables = createDrawable(svg.querySelectorAll("path, circle"));
+
+    const drawAnimation = animate(drawables, {
+      draw: ["0 0", "0 1"],
+      delay: stagger(120),
+      duration: 900,
+      ease: "inOutQuad",
+    });
+
+    svg.style.animation = "none";
+    svg.style.opacity = "1";
+
+    return () => {
+      drawAnimation.pause();
+    };
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       {/* Background image */}
@@ -41,17 +72,18 @@ export function HeroSection() {
         <div className="w-full max-w-[220px] sm:max-w-xs md:max-w-sm mb-6 sm:mb-10">
           <h1 className="sr-only">Lumos — Domótica y Hogar Inteligente</h1>
           <svg
+            ref={wordmarkRef}
             aria-hidden="true"
-            className="w-full h-auto drop-shadow-[0_0_20px_rgba(197,112,75,0.4)]"
+            className="wordmark-fallback w-full h-auto drop-shadow-[0_0_20px_rgba(197,112,75,0.4)]"
             viewBox="20 10 340 80"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path className="path-draw stagger-1" d="M 30 20 L 30 80 L 68 80" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            <path className="path-draw stagger-2" d="M 90 20 L 90 60 C 90 75 101 80 112 80 C 123 80 134 75 134 60 L 134 20" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            <path className="path-draw stagger-3" d="M 156 80 L 156 20 L 186 65 L 216 20 L 216 80" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            <circle className="path-draw stagger-4" cx="268" cy="50" r="30" stroke="#c5704b" strokeWidth="6" />
-            <path className="path-draw stagger-5" d="M 348 30 C 348 23 341 20 331 20 C 321 20 314 27 314 37 C 314 53 348 47 348 63 C 348 77 341 80 331 80 C 321 80 314 73 314 66" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" />
+            <path d="M 30 20 L 30 80 L 68 80" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 90 20 L 90 60 C 90 75 101 80 112 80 C 123 80 134 75 134 60 L 134 20" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 156 80 L 156 20 L 186 65 L 216 20 L 216 80" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="268" cy="50" r="30" stroke="#c5704b" strokeWidth="6" />
+            <path d="M 348 30 C 348 23 341 20 331 20 C 321 20 314 27 314 37 C 314 53 348 47 348 63 C 348 77 341 80 331 80 C 321 80 314 73 314 66" stroke="#c5704b" strokeWidth="6" strokeLinecap="round" />
           </svg>
         </div>
 
