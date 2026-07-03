@@ -1,53 +1,83 @@
 # Deuda Técnica — Lumos
 
-**Última actualización:** 2026-07-01 (auditoría `docs/audit/2026-07-01.md`)
+**Última actualización:** 2026-07-03 (auditoría `docs/audit/2026-07-03.md`)
 
 ---
 
-## Alta
-
-### TD-001 — Duplicación de lógica de formulario entre `contact-section` y `lead-form-section` ✅ Resuelto (2026-07-01)
-
-- **Archivos afectados:** `components/ui/contact-section.tsx`, `components/ui/lead-form-section.tsx`, `lib/use-contact-form.ts`
-- **Descripción:** Ambos componentes definían el mismo `type FormState`, el mismo estado `fields` (nombre/email/telefono/mensaje), el mismo listener del evento `lumos:plan-selected`, y la misma función `handleSubmit` que hace `fetch("/api/contact", ...)` con el mismo manejo de loading/success/error. Solo diferían los subcomponentes de campo (línea inferior vs. bordes redondeados) y el layout.
-- **Resolución:** Se extrajo la lógica compartida al hook `useContactForm()` en `lib/use-contact-form.ts` (estado de campos, `FormState`, listener de `lumos:plan-selected`, `handleChange`, `handleSubmit`). Ambos componentes ahora solo son responsables de su presentación y consumen el mismo hook para el comportamiento.
-
 ## Media
 
-### TD-002 — Código muerto: wrappers de dynamic import, prop y parámetros sin usar ✅ Resuelto (2026-07-01)
+### TD-008 — Cuatro componentes de campo de formulario casi idénticos entre las dos secciones de contacto
 
-- **Archivos afectados:** `components/ui/navbar-client.tsx` (eliminado), `components/ui/hero-scroll-client.tsx` (eliminado), `components/ui/sistemas-section.tsx`, `components/ui/navbar.tsx`
-- **Descripción:** `navbar-client.tsx` y `hero-scroll-client.tsx` envolvían `Navbar`/`HeroScrollDemo` en `dynamic(..., { ssr: false })`, pero ninguno se importaba en el proyecto. `SistemasSection` aceptaba `hideHeader` sin ningún caller que la pasara. En `navbar.tsx`, `handleLinkMouseDown`/`handleLinkClick` recibían un parámetro que no usaban.
-- **Resolución:** Se borraron `navbar-client.tsx` y `hero-scroll-client.tsx`. Se quitó la prop `hideHeader` de `SistemasSection` (el header ahora siempre se renderiza). Se simplificaron las firmas de `handleLinkMouseDown`/`handleLinkClick` y sus callers, sin el parámetro sin uso.
+- **Archivos afectados:** `components/ui/contact-section.tsx:227-334`, `components/ui/lead-form-section.tsx:200-275`
+- **Descripción:** `Field`/`TextareaField` y `RoundedField`/`RoundedTextarea` comparten props idénticas, el mismo `autoCompleteMap` copiado dos veces y la misma estructura label+control; solo difiere el estilo. Los colores de estado del botón (`#3a9c6e`, `#c5504b`) también están duplicados en ambos `buttonConfig`. TD-001 unificó la lógica pero no la presentación. Detectado en auditoría 2026-07-03.
+- **Riesgo:** Agregar un campo o cambiar el comportamiento visual exige tocar 4 componentes en 2 archivos; ya hay drift menor (`rows={3}` vs `rows={4}`) y el drift crece con cada iteración.
+- **Recomendación:** Extraer a `components/ui/form-fields.tsx` un `FormField`/`FormTextarea` con prop `variant: "underline" | "rounded"` (o className inyectable), y un único `autoCompleteMap` y par de constantes `FORM_SUCCESS_COLOR`/`FORM_ERROR_COLOR` compartidos. Ambas secciones consumen esos componentes.
 
-### TD-003 — Color de marca hardcodeado en 67+ lugares ✅ Resuelto (2026-07-01)
+### TD-009 — Trabajo de animación corriendo de forma permanente aunque la sección no esté en pantalla
 
-- **Archivos afectados:** 12 archivos, entre ellos `components/ui/navbar.tsx`, `components/ui/contact-section.tsx`, `components/ui/lead-form-section.tsx`, `components/ui/sistemas-section.tsx`, `components/ui/hero-scroll-demo.tsx`, `app/opengraph-image.tsx`
-- **Descripción:** El color de marca `#c5704b` aparece como string literal 67 veces en 12 archivos (clases `text-[#c5704b]`, `style={{ background: "#c5704b" }}`, SVGs a mano), pese a que `tailwind.config.ts:53-60` ya define un sistema de tokens de color propio de Lumos que no incluye este tono. Detectado en auditoría 2026-07-01.
-- **Resolución:** Se agregó el token `lumos-primary` (`#c5704b`) en `tailwind.config.ts` y se reemplazaron todas las clases `text-[#c5704b]`, `bg-[#c5704b]` y `border-[#c5704b]` por `text-lumos-primary`, `bg-lumos-primary` y `border-lumos-primary`. Se agregaron las constantes `LUMOS_PRIMARY_HEX` y `LUMOS_PRIMARY_RGB` en `lib/utils.ts`, y se reemplazaron todos los usos del color dentro de `style={{...}}`, atributos SVG (`fill`/`stroke`) y strings de `rgba(197,112,75,...)` en los 12 archivos afectados (incluyendo `app/opengraph-image.tsx`, que corre en edge runtime). El único literal `#c5704b` restante en el código es la definición de `--primary` en `app/globals.css` (fuente de verdad del token de shadcn/ui) y la propia constante en `lib/utils.ts`.
+- **Archivos afectados:** `components/ui/sistemas-section.tsx:187-202`, `components/ui/nosotros-section.tsx:44-54`
+- **Descripción:** `SistemasSection` corre un loop de `requestAnimationFrame` toda la vida de la página (barra de progreso + rotación del carrusel cada 4s) aunque la sección esté fuera del viewport. `NosotrosSection` registra un `mousemove` global que escribe transforms de parallax en cada movimiento del mouse, también sin chequear visibilidad. Detectado en auditoría 2026-07-03.
+- **Riesgo:** Style recalcs y montaje/desmontaje de paneles (`AnimatePresence`) en secciones invisibles consumen main thread y batería de forma continua, compitiendo con las animaciones que sí están en pantalla.
+- **Recomendación:** En ambos componentes, gates con `IntersectionObserver` sobre la sección: en `SistemasSection` setear `pausedRef.current = !isIntersecting` (la infraestructura de pausa ya existe para el hover); en `NosotrosSection` registrar/desregistrar el listener de `mousemove` según visibilidad.
 
-### TD-004 — `navbar.tsx` concentra demasiadas responsabilidades ✅ Resuelto (2026-07-01)
+### TD-010 — Hydration mismatch persistente en los formularios (framer-motion)
 
-- **Archivos afectados:** `components/ui/navbar.tsx`, `lib/use-scroll-spy.ts` (nuevo), `lib/use-nav-entrance-animation.ts` (nuevo), `lib/use-pill-drag.ts` (nuevo)
-- **Descripción:** Un solo componente maneja scroll-spy, tres fases de animación de entrada, un sistema completo de drag-and-drop del pill indicador con snapping, y el menú mobile — 10 `useState`/`useRef` y 5 `useEffect` coordinados entre sí. El historial de commits recientes (`fix(scroll-animation)` ×3) muestra que esta zona ya generó bugs de hidratación y timing. Detectado en auditoría 2026-07-01.
-- **Resolución:** Se extrajeron tres hooks: `useScrollSpy(navLinks, pausedRef)` (estado `active` + listener de scroll), `useNavEntranceAnimation()` (fases hidden/circle/expanded + reset de `scrollRestoration`) y `usePillDrag({ navLinks, active, setActive, listRef, linkRefs, scrollPauseRef })` (posición/visibilidad del pill y su drag-to-snap). Los dos primeros no comparten estado con el de drag; la coordinación entre drag y scroll-spy se resolvió con una única ref `scrollPauseRef` que `usePillDrag` activa mientras el usuario arrastra o mientras corre el scroll suave posterior al snap, y que `useScrollSpy` respeta para no pisar el `active` en esos momentos. `Navbar` quedó como componente de presentación que solo orquesta el render con el resultado de los tres hooks.
+- **Archivos afectados:** `components/ui/lead-form-section.tsx`, `components/ui/contact-section.tsx`
+- **Descripción:** React reporta en dev un hydration mismatch (`style={{}}`) sobre los inputs/textareas de ambas secciones de formulario — observado en runtime el 2026-07-02 (overlay de Next con "1 Issue" permanente). El commit `834f0e1` resolvió un warning similar de framer-motion; esta variante quedó viva. Detectado en auditoría 2026-07-03.
+- **Riesgo:** El overlay rojo constante entrena al equipo a ignorar errores de hidratación (el próximo mismatch real pasa desapercibido), y en React 19 el mismatch fuerza re-render del subtree en cliente, desperdiciando el SSR de esas secciones.
+- **Recomendación:** Reproducir con el overlay de dev y aislar qué wrapper de framer-motion inyecta `style` en los hijos (probable interacción de `motion.div` + `useInView` sobre el card del formulario). Si el `initial` de framer es la causa, mover la animación a un wrapper que no contenga los inputs, o inicializar con `style` explícito idéntico en SSR y cliente.
 
-### TD-005 — Falta de tipado explícito y mezcla de mock data con UI en `SmartHomeDashboard` ✅ Resuelto (2026-07-01)
+### TD-011 — `CLAUDE.md` desactualizado respecto de la estructura real
 
-- **Archivos afectados:** `components/ui/hero-scroll-demo.tsx`, `components/ui/smart-home-dashboard-data.ts` (nuevo)
-- **Descripción:** `SmartHomeDashboard` recibía sus props sin una `interface`/`type` explícito — TypeScript solo inferia a partir de los valores por defecto en la desestructuración. Además mezclaba datos de ejemplo hardcodeados (`forecast`, `securityLogs`, `energyData`, 25+ líneas de arrays) con la lógica de presentación e interacción en un archivo de 448 líneas. Detectado en auditoría 2026-07-01.
-- **Resolución:** Se definió `type SmartHomeDashboardProps` explícito (incluyendo `type Light`) y se movieron `forecast`, `securityLogs`, `energyData` y `defaultInitialLights` a `components/ui/smart-home-dashboard-data.ts`, que el componente ahora importa. `SmartHomeDashboard` quedó enfocado solo en estado y presentación.
+- **Archivos afectados:** `CLAUDE.md`
+- **Descripción:** La estructura documentada lista `value-props.tsx`, `footer.tsx` y `components/ui/utils.ts` que ya no existen, y omite los 4 hooks de `lib/`, `app/api/contact/route.ts`, `sitemap.ts`, `robots.ts`, `opengraph-image.tsx`, `smart-home-dashboard-data.ts` y las secciones `integraciones-section` y `lead-form-section`. Detectado en auditoría 2026-07-03.
+- **Riesgo:** `CLAUDE.md` es el contexto que cargan las sesiones de Claude Code y la referencia de onboarding; una estructura falsa produce suposiciones erróneas (p. ej. que existe un footer) y decisiones basadas en convenciones que ya no aplican.
+- **Recomendación:** Regenerar el árbol de estructura desde el filesystem real, agregar la convención de hooks en `lib/` (extraer lógica compartida a hooks con prefijo `use-`) y documentar el endpoint `/api/contact` con sus variables de entorno (`RESEND_API_KEY`, `RESEND_FROM_EMAIL`).
 
 ## Baja
 
-### TD-006 — Helper `cn()` duplicado y sin usar en ningún lado ✅ Resuelto (2026-07-01)
+### TD-012 — `integraciones-section` reimplementa `useInView` a mano
 
-- **Archivos afectados:** `lib/utils.ts`, `components/ui/utils.ts` (eliminado)
-- **Descripción:** Ambos archivos eran idénticos byte por byte (helper `cn()` con clsx + tailwind-merge). Ningún componente del proyecto lo importaba. Detectado en auditoría 2026-07-01.
-- **Resolución:** Se borró `components/ui/utils.ts`. Se confirmó que ningún archivo lo importaba antes de eliminarlo; `lib/utils.ts` queda como única fuente (la ruta que espera `components.json` para componentes shadcn/ui).
+- **Archivos afectados:** `components/ui/integraciones-section.tsx:8-24`
+- **Descripción:** Define un hook local `useInView` con `IntersectionObserver` y anima con estilos inline de transición, mientras el resto de las secciones usa `useInView`/`whileInView` de framer-motion (ya dependencia del proyecto). Detectado en auditoría 2026-07-03.
+- **Riesgo:** Dos mecanismos de reveal para el mismo efecto: más código propio que mantener y ajustes de timing/easing no transferibles entre secciones.
+- **Recomendación:** Migrar la sección a `whileInView` de framer-motion como las demás; si se prefiere conservar el hook custom (es más liviano), moverlo a `lib/use-in-view.ts` y usarlo consistentemente.
+
+### TD-013 — `sistemas-section` mezcla 140+ líneas de data y 4 íconos SVG con la lógica del carrusel
+
+- **Archivos afectados:** `components/ui/sistemas-section.tsx:9-146`
+- **Descripción:** El array `SERVICES`, el mapa `ECOSYSTEMS` con sus logos y 4 íconos SVG conviven con el carrusel en 382 líneas — el mismo patrón que TD-005 resolvió para el dashboard. Además `ECOSYSTEMS` es `Record<string, ...>` con claves string libres: un typo en `ecosystems: [...]` compila y desaparece silenciosamente del render. Detectado en auditoría 2026-07-03.
+- **Riesgo:** Editar contenido de marketing requiere navegar lógica de animación, y el tipado débil convierte errores de datos en fallas silenciosas de UI.
+- **Recomendación:** Extraer data e íconos a `components/ui/sistemas-data.tsx` siguiendo el patrón de `smart-home-dashboard-data.ts`, y tipar `type EcosystemId = "alexa" | "google" | "ha" | "homekit"` usándolo en `ECOSYSTEMS` y en `ecosystems: EcosystemId[]`.
 
 ---
 
 ## Resueltos
 
-_Ninguno todavía — esta es la primera auditoría del proyecto (2026-07-01)._
+### TD-007 — Endpoint público `/api/contact` sin rate limiting ni validación de entrada ✅
+
+- Detectado en auditoría 2026-07-03 · resuelto en 2026-07-03 (rama `fix/td-007-contact-api-hardening`). Se agregó rate limiting en memoria por IP (5 requests / 10 min), validación de formato de email y longitudes máximas por campo, y un honeypot (`HoneypotField`, campo `website`) en ambos formularios que el endpoint descarta con éxito falso. El destinatario se movió a `RESEND_TO_EMAIL` (con fallback) y se documentaron las env vars en `.env.local.example`. De paso se corrigió un crash preexistente: `new Resend()` a nivel de módulo tiraba abajo la ruta entera cuando faltaba `RESEND_API_KEY`; ahora se instancia dentro del handler y la falta de configuración responde un 500 controlado.
+
+### TD-001 — Duplicación de lógica de formulario entre `contact-section` y `lead-form-section` ✅
+
+- Detectado en auditoría 2026-07-01 · confirmado resuelto en 2026-07-01. Se extrajo la lógica compartida (estado, `FormState`, listener de `lumos:plan-selected`, `handleChange`, `handleSubmit`) al hook `useContactForm()` en `lib/use-contact-form.ts`; ambos componentes quedaron solo con su presentación. (La capa de presentación sigue duplicada — ver TD-008.)
+
+### TD-002 — Código muerto: wrappers de dynamic import, prop y parámetros sin usar ✅
+
+- Detectado en auditoría 2026-07-01 · confirmado resuelto en 2026-07-01. Se borraron `navbar-client.tsx` y `hero-scroll-client.tsx`, se quitó la prop `hideHeader` de `SistemasSection` y se simplificaron las firmas de `handleLinkMouseDown`/`handleLinkClick`.
+
+### TD-003 — Color de marca hardcodeado en 67+ lugares ✅
+
+- Detectado en auditoría 2026-07-01 · confirmado resuelto en 2026-07-01 (verificado vigente en 2026-07-03). Token `lumos-primary` en `tailwind.config.ts` + constantes `LUMOS_PRIMARY_HEX`/`LUMOS_PRIMARY_RGB` en `lib/utils.ts`, reemplazando todos los usos en los 12 archivos afectados.
+
+### TD-004 — `navbar.tsx` concentra demasiadas responsabilidades ✅
+
+- Detectado en auditoría 2026-07-01 · confirmado resuelto en 2026-07-01 (verificado vigente en 2026-07-03: navbar quedó en 218 líneas de presentación). Se extrajeron `useScrollSpy`, `useNavEntranceAnimation` y `usePillDrag` a `lib/`, coordinados por una única `scrollPauseRef`.
+
+### TD-005 — Falta de tipado explícito y mezcla de mock data con UI en `SmartHomeDashboard` ✅
+
+- Detectado en auditoría 2026-07-01 · confirmado resuelto en 2026-07-01. `type SmartHomeDashboardProps` explícito y data movida a `components/ui/smart-home-dashboard-data.ts`.
+
+### TD-006 — Helper `cn()` duplicado y sin usar en ningún lado ✅
+
+- Detectado en auditoría 2026-07-01 · confirmado resuelto en 2026-07-01. Se borró `components/ui/utils.ts`; `lib/utils.ts` queda como única fuente.
