@@ -5,31 +5,47 @@ import { useEffect, useRef } from "react";
 import { animate, createDrawable, stagger } from "animejs";
 
 export function HeroSection() {
+  const logoRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
+    const logo = logoRef.current;
     const svg = wordmarkRef.current;
-    if (!svg) return;
+    if (!logo || !svg) return;
+
+    const reveal = (el: HTMLElement | SVGSVGElement) => {
+      el.style.animation = "none";
+      el.style.opacity = "1";
+    };
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      svg.style.animation = "none";
-      svg.style.opacity = "1";
+      reveal(logo);
+      reveal(svg);
       return;
     }
+
+    const logoAnimation = animate(logo, {
+      opacity: [0, 1],
+      translateY: [16, 0],
+      scale: [0.92, 1],
+      duration: 800,
+      ease: "outQuad",
+    });
+    logo.style.animation = "none";
 
     const drawables = createDrawable(svg.querySelectorAll("path, circle"));
 
     const drawAnimation = animate(drawables, {
       draw: ["0 0", "0 1"],
-      delay: stagger(120),
+      delay: stagger(120, { start: 350 }),
       duration: 900,
       ease: "inOutQuad",
     });
 
-    svg.style.animation = "none";
-    svg.style.opacity = "1";
+    reveal(svg);
 
     return () => {
+      logoAnimation.pause();
       drawAnimation.pause();
     };
   }, []);
@@ -57,7 +73,7 @@ export function HeroSection() {
       {/* Above-the-fold: logo + LUMOS centered in full viewport */}
       <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center px-4 sm:px-8">
         {/* Logo mark */}
-        <div className="mb-3">
+        <div ref={logoRef} className="wordmark-fallback mb-3">
           <Image
             src="/logo.svg"
             alt="Lumos"

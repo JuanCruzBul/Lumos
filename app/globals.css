@@ -57,8 +57,8 @@ html {
   }
 }
 
-/* Wordmark fallback: si el JS de la animación de dibujo no llega a
-   ejecutarse (hidratación rota, chunks cacheados), el nombre aparece
+/* Fallback del logo y wordmark del hero: si el JS de la animación no
+   llega a ejecutarse (hidratación rota, chunks cacheados), aparecen
    igual. El useEffect del hero cancela esta animación al tomar control. */
 .wordmark-fallback {
   opacity: 0;
