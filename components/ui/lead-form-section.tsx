@@ -6,6 +6,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, Loader2, CheckCircle, AlertCircle, Sparkles, ShieldCheck, Clock } from "lucide-react";
 import { useContactForm } from "@/lib/use-contact-form";
 import { HoneypotField } from "@/components/ui/honeypot-field";
+import { FormField, FormTextarea, FORM_SUCCESS_COLOR, FORM_ERROR_COLOR } from "@/components/ui/form-fields";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -115,7 +116,8 @@ export function LeadFormSection() {
           <form className="space-y-5" onSubmit={handleSubmit}>
             <HoneypotField value={fields.website} onChange={handleChange} />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <RoundedField
+              <FormField
+                variant="rounded"
                 label="Nombre"
                 type="text"
                 name="nombre"
@@ -124,7 +126,8 @@ export function LeadFormSection() {
                 value={fields.nombre}
                 onChange={handleChange}
               />
-              <RoundedField
+              <FormField
+                variant="rounded"
                 label="Email"
                 type="email"
                 name="email"
@@ -135,7 +138,8 @@ export function LeadFormSection() {
               />
             </div>
 
-            <RoundedField
+            <FormField
+              variant="rounded"
               label="Teléfono"
               type="tel"
               name="telefono"
@@ -145,7 +149,9 @@ export function LeadFormSection() {
               onChange={handleChange}
             />
 
-            <RoundedTextarea
+            <FormTextarea
+              variant="rounded"
+              rows={3}
               label="Contanos sobre tu proyecto"
               name="mensaje"
               id="lead-mensaje"
@@ -161,9 +167,9 @@ export function LeadFormSection() {
               style={{
                 background:
                   formState === "success"
-                    ? "#3a9c6e"
+                    ? FORM_SUCCESS_COLOR
                     : formState === "error"
-                      ? "#c5504b"
+                      ? FORM_ERROR_COLOR
                       : LUMOS_PRIMARY_HEX,
               }}
               whileHover={formState === "idle" ? { scale: 1.02 } : {}}
@@ -196,82 +202,5 @@ export function LeadFormSection() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-function RoundedField({
-  label,
-  type,
-  name,
-  id,
-  placeholder,
-  value,
-  onChange,
-}: {
-  label: string;
-  type: string;
-  name: string;
-  id: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
-  const autoCompleteMap: Record<string, string> = {
-    nombre: "name",
-    email: "email",
-    telefono: "tel",
-  };
-
-  return (
-    <div>
-      <label htmlFor={id} className="block text-xs font-semibold text-black/60 mb-2 ml-1">
-        {label}
-      </label>
-      <input
-        id={id}
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        required
-        autoComplete={autoCompleteMap[name] ?? "off"}
-        className="w-full rounded-full bg-[#fdf8f4] border border-black/10 px-5 py-3.5 text-sm text-black placeholder:text-black/35 focus:outline-none focus:border-lumos-primary focus:ring-2 focus:ring-lumos-primary/15 transition-colors"
-      />
-    </div>
-  );
-}
-
-function RoundedTextarea({
-  label,
-  name,
-  id,
-  placeholder,
-  value,
-  onChange,
-}: {
-  label: string;
-  name: string;
-  id: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}) {
-  return (
-    <div>
-      <label htmlFor={id} className="block text-xs font-semibold text-black/60 mb-2 ml-1">
-        {label}
-      </label>
-      <textarea
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        rows={3}
-        required
-        className="w-full rounded-3xl bg-[#fdf8f4] border border-black/10 px-5 py-3.5 text-sm text-black placeholder:text-black/35 focus:outline-none focus:border-lumos-primary focus:ring-2 focus:ring-lumos-primary/15 transition-colors resize-none"
-      />
-    </div>
   );
 }

@@ -1,11 +1,12 @@
 "use client";
 
-import { LUMOS_PRIMARY_HEX, LUMOS_PRIMARY_RGB } from "@/lib/utils";
-import { useRef, useState } from "react";
+import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
+import { useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { useContactForm } from "@/lib/use-contact-form";
 import { HoneypotField } from "@/components/ui/honeypot-field";
+import { FormField, FormTextarea, FORM_SUCCESS_COLOR, FORM_ERROR_COLOR } from "@/components/ui/form-fields";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -41,7 +42,7 @@ export function ContactSection({
       ),
     },
     success: {
-      bg: "#3a9c6e",
+      bg: FORM_SUCCESS_COLOR,
       content: (
         <span className="relative flex items-center justify-center gap-2">
           <CheckCircle className="h-4 w-4" /> ¡Mensaje enviado!
@@ -49,7 +50,7 @@ export function ContactSection({
       ),
     },
     error: {
-      bg: "#c5504b",
+      bg: FORM_ERROR_COLOR,
       content: (
         <span className="relative flex items-center justify-center gap-2">
           <AlertCircle className="h-4 w-4 shrink-0" />
@@ -157,7 +158,8 @@ export function ContactSection({
           <form className="space-y-8" onSubmit={handleSubmit}>
             <HoneypotField value={fields.website} onChange={handleChange} />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Field
+              <FormField
+                variant="underline"
                 label="Nombre"
                 type="text"
                 name="nombre"
@@ -166,7 +168,8 @@ export function ContactSection({
                 value={fields.nombre}
                 onChange={handleChange}
               />
-              <Field
+              <FormField
+                variant="underline"
                 label="Email"
                 type="email"
                 name="email"
@@ -177,7 +180,8 @@ export function ContactSection({
               />
             </div>
 
-            <Field
+            <FormField
+              variant="underline"
               label="Teléfono"
               type="tel"
               name="telefono"
@@ -187,7 +191,8 @@ export function ContactSection({
               onChange={handleChange}
             />
 
-            <TextareaField
+            <FormTextarea
+              variant="underline"
               label="Mensaje"
               name="mensaje"
               id={`mensaje${idSuffix}`}
@@ -223,114 +228,5 @@ export function ContactSection({
         </motion.div>
       </div>
     </section>
-  );
-}
-
-function Field({
-  label,
-  type,
-  name,
-  id,
-  placeholder,
-  value,
-  onChange,
-}: {
-  label: string;
-  type: string;
-  name: string;
-  id: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
-  const [focused, setFocused] = useState(false);
-
-  const autoCompleteMap: Record<string, string> = {
-    nombre: "name",
-    email: "email",
-    telefono: "tel",
-  };
-
-  return (
-    <div>
-      <label
-        htmlFor={id}
-        className="block text-[10px] font-semibold uppercase tracking-widest mb-3 transition-colors duration-200"
-        style={{ color: focused ? LUMOS_PRIMARY_HEX : `rgba(${LUMOS_PRIMARY_RGB},0.7)` }}
-      >
-        {label}
-      </label>
-      <div className="relative">
-        <input
-          id={id}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          required
-          autoComplete={autoCompleteMap[name] ?? "off"}
-          className="w-full bg-transparent border-0 border-b border-black/12 py-3 text-sm text-black placeholder:text-black/35 focus:outline-none focus:ring-0"
-        />
-        <motion.span
-          className="absolute bottom-0 left-0 h-px origin-left"
-          style={{ background: LUMOS_PRIMARY_HEX }}
-          animate={{ scaleX: focused ? 1 : 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function TextareaField({
-  label,
-  name,
-  id,
-  placeholder,
-  value,
-  onChange,
-}: {
-  label: string;
-  name: string;
-  id: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}) {
-  const [focused, setFocused] = useState(false);
-
-  return (
-    <div>
-      <label
-        htmlFor={id}
-        className="block text-[10px] font-semibold uppercase tracking-widest mb-3 transition-colors duration-200"
-        style={{ color: focused ? LUMOS_PRIMARY_HEX : `rgba(${LUMOS_PRIMARY_RGB},0.7)` }}
-      >
-        {label}
-      </label>
-      <div className="relative">
-        <textarea
-          id={id}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          rows={4}
-          required
-          className="w-full bg-transparent border-0 border-b border-black/12 py-3 text-sm text-black placeholder:text-black/35 focus:outline-none focus:ring-0 resize-none"
-        />
-        <motion.span
-          className="absolute bottom-0 left-0 h-px origin-left"
-          style={{ background: LUMOS_PRIMARY_HEX }}
-          animate={{ scaleX: focused ? 1 : 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        />
-      </div>
-    </div>
   );
 }

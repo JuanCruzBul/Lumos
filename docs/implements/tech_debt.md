@@ -6,13 +6,6 @@
 
 ## Media
 
-### TD-008 — Cuatro componentes de campo de formulario casi idénticos entre las dos secciones de contacto
-
-- **Archivos afectados:** `components/ui/contact-section.tsx:227-334`, `components/ui/lead-form-section.tsx:200-275`
-- **Descripción:** `Field`/`TextareaField` y `RoundedField`/`RoundedTextarea` comparten props idénticas, el mismo `autoCompleteMap` copiado dos veces y la misma estructura label+control; solo difiere el estilo. Los colores de estado del botón (`#3a9c6e`, `#c5504b`) también están duplicados en ambos `buttonConfig`. TD-001 unificó la lógica pero no la presentación. Detectado en auditoría 2026-07-03.
-- **Riesgo:** Agregar un campo o cambiar el comportamiento visual exige tocar 4 componentes en 2 archivos; ya hay drift menor (`rows={3}` vs `rows={4}`) y el drift crece con cada iteración.
-- **Recomendación:** Extraer a `components/ui/form-fields.tsx` un `FormField`/`FormTextarea` con prop `variant: "underline" | "rounded"` (o className inyectable), y un único `autoCompleteMap` y par de constantes `FORM_SUCCESS_COLOR`/`FORM_ERROR_COLOR` compartidos. Ambas secciones consumen esos componentes.
-
 ### TD-009 — Trabajo de animación corriendo de forma permanente aunque la sección no esté en pantalla
 
 - **Archivos afectados:** `components/ui/sistemas-section.tsx:187-202`, `components/ui/nosotros-section.tsx:44-54`
@@ -53,6 +46,10 @@
 ---
 
 ## Resueltos
+
+### TD-008 — Cuatro componentes de campo de formulario casi idénticos entre las dos secciones de contacto ✅
+
+- Detectado en auditoría 2026-07-03 · resuelto en 2026-07-03 (rama `refactor/td-008-form-fields`). Se creó `components/ui/form-fields.tsx` con `FormField`/`FormTextarea` parametrizados por `variant: "underline" | "rounded"`, un único `autoCompleteMap` y las constantes compartidas `FORM_SUCCESS_COLOR`/`FORM_ERROR_COLOR`. `ContactSection` y `LeadFormSection` consumen los componentes compartidos; se eliminaron `Field`, `TextareaField`, `RoundedField` y `RoundedTextarea` (la diferencia de `rows` quedó como prop explícita).
 
 ### TD-007 — Endpoint público `/api/contact` sin rate limiting ni validación de entrada ✅
 
