@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { useContactForm } from "@/lib/use-contact-form";
+import { HoneypotField } from "@/components/ui/honeypot-field";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -154,6 +155,7 @@ export function ContactSection({
           </p>
 
           <form className="space-y-8" onSubmit={handleSubmit}>
+            <HoneypotField value={fields.website} onChange={handleChange} />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <Field
                 label="Nombre"

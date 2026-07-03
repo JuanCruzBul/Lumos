@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 
 export type FormState = "idle" | "loading" | "success" | "error";
 
-const emptyFields = { nombre: "", email: "", telefono: "", mensaje: "" };
+// `website` es un honeypot anti-bots: nunca se muestra a humanos y el
+// endpoint descarta el envío si viene con contenido.
+const emptyFields = { nombre: "", email: "", telefono: "", mensaje: "", website: "" };
 
 export function useContactForm() {
   const [formState, setFormState] = useState<FormState>("idle");
