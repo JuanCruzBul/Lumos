@@ -28,7 +28,7 @@ export const ContainerScroll = ({
         className="py-6 md:py-20 w-full relative"
         style={{ perspective: "1000px" }}
       >
-        <Header translate={translate} titleComponent={titleComponent} />
+        <Header titleComponent={titleComponent} />
         <Card rotate={rotate} translate={translate} scale={scale}>
           {children}
         </Card>
@@ -38,19 +38,14 @@ export const ContainerScroll = ({
 };
 
 export const Header = ({
-  translate,
   titleComponent,
 }: {
-  translate: MotionValue<number>;
   titleComponent: string | React.ReactNode;
 }) => {
   return (
-    <motion.div
-      style={{ translateY: translate }}
-      className="max-w-5xl mx-auto text-center"
-    >
+    <div className="max-w-5xl mx-auto text-center">
       {titleComponent}
-    </motion.div>
+    </div>
   );
 };
 
