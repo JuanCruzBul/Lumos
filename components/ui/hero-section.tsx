@@ -114,7 +114,7 @@ export function HeroSection() {
           </button>
           <button
             className="hero-btn-outline text-lumos-primary px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-lumos-primary/40 hover:border-lumos-primary/70 transition-colors duration-300"
-            onClick={() => window.open("/demo/habitacion-inteligente.html", "_blank", "noopener,noreferrer")}
+            onClick={() => { window.location.href = "/demo/habitacion-inteligente.html"; }}
           >
             Ver Demo
           </button>
