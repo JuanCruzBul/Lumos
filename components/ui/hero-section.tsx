@@ -1,10 +1,12 @@
 "use client";
 import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { animate, createDrawable, stagger } from "animejs";
 
 export function HeroSection() {
+  const router = useRouter();
   const logoRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<SVGSVGElement>(null);
 
@@ -114,7 +116,7 @@ export function HeroSection() {
           </button>
           <button
             className="hero-btn-outline text-lumos-primary px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-lumos-primary/40 hover:border-lumos-primary/70 transition-colors duration-300"
-            onClick={() => { window.location.href = "/demo/habitacion-inteligente.html"; }}
+            onClick={() => router.push("/demo/habitacion-inteligente")}
           >
             Ver Demo
           </button>
