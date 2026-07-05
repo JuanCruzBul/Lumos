@@ -10,12 +10,12 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Integración", href: "#sistema" },
+  { label: "Clientes", href: "#clientes" },
+  { label: "Contacto", href: "#contacto" },
   { label: "Sistemas", href: "#productos" },
   { label: "Proceso", href: "#proceso" },
   { label: "Planes", href: "#planes" },
-  { label: "Clientes", href: "#clientes" },
   { label: "Nosotros", href: "#nosotros" },
-  { label: "Contacto", href: "#contacto" },
 ];
 
 export function Navbar() {
