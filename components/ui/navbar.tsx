@@ -5,6 +5,7 @@ import { useNavEntranceAnimation } from "@/lib/use-nav-entrance-animation";
 import { usePillDrag } from "@/lib/use-pill-drag";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -19,6 +20,7 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
@@ -88,6 +90,10 @@ export function Navbar() {
       transition: "max-width 600ms cubic-bezier(0.4,0,0.2,1), background 400ms ease, box-shadow 400ms ease",
     };
   })();
+
+  if (pathname?.startsWith("/demo")) {
+    return null;
+  }
 
   if (!mounted) {
     return <nav className="fixed top-0 left-0 right-0 z-50" aria-hidden />;

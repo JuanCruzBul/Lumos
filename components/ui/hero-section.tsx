@@ -1,10 +1,12 @@
 "use client";
 import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate, createDrawable, stagger } from "animejs";
+import { DemoModal } from "@/components/ui/demo-modal";
 
 export function HeroSection() {
+  const [demoOpen, setDemoOpen] = useState(false);
   const logoRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<SVGSVGElement>(null);
 
@@ -114,13 +116,19 @@ export function HeroSection() {
           </button>
           <button
             className="hero-btn-outline text-lumos-primary px-7 py-3 sm:px-10 sm:py-4 rounded-full text-xs font-semibold uppercase tracking-wider border border-lumos-primary/40 hover:border-lumos-primary/70 transition-colors duration-300"
-            onClick={() => document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => setDemoOpen(true)}
           >
             Ver Demo
           </button>
         </div>
       </div>
 
+      <DemoModal
+        open={demoOpen}
+        onClose={() => setDemoOpen(false)}
+        src="/demo/habitacion-inteligente"
+        title="Demo — Habitación Inteligente"
+      />
     </section>
   );
 }
