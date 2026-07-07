@@ -10,11 +10,7 @@ import { FormField, FormTextarea, FORM_SUCCESS_COLOR, FORM_ERROR_COLOR } from "@
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const trustPoints = [
-  { icon: ShieldCheck, label: "Sin compromiso" },
-  { icon: Clock, label: "Respuesta en 24hs" },
-  { icon: Sparkles, label: "Asesoramiento gratuito" },
-];
+
 
 export function LeadFormSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -89,20 +85,15 @@ export function LeadFormSection() {
             className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white mb-6"
             style={{ background: LUMOS_PRIMARY_HEX }}
           >
-            <Sparkles className="h-3.5 w-3.5" />
             Cotización gratis y sin compromiso
           </span>
 
           <h2 className="text-3xl md:text-5xl font-bold text-[#2a2420] leading-[1.1] mb-4 tracking-tight">
             Empezá a transformar tu hogar{" "}
-            <span className="text-lumos-primary">
-              hoy mismo
-            </span>
           </h2>
 
           <p className="text-[#2a2420]/60 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-            Dejanos tus datos y un especialista te contacta en menos de 24hs para diseñar la
-            solución de domótica ideal para tu espacio.
+            Dejanos tus datos y nos contactaremos con vos para diseñar la mejor solucion para tu hogar
           </p>
         </motion.div>
 
@@ -190,15 +181,6 @@ export function LeadFormSection() {
             </motion.button>
           </form>
 
-          {/* Trust row */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-black/5 pt-6">
-            {trustPoints.map(({ icon: Icon, label }) => (
-              <span key={label} className="inline-flex items-center gap-1.5 text-black/50 text-xs">
-                <Icon className="h-3.5 w-3.5 text-lumos-primary" />
-                {label}
-              </span>
-            ))}
-          </div>
         </motion.div>
       </div>
     </section>

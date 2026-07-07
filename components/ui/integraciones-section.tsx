@@ -27,17 +27,17 @@ const points = [
   {
     num: "01",
     title: "Control total por voz y celular",
-    body: "Encendé luces, regulá la temperatura o cerrá puertas con un comando de voz o desde la app — desde cualquier lugar del mundo.",
+    body: "Encendé luces, regulá la temperatura o cerrá puertas con un comando de voz o desde la app desde cualquier lugar del mundo.",
   },
   {
     num: "02",
     title: "Automatizaciones que trabajan por vos",
-    body: "Escenas que se activan solas: llegás a casa y ya está todo listo. La luz, el clima, la música — sin tocar nada.",
+    body: "La iluminación, la temperatura y el ambiente se adaptan a tu rutina automáticamente.",
   },
   {
     num: "03",
     title: "Integración con Alexa y Google Home",
-    body: "Conectamos tu hogar con los asistentes de IA más potentes del mercado, para que la inteligencia del sistema esté siempre a tu disposición.",
+    body: "Usá el asistente que ya conocés para controlar todo tu hogar",
   },
 ];
 
@@ -92,9 +92,9 @@ export function IntegracionesSection() {
                 transitionDelay: "80ms",
               }}
             >
-              Tu hogar, convertido en{" "}
+              El futuro de tu hogar {" "}
               <span className="italic font-normal" style={{ color: LUMOS_PRIMARY_HEX }}>
-                un sistema que te entiende.
+              empieza con Lumos.
               </span>
             </h2>
 
@@ -107,9 +107,8 @@ export function IntegracionesSection() {
                 transitionDelay: "160ms",
               }}
             >
-              Lumos integra los asistentes de IA más avanzados con automatizaciones
-              diseñadas para tu rutina. El resultado es un hogar que anticipa,
-              responde y aprende — instalado por nuestro equipo en un solo día.
+              Lumos combina dispositivos inteligentes y automatizaciones diseñadas para adaptarse a tu rutina. 
+              El resultado es un hogar que anticipa tus necesidades, responde de forma inteligente y simplifica tu día a día.
             </p>
 
             {/* Integration badges */}

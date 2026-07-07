@@ -6,24 +6,24 @@ const testimonios = [
     role: "Propietaria · Villa Carlos Paz",
     initial: "M",
     quote:
-      "Lumos transformó por completo cómo vivo mi casa. Las luces se adaptan solas a cada momento del día y puedo controlar todo desde el celular. Increíble.",
+      "Es una de esas cosas que, una vez que las tenés, no querés volver atrás. Todo funciona de forma simple y sin complicaciones.",
     stars: 4.5,
   },
   {
-    name: "Pablo F.",
-    role: "Emprendedor · Nueva Córdoba",
-    initial: "P",
-    quote:
-      "La instalación fue rápida y sin obras. Todo quedó funcionando perfecto. El equipo estuvo presente en cada paso y el soporte es excelente.",
-    stars: 4.2,
-  },
-  {
-    name: "Sofía M.",
-    role: "Arquitecta · Córdoba Capital",
+    name: "Sofía C.",
+    role: "Propietario · Córdoba Capital",
     initial: "S",
     quote:
-      "Lo que más me sorprende es la simplicidad. Mis clientes preguntan cómo funciona y la respuesta es siempre la misma: simplemente funciona.",
-    stars: 4.7,
+      "Al principio pensé que iba a ser más complicado, pero después de unos días me acostumbré. Hay cosas que todavía estoy configurando, aunque en general cumple con lo que necesitaba.",
+    stars: 3.5,
+  },
+  {
+    name: "Pablo F.",
+    role: "Propietario · Nueva Córdoba",
+    initial: "P",
+    quote:
+      "En general quedamos conformes. La instalación fue sencilla y el soporte nos ayudó cuando surgieron algunas consultas.",
+    stars: 3.2,
   },
 ];
 
@@ -70,7 +70,7 @@ export function TestimoniosSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonios.map(({ name, role, initial, quote, stars }) => (
             <div key={name} className="glass-panel rounded-2xl p-8 flex flex-col gap-5">
-                  <StarRating rating={stars} name={name} />
+              <StarRating rating={stars} name={name} />
 
               <div
                 className="text-6xl font-bold leading-none select-none"
