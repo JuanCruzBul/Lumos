@@ -1,10 +1,24 @@
 # Deuda Técnica — Lumos
 
-**Última actualización:** 2026-07-03 (auditoría `docs/audit/2026-07-03.md`)
+**Última actualización:** 2026-07-05 (auditoría `docs/audit/2026-07-05.md`)
 
 ---
 
 ## Media
+
+### TD-014 — `room-scene.tsx` mezcla construcción de geometría, materiales, luces y loop de animación en un único archivo de 434 líneas
+
+- **Archivos afectados:** `components/ui/demo/room-scene.tsx:7-299` (`buildScene`), `components/ui/demo/room-scene.tsx:301-434` (componente `RoomScene`)
+- **Descripción:** `buildScene()` construye a mano toda la habitación (paredes, ventana, cortina, lámpara, sofá, mesa, TV, aire acondicionado, planta, cuadro) mezclando geometría con configuración de cámara/órbita y listeners de puntero, y devuelve un objeto de ~20 propiedades sin tipo explícito que el componente desestructura para el loop de animación. Mismo patrón que TD-005/TD-013 pero a mayor escala. Detectado en auditoría 2026-07-05.
+- **Riesgo:** Ajustar la habitación (mover una luz, agregar un mueble) obliga a leer 300 líneas de geometría mezcladas con lógica de render; el retorno implícito de `buildScene` no documenta el contrato que consume el componente, por lo que un typo en una de las propiedades desestructuradas solo se detecta corriendo `tsc`.
+- **Recomendación:** Extraer la construcción de la habitación (paredes, muebles, luces fijas) a un módulo separado (p. ej. `room-builder.ts`) que reciba la `scene` y devuelva un tipo explícito `RoomSceneHandles` con las referencias que el loop de animación necesita mutar; dejar en `room-scene.tsx` solo el componente React y el loop.
+
+### TD-015 — Geometrías y materiales de Three.js no se liberan al desmontar `RoomScene`
+
+- **Archivos afectados:** `components/ui/demo/room-scene.tsx:292-298` (`dispose()` de `buildScene`), `components/ui/demo/room-scene.tsx:423-430` (cleanup del `useEffect`)
+- **Descripción:** El cleanup llama `world.dispose()` (solo remueve event listeners), `renderer.dispose()` y remueve el `domElement`, pero ninguna de las ~30 geometrías ni los materiales creados en `buildScene` reciben su propio `.dispose()` — el leak clásico de Three.js, ya que `renderer.dispose()` no libera buffers GPU de geometrías/materiales que nunca emitieron su evento `dispose`. Next.js corre con Strict Mode por defecto (`next.config.ts` no lo desactiva), así que en desarrollo el efecto monta→limpia→monta una vez al cargar la página. Detectado en auditoría 2026-07-05.
+- **Riesgo:** Cada visita al demo con navegación client-side (ir y volver sin recarga completa) retiene en memoria GPU el árbol de geometrías/materiales de la visita anterior; en desarrollo esto ya duplica el costo en el primer montaje por el double-invoke de Strict Mode.
+- **Recomendación:** En el cleanup, recorrer `scene.traverse()` liberando `mesh.geometry.dispose()` y `mesh.material.dispose()` (o acumular las geometrías/materiales creados en `buildScene` en un array y exponer un `disposeAll()`) antes de `renderer.dispose()`.
 
 ### TD-009 — Trabajo de animación corriendo de forma permanente aunque la sección no esté en pantalla
 
@@ -23,7 +37,7 @@
 ### TD-011 — `CLAUDE.md` desactualizado respecto de la estructura real
 
 - **Archivos afectados:** `CLAUDE.md`
-- **Descripción:** La estructura documentada lista `value-props.tsx`, `footer.tsx` y `components/ui/utils.ts` que ya no existen, y omite los 4 hooks de `lib/`, `app/api/contact/route.ts`, `sitemap.ts`, `robots.ts`, `opengraph-image.tsx`, `smart-home-dashboard-data.ts` y las secciones `integraciones-section` y `lead-form-section`. Detectado en auditoría 2026-07-03.
+- **Descripción:** La estructura documentada lista `value-props.tsx`, `footer.tsx` y `components/ui/utils.ts` que ya no existen, y omite los 4 hooks de `lib/`, `app/api/contact/route.ts`, `sitemap.ts`, `robots.ts`, `opengraph-image.tsx`, `smart-home-dashboard-data.ts` y las secciones `integraciones-section` y `lead-form-section`. Detectado en auditoría 2026-07-03. Actualización 2026-07-05: la brecha creció — se agregó una feature entera, el demo interactivo de `app/demo/habitacion-inteligente/` y `components/ui/demo/**` (escena Three.js + panel de control), que tampoco está documentada.
 - **Riesgo:** `CLAUDE.md` es el contexto que cargan las sesiones de Claude Code y la referencia de onboarding; una estructura falsa produce suposiciones erróneas (p. ej. que existe un footer) y decisiones basadas en convenciones que ya no aplican.
 - **Recomendación:** Regenerar el árbol de estructura desde el filesystem real, agregar la convención de hooks en `lib/` (extraer lógica compartida a hooks con prefijo `use-`) y documentar el endpoint `/api/contact` con sus variables de entorno (`RESEND_API_KEY`, `RESEND_FROM_EMAIL`).
 
@@ -42,6 +56,20 @@
 - **Descripción:** El array `SERVICES`, el mapa `ECOSYSTEMS` con sus logos y 4 íconos SVG conviven con el carrusel en 382 líneas — el mismo patrón que TD-005 resolvió para el dashboard. Además `ECOSYSTEMS` es `Record<string, ...>` con claves string libres: un typo en `ecosystems: [...]` compila y desaparece silenciosamente del render. Detectado en auditoría 2026-07-03.
 - **Riesgo:** Editar contenido de marketing requiere navegar lógica de animación, y el tipado débil convierte errores de datos en fallas silenciosas de UI.
 - **Recomendación:** Extraer data e íconos a `components/ui/sistemas-data.tsx` siguiendo el patrón de `smart-home-dashboard-data.ts`, y tipar `type EcosystemId = "alexa" | "google" | "ha" | "homekit"` usándolo en `ECOSYSTEMS` y en `ecosystems: EcosystemId[]`.
+
+### TD-016 — `three` (runtime) y `@types/three` (tipos) desincronizados en 24 versiones menores
+
+- **Archivos afectados:** `package.json:24` (`"three": "^0.161.0"`), `package.json:36` (`"@types/three": "^0.185.0"`)
+- **Descripción:** El runtime instalado es `three@0.161.0` pero los tipos son `@types/three@0.185.0`. `tsc --noEmit` pasa limpio hoy porque el código no toca ninguna API cambiada entre versiones, pero los tipos describen una superficie de Three.js que no es la que corre en el navegador. Detectado en auditoría 2026-07-05.
+- **Riesgo:** Autocompletado y chequeo de tipos pueden sugerir APIs que no existen (o cambiaron de firma) en el runtime instalado, produciendo errores en tiempo de ejecución que `tsc` no puede atrapar.
+- **Recomendación:** Alinear ambas versiones — actualizar `three` a una release cubierta por `@types/three@^0.185`, o fijar `@types/three` a `^0.161` para que coincida con el runtime real.
+
+### TD-017 — Subcomponentes de `control-panel/` sin `"use client"`
+
+- **Archivos afectados:** `components/ui/demo/control-panel/index.tsx`, `curtain-control.tsx`, `device-switch.tsx`, `exterior-toggle.tsx`, `light-picker.tsx`, `scene-selector.tsx`
+- **Descripción:** Los 6 archivos definen componentes con `onClick`/`onChange` pero ninguno declara `"use client"` al tope, a diferencia de la convención de `CLAUDE.md` y del resto del código (`form-fields.tsx`, `honeypot-field.tsx`, `navbar.tsx`). Hoy no rompe nada porque `habitacion-inteligente-demo.tsx` ya es `"use client"` y arrastra todo su árbol de imports al bundle de cliente. Detectado en auditoría 2026-07-05.
+- **Riesgo:** Si alguno de estos componentes se reutiliza desde un árbol que no parte de un límite `"use client"` explícito, el error de "event handlers cannot be passed to Client Component props" aparece recién en ese punto de uso.
+- **Recomendación:** Agregar `"use client"` a los 6 archivos para que sean autocontenidos y consistentes con el resto del código.
 
 ---
 
