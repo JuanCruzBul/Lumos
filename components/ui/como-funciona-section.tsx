@@ -17,7 +17,7 @@ const pasos = [
   {
     num: "03",
     title: "Instalamos",
-    desc: "Nuestro equipo instala y configura todo de forma prolija y eficiente. Sin obras ni remodelaciones mayores.",
+    desc: "Nuestro equipo instala y configura todo de forma prolija y eficiente.",
   },
   {
     num: "04",

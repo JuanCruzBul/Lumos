@@ -8,11 +8,10 @@ const planes = [
     name: "Kit Inicial",
     desc: "Para empezar a disfrutar tu hogar inteligente.",
     features: [
-      "Hasta 8 switches o luces inteligentes",
+      "Iluminacion inteligentes",
       "Control por app móvil",
       "Integración con Alexa o Google Home",
       "2 automatizaciones básicas",
-      "Soporte por WhatsApp",
     ],
     highlight: false,
     cta: "Empezar",
@@ -28,7 +27,6 @@ const planes = [
       "Home Assistant configurado",
       "Cerraduras y cámaras Wi-Fi incluidas",
       "Automatizaciones ilimitadas a medida",
-      "Soporte prioritario",
     ],
     highlight: true,
     cta: "Elegir Kit Completo",
@@ -44,7 +42,6 @@ const planes = [
       "Cortinas y persianas motorizadas",
       "Integración de dispositivos existentes",
       "Diseño de sistema personalizado",
-      "Técnico dedicado asignado",
     ],
     highlight: false,
     cta: "Hablar con el equipo",
@@ -78,19 +75,18 @@ export function PlanesSection() {
           {planes.map(({ name, desc, features, highlight, cta, badge, mensaje }) => (
             <div
               key={name}
-              className={`rounded-2xl flex flex-col gap-6 relative glass-panel ${
-                highlight ? "p-7 sm:p-10 lg:-my-4" : "p-6 sm:p-8"
-              }`}
+              className={`rounded-2xl flex flex-col gap-6 relative glass-panel ${highlight ? "p-7 sm:p-10 lg:-my-4" : "p-6 sm:p-8"
+                }`}
               style={
                 highlight
                   ? {
-                      background: "linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(253,248,244,0.98) 100%)",
-                      border: `1.5px solid rgba(${LUMOS_PRIMARY_RGB},0.35)`,
-                      boxShadow: `0 24px 60px rgba(${LUMOS_PRIMARY_RGB},0.18), 0 4px 20px rgba(${LUMOS_PRIMARY_RGB},0.10)`,
-                    }
+                    background: "linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(253,248,244,0.98) 100%)",
+                    border: `1.5px solid rgba(${LUMOS_PRIMARY_RGB},0.35)`,
+                    boxShadow: `0 24px 60px rgba(${LUMOS_PRIMARY_RGB},0.18), 0 4px 20px rgba(${LUMOS_PRIMARY_RGB},0.10)`,
+                  }
                   : {
-                      boxShadow: `0 8px 32px rgba(${LUMOS_PRIMARY_RGB},0.09), 0 2px 8px rgba(0,0,0,0.04)`,
-                    }
+                    boxShadow: `0 8px 32px rgba(${LUMOS_PRIMARY_RGB},0.09), 0 2px 8px rgba(0,0,0,0.04)`,
+                  }
               }
             >
               {badge && (
