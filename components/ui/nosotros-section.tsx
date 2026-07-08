@@ -109,33 +109,16 @@ export function NosotrosSection() {
             />
           </motion.div>
 
-          {/* ── BENTO GRID ── */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 md:mb-24">
-            {/* Quote card — 2 cols */}
-            <motion.div
-              {...fadeUp(0.26)}
-              className="relative md:col-span-2 rounded-2xl px-8 py-8 overflow-hidden flex items-center"
-              style={{
-                background: "rgba(255,255,255,0.55)",
-                border: `1px solid rgba(${LUMOS_PRIMARY_RGB},0.1)`,
-                backdropFilter: "blur(14px)",
-              }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-lumos-primary/5 via-transparent to-[#fab257]/5 pointer-events-none" />
-              <div className="relative flex items-start gap-5">
-                <div
-                  className="text-[72px] font-black leading-[0.8] shrink-0 select-none mt-1"
-                  style={{ color: `rgba(${LUMOS_PRIMARY_RGB},0.18)`, fontFamily: "Georgia, serif" }}
-                >
-                  &ldquo;
-                </div>
-                <p className="text-base md:text-lg font-medium text-[#221a17]/75 leading-relaxed italic">
-                  Lumos existe para que cualquier hogar pueda ser inteligente — sin obras, sin complicaciones y sin precios de lujo.
-                </p>
-              </div>
-            </motion.div>
-
-          </div>
+          {/* ── QUOTE ── */}
+          <motion.div
+            {...fadeUp(0.26)}
+            className="relative mb-16 md:mb-24 pl-7 md:pl-9"
+            style={{ borderLeft: `3px solid ${LUMOS_PRIMARY_HEX}` }}
+          >
+            <p className="text-xl sm:text-2xl md:text-[28px] font-medium text-[#221a17]/85 leading-snug max-w-3xl">
+              Lumos hace que la tecnología trabaje para vos, creando hogares más inteligentes, cómodos y personalizados.
+            </p>
+          </motion.div>
 
         </div>
       </section>
@@ -202,7 +185,7 @@ export function NosotrosSection() {
                 </span>
               </h3>
               <p className="text-sm sm:text-base text-[#54433c]/75 leading-relaxed text-left">
-                ¿por qué la domótica sigue pareciendo un lujo?<br />
+                ¿Por qué la domótica sigue pareciendo un lujo?<br />
                 Desde la combinación de conocimientos en electricidad, instalaciones, tecnología, diseño e inteligencia artificial, creamos una forma diferente de llevar hogares inteligentes a más personas.
                 Una solución pensada para la vida real: más simple con la confianza de un acompañamiento profesional en cada etapa.
               </p>
