@@ -9,33 +9,6 @@ const JUAN_IMG = "/images/juan-cruz-bulatovich.webp";
 const JESUS_IMG = "/images/jesus-manuel-martinez.webp";
 
 
-const MisionIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
-    <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.6" />
-    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-    <line x1="12" y1="2" x2="12" y2="4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    <line x1="12" y1="19.5" x2="12" y2="22" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    <line x1="2" y1="12" x2="4.5" y2="12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    <line x1="19.5" y1="12" x2="22" y2="12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-  </svg>
-);
-
-const VisionIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.6" />
-  </svg>
-);
-
-const ValoresIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-      stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-  </svg>
-);
-
-
 export function NosotrosSection() {
   const bg1Ref = useRef<HTMLDivElement>(null);
   const bg2Ref = useRef<HTMLDivElement>(null);
