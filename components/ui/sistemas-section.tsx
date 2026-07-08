@@ -26,59 +26,59 @@ function HomeKitLogo() {
 }
 
 const ECOSYSTEMS: Record<string, { Logo: () => React.ReactElement; label: string }> = {
-  alexa:   { Logo: AlexaLogo,         label: "Amazon Alexa"   },
-  google:  { Logo: GoogleHomeLogo,    label: "Google Home"    },
-  ha:      { Logo: HomeAssistantLogo, label: "Home Assistant" },
-  homekit: { Logo: HomeKitLogo,       label: "Apple HomeKit"  },
+  alexa: { Logo: AlexaLogo, label: "Amazon Alexa" },
+  google: { Logo: GoogleHomeLogo, label: "Google Home" },
+  ha: { Logo: HomeAssistantLogo, label: "Home Assistant" },
+  homekit: { Logo: HomeKitLogo, label: "Apple HomeKit" },
 };
 
 // Íconos SVG personalizados por servicio
 const IconLuz = ({ color }: { color: string }) => (
   <svg width="22" height="22" viewBox="0 0 40 40" fill="none">
-    <circle cx="20" cy="18" r="7" stroke={color} strokeWidth="2.2"/>
-    <line x1="20" y1="4" x2="20" y2="7" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
-    <line x1="20" y1="29" x2="20" y2="32" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
-    <line x1="6" y1="18" x2="9" y2="18" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
-    <line x1="31" y1="18" x2="34" y2="18" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
-    <line x1="10.5" y1="8.5" x2="12.6" y2="10.6" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
-    <line x1="27.4" y1="25.4" x2="29.5" y2="27.5" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
-    <line x1="29.5" y1="8.5" x2="27.4" y2="10.6" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
-    <line x1="12.6" y1="25.4" x2="10.5" y2="27.5" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
-    <path d="M16 29h8" stroke={color} strokeWidth="2" strokeLinecap="round"/>
-    <path d="M17 32h6" stroke={color} strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="20" cy="18" r="7" stroke={color} strokeWidth="2.2" />
+    <line x1="20" y1="4" x2="20" y2="7" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    <line x1="20" y1="29" x2="20" y2="32" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    <line x1="6" y1="18" x2="9" y2="18" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    <line x1="31" y1="18" x2="34" y2="18" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    <line x1="10.5" y1="8.5" x2="12.6" y2="10.6" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    <line x1="27.4" y1="25.4" x2="29.5" y2="27.5" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    <line x1="29.5" y1="8.5" x2="27.4" y2="10.6" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    <line x1="12.6" y1="25.4" x2="10.5" y2="27.5" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    <path d="M16 29h8" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M17 32h6" stroke={color} strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
 
 const IconHub = ({ color }: { color: string }) => (
   <svg width="22" height="22" viewBox="0 0 40 40" fill="none">
-    <circle cx="20" cy="20" r="4" stroke={color} strokeWidth="2.2"/>
-    <circle cx="20" cy="7"  r="2.5" stroke={color} strokeWidth="2"/>
-    <circle cx="20" cy="33" r="2.5" stroke={color} strokeWidth="2"/>
-    <circle cx="7"  cy="20" r="2.5" stroke={color} strokeWidth="2"/>
-    <circle cx="33" cy="20" r="2.5" stroke={color} strokeWidth="2"/>
-    <line x1="20" y1="9.5"  x2="20" y2="16" stroke={color} strokeWidth="1.8" strokeDasharray="2 2"/>
-    <line x1="20" y1="24"  x2="20" y2="30.5" stroke={color} strokeWidth="1.8" strokeDasharray="2 2"/>
-    <line x1="9.5" y1="20" x2="16"  y2="20" stroke={color} strokeWidth="1.8" strokeDasharray="2 2"/>
-    <line x1="24"  y1="20" x2="30.5" y2="20" stroke={color} strokeWidth="1.8" strokeDasharray="2 2"/>
+    <circle cx="20" cy="20" r="4" stroke={color} strokeWidth="2.2" />
+    <circle cx="20" cy="7" r="2.5" stroke={color} strokeWidth="2" />
+    <circle cx="20" cy="33" r="2.5" stroke={color} strokeWidth="2" />
+    <circle cx="7" cy="20" r="2.5" stroke={color} strokeWidth="2" />
+    <circle cx="33" cy="20" r="2.5" stroke={color} strokeWidth="2" />
+    <line x1="20" y1="9.5" x2="20" y2="16" stroke={color} strokeWidth="1.8" strokeDasharray="2 2" />
+    <line x1="20" y1="24" x2="20" y2="30.5" stroke={color} strokeWidth="1.8" strokeDasharray="2 2" />
+    <line x1="9.5" y1="20" x2="16" y2="20" stroke={color} strokeWidth="1.8" strokeDasharray="2 2" />
+    <line x1="24" y1="20" x2="30.5" y2="20" stroke={color} strokeWidth="1.8" strokeDasharray="2 2" />
   </svg>
 );
 
 const IconShield = ({ color }: { color: string }) => (
   <svg width="22" height="22" viewBox="0 0 40 40" fill="none">
-    <path d="M20 4L7 10v9c0 8 5.5 14 13 16 7.5-2 13-8 13-16V10L20 4z" stroke={color} strokeWidth="2.2" strokeLinejoin="round"/>
-    <polyline points="13.5,20 17.5,24.5 26.5,15" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M20 4L7 10v9c0 8 5.5 14 13 16 7.5-2 13-8 13-16V10L20 4z" stroke={color} strokeWidth="2.2" strokeLinejoin="round" />
+    <polyline points="13.5,20 17.5,24.5 26.5,15" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 const IconAuto = ({ color }: { color: string }) => (
   <svg width="22" height="22" viewBox="0 0 40 40" fill="none">
-    <path d="M8 19L20 8l12 11" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M12 19v12h16V19" stroke={color} strokeWidth="2.2" strokeLinejoin="round"/>
-    <circle cx="17" cy="25" r="2" stroke={color} strokeWidth="1.8"/>
-    <circle cx="23" cy="25" r="2" stroke={color} strokeWidth="1.8"/>
-    <line x1="19" y1="25" x2="21" y2="25" stroke={color} strokeWidth="1.8"/>
-    <line x1="17" y1="23" x2="17" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round"/>
-    <line x1="23" y1="23" x2="23" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round"/>
+    <path d="M8 19L20 8l12 11" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 19v12h16V19" stroke={color} strokeWidth="2.2" strokeLinejoin="round" />
+    <circle cx="17" cy="25" r="2" stroke={color} strokeWidth="1.8" />
+    <circle cx="23" cy="25" r="2" stroke={color} strokeWidth="1.8" />
+    <line x1="19" y1="25" x2="21" y2="25" stroke={color} strokeWidth="1.8" />
+    <line x1="17" y1="23" x2="17" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+    <line x1="23" y1="23" x2="23" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
   </svg>
 );
 
@@ -87,10 +87,10 @@ const SERVICES = [
     id: "iluminacion",
     Icon: IconLuz,
     title: "Iluminación inteligente",
-    tagline: "Sin obras. Sin cables nuevos.",
-    description: "Reemplazamos tus interruptores de siempre por switches WiFi. Nada de romper paredes ni contratar electricistas. Tu hogar empieza a responder desde el primer día.",
+    tagline: "",
+    description: "Convertimos tus interruptores tradicionales en inteligentes para que puedas controlar y automatizar la iluminación de tu hogar de una forma más simple.",
     accent: "#F59E0B",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80",
+    image: "/images/services/iluminacion.webp",
     features: [
       "Control por voz, app o rutina automática",
       "Escenas personalizadas con un toque",
@@ -102,25 +102,25 @@ const SERVICES = [
     id: "ecosistemas",
     Icon: IconHub,
     title: "Ecosistemas conectados",
-    tagline: "Una sola app. Todo el hogar.",
-    description: "Centralizamos Alexa, Google Home y Home Assistant en un solo panel. El corazón del sistema es un servidor dentro de tu casa — sin suscripciones, sin nube, sin terceros.",
+    tagline: "",
+    description: "Centralizamos Alexa, Google Home y Home Assistant en un solo panel.",
     accent: "#3B82F6",
-    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=700&q=80",
+    image: "/images/services/ecosistema.webp",
     features: [
-      "Todas las marcas integradas en un panel",
-      "Servidor local: tus datos nunca salen de tu casa",
-      "Sin suscripciones ni dependencia de la nube",
+      "Un solo lugar para controlar todo tu hogar.",
+      "Compatible con Google, Alexa y Home Assistant.",
+      "Configuración flexible para cada espacio.",
     ],
-    ecosystems: ["alexa", "google", "ha", "homekit"],
+    ecosystems: ["alexa", "google", "ha"],
   },
   {
     id: "seguridad",
     Icon: IconShield,
     title: "Seguridad inteligente",
-    tagline: "Sabés quién entra. Desde donde estés.",
+    tagline: "",
     description: "Cerraduras WiFi, cámaras y timbres con video integrados. Ves lo que pasa en tu casa en tiempo real y recibís alertas al instante si algo ocurre fuera de lo normal.",
     accent: "#EF4444",
-    image: "https://images.unsplash.com/photo-1557858310-9052820906f7?w=700&q=80",
+    image: "/images/services/seguridad.webp",
     features: [
       "Cerraduras WiFi y cámaras con visión nocturna",
       "Alertas al instante en tu celular",
@@ -128,21 +128,7 @@ const SERVICES = [
     ],
     ecosystems: ["alexa", "google", "ha"],
   },
-  {
-    id: "automatizaciones",
-    Icon: IconAuto,
-    title: "Automatizaciones a medida",
-    tagline: "Tu hogar trabaja solo.",
-    description: "Diseñamos rutinas específicas para tu familia y tus hábitos. Nada genérico — cada automatización se configura para que tu vida sea un poco más fácil cada día.",
-    accent: "#8B5CF6",
-    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=700&q=80",
-    features: [
-      "Rutinas adaptadas a tu estilo de vida",
-      "Se activa cuando llegás, se apaga cuando salís",
-      "Integración con GPS, clima y calendario",
-    ],
-    ecosystems: ["alexa", "google", "ha"],
-  },
+
 ];
 
 const panelVariants = {
