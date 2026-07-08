@@ -1,6 +1,5 @@
 "use client";
 
-import { LUMOS_PRIMARY_HEX } from "@/lib/utils";
 import React, { useState, useEffect } from "react";
 import {
   Sun,

@@ -3,7 +3,7 @@
 import { LUMOS_PRIMARY_HEX, LUMOS_PRIMARY_RGB } from "@/lib/utils";
 import { useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowRight, Loader2, CheckCircle, AlertCircle, Sparkles, ShieldCheck, Clock } from "lucide-react";
+import { ArrowRight, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { useContactForm } from "@/lib/use-contact-form";
 import { HoneypotField } from "@/components/ui/honeypot-field";
 import { FormField, FormTextarea, FORM_SUCCESS_COLOR, FORM_ERROR_COLOR } from "@/components/ui/form-fields";

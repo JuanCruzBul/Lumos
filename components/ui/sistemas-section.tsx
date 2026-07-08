@@ -70,18 +70,6 @@ const IconShield = ({ color }: { color: string }) => (
   </svg>
 );
 
-const IconAuto = ({ color }: { color: string }) => (
-  <svg width="22" height="22" viewBox="0 0 40 40" fill="none">
-    <path d="M8 19L20 8l12 11" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M12 19v12h16V19" stroke={color} strokeWidth="2.2" strokeLinejoin="round" />
-    <circle cx="17" cy="25" r="2" stroke={color} strokeWidth="1.8" />
-    <circle cx="23" cy="25" r="2" stroke={color} strokeWidth="1.8" />
-    <line x1="19" y1="25" x2="21" y2="25" stroke={color} strokeWidth="1.8" />
-    <line x1="17" y1="23" x2="17" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-    <line x1="23" y1="23" x2="23" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-  </svg>
-);
-
 const SERVICES = [
   {
     id: "iluminacion",
