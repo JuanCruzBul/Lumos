@@ -82,7 +82,7 @@ export function NosotrosSection() {
             />
           </motion.div>
 
-          {/* ── QUOTE ── */}
+          {/* ── QUOTE ── i*/}
           <motion.div
             {...fadeUp(0.26)}
             className="relative mb-16 md:mb-24 pl-7 md:pl-9"
