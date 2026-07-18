@@ -12,7 +12,7 @@ Contenido textual real de cada sección, extraído directamente del código fuen
 > Inteligencia **Atmosférica**
 
 **Descripción:**
-> Lumos convierte tu hogar en un espacio inteligente. Control total desde el celular o con la voz, instalado por nosotros en un solo día. Sin complicaciones.
+> Lumos convierte tu hogar en un espacio inteligente. Control total desde el celular o con la voz, instalado por nosotros. Sin complicaciones.
 
 **Botones:**
 - `Ver Servicios` (primario naranja)
@@ -29,7 +29,7 @@ Contenido textual real de cada sección, extraído directamente del código fuen
 > Cerraduras y cámaras que te avisan cuando importa. Salís tranquilo sabiendo que tu hogar está protegido.
 
 ### Nosotros Instalamos Todo
-> No necesitás saber de tecnología. Nuestro equipo instala, configura y te enseña a usar tu hogar inteligente en un solo día.
+> No necesitás saber de tecnología. Nuestro equipo instala, configura y te enseña a usar tu hogar inteligente.
 
 ---
 
@@ -47,10 +47,10 @@ Contenido textual real de cada sección, extraído directamente del código fuen
 Instalamos switches y luces inteligentes en cualquier punto de tu hogar. Controlás desde el celular, con la voz o de forma automática por horario.
 
 **Detalle modal:**
-Reemplazamos tus interruptores convencionales por switches WiFi sin romper paredes ni hacer obras. En un solo día tu hogar puede responder a tu voz, una app o un horario programado.
+Reemplazamos tus interruptores convencionales por switches WiFi sin romper paredes ni hacer obras. Tu hogar puede responder a tu voz, una app o un horario programado.
 
 Incluye:
-- Switches WiFi instalados en un día, sin obras
+- Switches WiFi instalados sin obras
 - Control por voz con Alexa, Google Assistant o Siri
 - Escenas personalizadas: Cine, Lectura, Bienvenida
 - Horarios, temporizadores y modo ausente
@@ -128,7 +128,7 @@ Nos contás qué querés mejorar. La visita es sin cargo y sin compromiso.
 Armamos tu solución a medida: qué dispositivos, dónde y cómo van a funcionar.
 
 ### Paso 03 — Instalamos
-Nuestro equipo instala y configura todo en un solo día. Sin obras ni remodelaciones.
+Nuestro equipo instala y configura todo. Sin obras ni remodelaciones.
 
 ### Paso 04 — Disfrutá
 Controlás todo desde el celular, la voz o de forma automática. Tu hogar trabaja por vos.
@@ -185,7 +185,7 @@ Proyecto personalizado para tu hogar.
 > "Lumos transformó por completo cómo vivo mi casa. Las luces se adaptan solas a cada momento del día y puedo controlar todo desde el celular. Increíble."
 
 ### Pablo F. — Emprendedor · Nueva Córdoba ★★★★★
-> "La instalación fue rápida y sin obras. En menos de un día tenía todo funcionando. El equipo estuvo presente en cada paso y el soporte es excelente."
+> "La instalación fue rápida y sin obras. El equipo estuvo presente en cada paso y el soporte es excelente."
 
 ### Sofía M. — Arquitecta · Córdoba Capital ★★★★★
 > "Lo que más me sorprende es la simplicidad. Mis clientes preguntan cómo funciona y la respuesta es siempre la misma: simplemente funciona."

@@ -79,7 +79,7 @@ Lumos **no vende dispositivos**. Lumos vende:
 ## SERVICIOS
 
 ### 1. Iluminación Inteligente
-- Switches WiFi instalados en un día, sin obras
+- Switches WiFi instalados sin obras
 - Control por voz con Alexa, Google Assistant o Siri
 - Escenas personalizadas: Cine, Lectura, Bienvenida
 - Horarios, temporizadores y modo ausente
