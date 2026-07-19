@@ -71,6 +71,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    other: {
+      "facebook-domain-verification": "mis4qam50baqdt4goilqi2pzlmpq02",
+    },
+  },
 };
 
 const jsonLd = {
