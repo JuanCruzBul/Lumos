@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Carta de Presentación — Lumos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: A4; margin: 0; }
+
+  :root{
+    --primary: #c5704b;
+    --accent: #fab359;
+    --ink: #1a1a20;
+    --ink-soft: #4a4a55;
+    --paper: #ffffff;
+    --line: #e7e1da;
+    --surface: #faf7f4;
+  }
+
+  html, body {
+    font-family: 'Quicksand', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  body {
+    width: 210mm;
+    height: 297mm;
+    padding: 11mm 20mm 9mm 20mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 3.5mm;
+    border-bottom: 2px solid var(--primary);
+    margin-bottom: 3mm;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 3.5mm;
+  }
+
+  .logo-mark {
+    width: 11mm;
+    height: 11mm;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-size: 18pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+  }
+
+  .brand-tag {
+    font-size: 8pt;
+    font-weight: 500;
+    color: var(--primary);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-top: 0.5mm;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .date-line {
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    margin-bottom: 2.5mm;
+  }
+
+  /* Title block */
+  .title-block { margin-bottom: 3.5mm; }
+
+  .eyebrow {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 2mm;
+  }
+
+  h1 {
+    font-size: 19pt;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+
+  h1 span { color: var(--primary); }
+
+  .lead {
+    font-size: 10pt;
+    color: var(--ink-soft);
+    margin-top: 2.5mm;
+    line-height: 1.55;
+    max-width: 155mm;
+  }
+
+  /* Body copy */
+  .body-text {
+    font-size: 9.2pt;
+    line-height: 1.48;
+    color: var(--ink);
+    margin-bottom: 2mm;
+  }
+
+  .body-text strong { color: var(--primary); font-weight: 700; }
+
+  /* Services grid */
+  .section-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2.5mm 0 2mm 0;
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin-bottom: 2.5mm;
+  }
+
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3mm;
+    padding: 2.8mm 4mm;
+  }
+
+  .service-card .num {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--ink);
+    display: inline-block;
+    width: 5.5mm;
+    height: 5.5mm;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 5.5mm;
+    margin-bottom: 1.5mm;
+  }
+
+  .service-card h3 {
+    font-size: 10pt;
+    font-weight: 700;
+    margin-bottom: 1mm;
+    color: var(--ink);
+  }
+
+  .service-card p {
+    font-size: 8.3pt;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  /* Process strip */
+  .process {
+    display: flex;
+    justify-content: space-between;
+    gap: 3mm;
+    margin-bottom: 2.5mm;
+    padding: 2.8mm 5mm;
+    background: var(--ink);
+    border-radius: 3mm;
+  }
+
+  .process-step {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+  }
+
+  .process-step .step-num {
+    font-size: 7.5pt;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.5mm;
+  }
+
+  .process-step .step-label {
+    font-size: 9pt;
+    font-weight: 600;
+  }
+
+  /* Highlight / social proof strip */
+  .highlight-strip {
+    display: flex;
+    gap: 4mm;
+    margin-bottom: 2.5mm;
+  }
+
+  .stat-box {
+    flex: 1;
+    border: 1px solid var(--line);
+    border-radius: 3mm;
+    padding: 2.2mm 4mm;
+    text-align: center;
+  }
+
+  .stat-box .stat-number {
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .stat-box .stat-label {
+    font-size: 7.5pt;
+    color: var(--ink-soft);
+    margin-top: 0.5mm;
+  }
+
+  /* Quote */
+  .quote {
+    font-size: 9.5pt;
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--accent);
+    padding: 1mm 0 1mm 5mm;
+    margin: 2.5mm 0;
+  }
+
+  /* Signatures */
+  .signatures {
+    display: flex;
+    gap: 12mm;
+    margin: 3mm 0 3mm 0;
+  }
+
+  .signature {
+    padding-top: 3mm;
+    border-top: 1px solid var(--ink);
+    min-width: 55mm;
+  }
+
+  .sig-name {
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .sig-role {
+    font-size: 8.5pt;
+    color: var(--primary);
+    font-weight: 600;
+    margin-top: 0.5mm;
+  }
+
+  .sig-phone {
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    margin-top: 0.5mm;
+  }
+
+  /* Footer / contact */
+  .footer {
+    margin-top: auto;
+    padding-top: 2mm;
+    border-top: 2px solid var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .brand-name-small {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.5mm;
+  }
+
+  .contact-line {
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    margin-bottom: 0.5mm;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="brand">
+      <svg class="logo-mark" viewBox="7500 7800 13500 13500" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#C5704B" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
+        <path fill="#FAB359" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+      </svg>
+      <div>
+        <div class="brand-name">Lumos</div>
+        <div class="brand-tag">Hogares Inteligentes</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      Villa Carlos Paz, Córdoba<br/>
+      lumosdomotica@gmail.com · lumos.net.ar
+    </div>
+  </div>
+
+  <div class="date-line">Villa Carlos Paz, 28 de agosto de 2026</div>
+
+  <div class="title-block">
+    <div class="eyebrow">Carta de Presentación</div>
+    <h1>Convertimos el hogar en un espacio <span>inteligente</span></h1>
+    <p class="lead">Automatización residencial: control total desde el celular o la voz, con instalación a cargo de nuestro equipo en un solo día y sin complicaciones.</p>
+  </div>
+
+  <p class="body-text">
+    A quien corresponda:<br/><br/>
+    Nos dirigimos a ustedes en representación de <strong>Lumos</strong>, empresa dedicada a la domótica y automatización residencial. Diseñamos, instalamos y configuramos soluciones de iluminación, seguridad y automatización a medida de cada hogar, sin necesidad de conocimientos técnicos por parte del cliente. Nuestro objetivo es ofrecer una experiencia simple y confiable, para que cada familia disfrute de su hogar mientras este trabaja por ella.
+  </p>
+
+  <div class="section-title">Nuestros servicios</div>
+  <div class="services">
+    <div class="service-card">
+      <div class="num">1</div>
+      <h3>Iluminación Inteligente</h3>
+      <p>Switches y luces WiFi controlables por voz, app o horario, instalados en un día sin romper paredes ni hacer obras.</p>
+    </div>
+    <div class="service-card">
+      <div class="num">2</div>
+      <h3>Ecosistemas Conectados</h3>
+      <p>Integramos Alexa, Google Home y Home Assistant para centralizar todos los dispositivos del hogar en un solo lugar, sin importar la marca.</p>
+    </div>
+    <div class="service-card">
+      <div class="num">3</div>
+      <h3>Seguridad Inteligente</h3>
+      <p>Cerraduras WiFi, cámaras IP y timbres con video, que permiten identificar quién ingresa al hogar y recibir alertas en tiempo real.</p>
+    </div>
+    <div class="service-card">
+      <div class="num">4</div>
+      <h3>Automatizaciones a Medida</h3>
+      <p>Rutinas personalizadas según el estilo de vida de cada familia, diseñadas para que el hogar responda de forma anticipada a sus necesidades.</p>
+    </div>
+  </div>
+
+  <div class="section-title">Nuestro proceso</div>
+  <div class="process">
+    <div class="process-step">
+      <div class="step-num">PASO 01</div>
+      <div class="step-label">Consulta</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">PASO 02</div>
+      <div class="step-label">Diseño</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">PASO 03</div>
+      <div class="step-label">Instalación</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">PASO 04</div>
+      <div class="step-label">Disfrute</div>
+    </div>
+  </div>
+
+  <p class="body-text">
+    Trabajamos con marcas líderes del mercado —Sonoff, Shelly, Philips Hue, Yale, TP-Link Tapo y Reolink, entre otras— y ofrecemos planes flexibles, sin permanencia ni letra chica, desde un Kit Inicial hasta proyectos completamente a medida para el hogar de cada cliente.
+  </p>
+
+  <p class="body-text">
+    Quedamos a su disposición para ampliar cualquier información y coordinar una visita sin cargo. Sin otro particular, la saludamos atentamente.
+  </p>
+
+  <div class="signatures">
+    <div class="signature">
+      <div class="sig-name">Juan Cruz Bulatovich</div>
+      <div class="sig-role">Fundador</div>
+      <div class="sig-phone">3541 598686</div>
+    </div>
+    <div class="signature">
+      <div class="sig-name">Jesús Manuel Martínez</div>
+      <div class="sig-role">Cofundador</div>
+      <div class="sig-phone">3515 200058</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="contact-block">
+      <div class="brand-name-small">Lumos</div>
+      <div class="contact-line">lumosdomotica@gmail.com · lumos.net.ar</div>
+      <div class="contact-line">Villa Carlos Paz, Córdoba</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
