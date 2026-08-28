@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Tarjetas de Presentación — Lumos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: 90mm 50mm; margin: 0; }
+
+  html, body {
+    font-family: 'Quicksand', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .card {
+    width: 90mm;
+    height: 50mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    background: #1a1a20;
+    color: #fff;
+  }
+
+  .card:last-child { page-break-after: auto; }
+
+  /* ===== FRONT (personal) ===== */
+  .front {
+    padding: 6mm 7mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .front .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 2.2mm;
+  }
+
+  .front .logo-mark { width: 6mm; height: 6mm; flex-shrink: 0; }
+
+  .front .brand-word {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+
+  .front .person {
+    margin-top: 2mm;
+  }
+
+  .front .person .name {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .front .person .role {
+    font-size: 8pt;
+    font-weight: 600;
+    color: #fab359;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-top: 0.8mm;
+  }
+
+  .front .divider {
+    width: 12mm;
+    height: 1.2px;
+    background: #c5704b;
+    margin: 3mm 0 2.5mm 0;
+  }
+
+  .front .contact {
+    font-size: 7.3pt;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.65;
+  }
+
+  .front .contact strong { color: #fff; font-weight: 600; }
+
+  /* ===== FRONT (company / generic) ===== */
+  .front-company {
+    padding: 7mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .front-company .logo-mark { width: 9mm; height: 9mm; margin-bottom: 2.5mm; }
+
+  .front-company .brand-word {
+    font-size: 16pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+
+  .front-company .tagline {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #fab359;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-top: 1mm;
+  }
+
+  .front-company .divider {
+    width: 12mm;
+    height: 1.2px;
+    background: #c5704b;
+    margin: 3mm auto;
+  }
+
+  .front-company .contact {
+    font-size: 7.3pt;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+  }
+
+  /* ===== BACK (shared) ===== */
+  .back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .back .logo-mark { width: 15mm; height: 15mm; margin-bottom: 3mm; }
+
+  .back .brand-word {
+    font-size: 11pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+
+  .back .tagline {
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-top: 1.2mm;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== JUAN CRUZ — FRENTE ===================== -->
+<div class="card front">
+  <div class="brand-row">
+    <svg class="logo-mark" viewBox="7500 7800 13500 13500" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#C5704B" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
+      <path fill="#FAB359" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+    </svg>
+    <div class="brand-word">LUMOS</div>
+  </div>
+
+  <div class="person">
+    <div class="name">Juan Cruz Bulatovich</div>
+    <div class="role">Fundador</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="contact">
+    <strong>Tel:</strong> 3541 598686<br/>
+    lumosdomotica@gmail.com<br/>
+    lumos.net.ar · Villa Carlos Paz, Córdoba
+  </div>
+</div>
+
+<!-- ===================== JUAN CRUZ — DORSO ===================== -->
+<div class="card back">
+  <svg class="logo-mark" viewBox="7500 7800 13500 13500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow-1" x="-900%" y="-900%" width="1900%" height="1900%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="700" result="blur0"/>
+        <feFlood flood-color="#FAB359" flood-opacity="0.35" result="color0"/>
+        <feComposite in="color0" in2="blur0" operator="in" result="glow0"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="420" result="blur1"/>
+        <feFlood flood-color="#FAB359" flood-opacity="0.7" result="color1"/>
+        <feComposite in="color1" in2="blur1" operator="in" result="glow1"/>
+        <feMerge>
+          <feMergeNode in="glow0"/>
+          <feMergeNode in="glow1"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <g filter="url(#glow-1)">
+      <path fill="#C5704B" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
+      <path fill="#FAB359" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+    </g>
+  </svg>
+  <div class="brand-word">LUMOS</div>
+  <div class="tagline">Hogares Inteligentes</div>
+</div>
+
+<!-- ===================== JESÚS MANUEL — FRENTE ===================== -->
+<div class="card front">
+  <div class="brand-row">
+    <svg class="logo-mark" viewBox="7500 7800 13500 13500" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#C5704B" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
+      <path fill="#FAB359" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+    </svg>
+    <div class="brand-word">LUMOS</div>
+  </div>
+
+  <div class="person">
+    <div class="name">Jesús Manuel Martínez</div>
+    <div class="role">Cofundador</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="contact">
+    <strong>Tel:</strong> 3515 200058<br/>
+    lumosdomotica@gmail.com<br/>
+    lumos.net.ar · Villa Carlos Paz, Córdoba
+  </div>
+</div>
+
+<!-- ===================== JESÚS MANUEL — DORSO ===================== -->
+<div class="card back">
+  <svg class="logo-mark" viewBox="7500 7800 13500 13500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow-2" x="-900%" y="-900%" width="1900%" height="1900%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="700" result="blur0"/>
+        <feFlood flood-color="#FAB359" flood-opacity="0.35" result="color0"/>
+        <feComposite in="color0" in2="blur0" operator="in" result="glow0"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="420" result="blur1"/>
+        <feFlood flood-color="#FAB359" flood-opacity="0.7" result="color1"/>
+        <feComposite in="color1" in2="blur1" operator="in" result="glow1"/>
+        <feMerge>
+          <feMergeNode in="glow0"/>
+          <feMergeNode in="glow1"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <g filter="url(#glow-2)">
+      <path fill="#C5704B" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
+      <path fill="#FAB359" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+    </g>
+  </svg>
+  <div class="brand-word">LUMOS</div>
+  <div class="tagline">Hogares Inteligentes</div>
+</div>
+
+<!-- ===================== LUMOS (EMPRESA) — FRENTE ===================== -->
+<div class="card front-company">
+  <svg class="logo-mark" viewBox="7500 7800 13500 13500" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#C5704B" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
+    <path fill="#FAB359" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+  </svg>
+  <div class="brand-word">LUMOS</div>
+  <div class="tagline">Hogares Inteligentes</div>
+  <div class="divider"></div>
+  <div class="contact">
+    lumosdomotica@gmail.com<br/>
+    lumos.net.ar · Villa Carlos Paz, Córdoba
+  </div>
+</div>
+
+<!-- ===================== LUMOS (EMPRESA) — DORSO ===================== -->
+<div class="card back">
+  <svg class="logo-mark" viewBox="7500 7800 13500 13500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow-3" x="-900%" y="-900%" width="1900%" height="1900%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="700" result="blur0"/>
+        <feFlood flood-color="#FAB359" flood-opacity="0.35" result="color0"/>
+        <feComposite in="color0" in2="blur0" operator="in" result="glow0"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="420" result="blur1"/>
+        <feFlood flood-color="#FAB359" flood-opacity="0.7" result="color1"/>
+        <feComposite in="color1" in2="blur1" operator="in" result="glow1"/>
+        <feMerge>
+          <feMergeNode in="glow0"/>
+          <feMergeNode in="glow1"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <g filter="url(#glow-3)">
+      <path fill="#C5704B" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
+      <path fill="#FAB359" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+    </g>
+  </svg>
+  <div class="brand-word">LUMOS</div>
+  <div class="tagline">Hogares Inteligentes</div>
+</div>
+
+</body>
+</html>
