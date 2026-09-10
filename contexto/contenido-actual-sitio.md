@@ -9,7 +9,7 @@ Contenido textual real de cada sección, extraído directamente del código fuen
 **Badge:** `Automatización residencial · Villa Carlos Paz`
 
 **Título:**
-> Inteligencia **Atmosférica**
+> Inteligencia para tu hogar
 
 **Descripción:**
 > Lumos convierte tu hogar en un espacio inteligente. Control total desde el celular o con la voz, instalado por nosotros en un solo día. Sin complicaciones.

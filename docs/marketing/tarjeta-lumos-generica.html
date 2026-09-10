@@ -40,53 +40,71 @@
   }
 
   .front .wordmark {
-    margin-top: 3mm;
+    margin-top: 0.5mm;
     font-size: 23pt;
     font-weight: 600;
     color: #b5623a;
     letter-spacing: 0.5px;
     text-align: center;
+    line-height: 1;
+  }
+
+  .front .tagline {
+    margin-top: 0.5mm;
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #b5623a;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0.75;
+  }
+
+  .front .dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(1.3);
   }
 
   /* ===== BACK — copper gradient ===== */
   .back {
-    background: linear-gradient(150deg, #d69466 0%, #b3603a 55%, #93462a 100%);
+    background: #c5704b;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 7mm 8mm;
   }
 
-  .back .glow-wrap {
-    position: absolute;
-    top: -14mm;
-    left: -10mm;
-    width: 50mm;
-    height: 50mm;
-  }
-
   .back .glow-core {
     position: absolute;
-    top: 19mm;
-    left: 19mm;
-    width: 17mm;
-    height: 17mm;
+    top: 50%;
+    left: 22.5mm;
+    transform: translate(-50%, -50%);
+    width: 11mm;
+    height: 11mm;
     border-radius: 50%;
-    background: #ffe4a8;
+    background: #ffc35c;
     box-shadow:
-      0 0 5mm 3mm rgba(255, 240, 210, 0.9),
-      0 0 10mm 6mm rgba(255, 216, 140, 0.75),
-      0 0 20mm 12mm rgba(255, 195, 100, 0.5),
-      0 0 32mm 20mm rgba(255, 175, 80, 0.28);
+      0 0 5mm 2.5mm rgba(255, 195, 92, 0.4),
+      0 0 11mm 6mm rgba(255, 202, 110, 0.24),
+      0 0 18mm 10mm rgba(255, 190, 90, 0.12);
   }
 
   .back .contact {
     position: relative;
     z-index: 2;
+    align-self: flex-end;
+    max-width: 46mm;
+    text-align: left;
     color: rgba(255,255,255,0.95);
-    font-size: 8pt;
-    line-height: 1.75;
-    margin-top: auto;
+    font-size: 6.6pt;
+    line-height: 1.65;
+  }
+
+  .back .names {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 6.9pt;
   }
 
   .back .wordmark {
@@ -105,23 +123,39 @@
 <!-- ===================== FRENTE ===================== -->
 <div class="card front">
   <svg class="logo-mark" viewBox="7500 7800 13500 13500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="dot-glow-front" x="-500%" y="-500%" width="1100%" height="1100%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="380" result="blur0"/>
+        <feFlood flood-color="#FFB347" flood-opacity="0.9" result="color0"/>
+        <feComposite in="color0" in2="blur0" operator="in" result="glow0"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="180" result="blur1"/>
+        <feFlood flood-color="#FFDA9C" flood-opacity="1" result="color1"/>
+        <feComposite in="color1" in2="blur1" operator="in" result="glow1"/>
+        <feMerge>
+          <feMergeNode in="glow0"/>
+          <feMergeNode in="glow1"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
     <path fill="#b5623a" fill-rule="evenodd" d="M13947.45 8768.96l2.87 3169.79c0.59,172.55 -138.85,113.63 -559.83,112.7l-4358.45 -1.28c-684.32,-1.18 -546.92,57.73 -546.43,1288.57l-1.51 5943.36c-0.91,703.37 76.63,571.28 1102.65,571.99l4647.39 -3.98c251.96,-26.15 235.68,-275 235.24,-488.77l-1.5 -2509.41c0.1,-225.71 48.98,-538.33 -112.19,-645.91 -238.8,-159.37 -407.43,38.61 -407.62,302.51l0.31 2535.83c-0.1,366.1 96.74,286.27 -874.87,284.55l-3935.81 0.57c-184.12,-0.04 -133.86,-47.17 -132.64,-522.85l-0.25 -5705.63c1.85,-666 -204.5,-530.31 1136.66,-531.46l5847.41 13.92c39.16,537.54 7.77,3453.61 8.7,4136.39l-1.11 2799.98c-0.08,435.58 353.01,332.91 1039.29,333.88l2139.6 0.67c918.52,-0.73 759.21,105.45 756.55,-1681.71l0.36 -9271.63c0.18,-575.02 -94.19,-494.67 -941.81,-494.51l-4649.02 1.08c-298.08,-0.25 -394.3,54.73 -393.99,361.35z M14468.3 9138.77l0.68 2694.32c0.15,269.51 -34,219.4 559.25,218.27l950.93 0.14c582.23,0.15 528.58,76.95 527.58,706.12l8.31 6565.5c836.94,6.23 2060.23,22.66 2884.66,1.44 48.75,-671.2 11.72,-3699.05 12.88,-4374.5 1.14,-660.88 191.08,-557.49 -844.77,-558.02l-739.62 0.09c-211.67,0.17 -363.98,-55.35 -349.41,-286.72 18.67,-296.48 349.12,-235.5 692.8,-236.45l1083.02 -0.31c218.59,0.73 159.81,-26.83 158.8,-503.5l-1.3 -3698.08c-0.37,-865.03 214.61,-739.99 -817.88,-739.93l-3882.98 -1.36c-258.41,-0.47 -242.99,-44.22 -242.95,212.99z"/>
-    <path fill="#e0955f" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+    <g filter="url(#dot-glow-front)">
+      <path class="dot" fill="#ffb347" d="M14089.28 13741.26c-523.12,189.24 -226.03,917.72 264.86,745.2 465.91,-163.74 232.65,-925.16 -264.86,-745.2z"/>
+    </g>
   </svg>
-  <div class="wordmark">lumos</div>
+  <div class="wordmark">Lumos</div>
+  <div class="tagline">Hogares Inteligentes</div>
 </div>
 
 <!-- ===================== DORSO ===================== -->
 <div class="card back">
-  <div class="glow-wrap">
-    <div class="glow-core"></div>
-  </div>
-  <div></div>
+  <div class="glow-core"></div>
+  <div class="wordmark">Lumos</div>
   <div class="contact">
+    <span class="names">Juan Cruz Bulatovich<br/>Jesús Manuel Martínez</span><br/>
     lumosdomotica@gmail.com<br/>
-    lumos.net.ar
+    lumos.net.ar · 3541 598686
   </div>
-  <div class="wordmark">lumos</div>
 </div>
 
 </body>

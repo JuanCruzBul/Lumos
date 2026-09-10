@@ -1,6 +1,6 @@
 # LUMOS — Sitio Web: Documentación Técnica
 
-Landing page de marketing para Lumos, empresa de domótica e inteligencia atmosférica para el hogar.
+Landing page de marketing para Lumos, empresa de domótica para el hogar.
 
 Ruta del proyecto: `/home/juanchi/Escritorio/Lumos`
 

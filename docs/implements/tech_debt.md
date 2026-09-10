@@ -1,6 +1,6 @@
 # Deuda Técnica — Lumos
 
-**Última actualización:** 2026-07-05 (auditoría `docs/audit/2026-07-05.md`)
+**Última actualización:** 2026-07-15 (auditoría `docs/audit/2026-07-15.md`)
 
 ---
 
@@ -70,6 +70,13 @@
 - **Descripción:** Los 6 archivos definen componentes con `onClick`/`onChange` pero ninguno declara `"use client"` al tope, a diferencia de la convención de `CLAUDE.md` y del resto del código (`form-fields.tsx`, `honeypot-field.tsx`, `navbar.tsx`). Hoy no rompe nada porque `habitacion-inteligente-demo.tsx` ya es `"use client"` y arrastra todo su árbol de imports al bundle de cliente. Detectado en auditoría 2026-07-05.
 - **Riesgo:** Si alguno de estos componentes se reutiliza desde un árbol que no parte de un límite `"use client"` explícito, el error de "event handlers cannot be passed to Client Component props" aparece recién en ese punto de uso.
 - **Recomendación:** Agregar `"use client"` a los 6 archivos para que sean autocontenidos y consistentes con el resto del código.
+
+### TD-018 — Artefactos de testing manual commiteados sin suite de tests real
+
+- **Archivos afectados:** `screenshot-contact.js:16`, `test-results/.last-run.json`
+- **Descripción:** `screenshot-contact.js` es un script ad-hoc de Playwright con un path de salida hardcodeado de la máquina de otro desarrollador (`C:/Users/Juanchi/AppData/Local/Temp/...`). `test-results/.last-run.json` es el artefacto de una corrida local (`status: "failed"`, sin detalle) que quedó commiteado. No existe `playwright.config.ts` ni carpeta `tests/`: `playwright` está en `devDependencies` pero no respalda ninguna suite real. Detectado en auditoría 2026-07-15.
+- **Riesgo:** El script falla para cualquier otro desarrollador que lo corra tal cual por el path hardcodeado; el artefacto de test commiteado es ruido que puede leerse como "hay CI corriendo tests" cuando no es el caso.
+- **Recomendación:** Agregar `test-results/` al `.gitignore` y sacarlo del tracking (`git rm --cached`), y o bien formalizar `screenshot-contact.js` como script de desarrollo con path relativo/configurable, o borrarlo si ya no se usa.
 
 ---
 
